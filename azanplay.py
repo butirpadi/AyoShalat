@@ -6,8 +6,8 @@ from sys import getfilesystemencoding
 
 from playsound import PlaysoundException
 import os
-gi.require_version('Gst', '1.0')
 import gi
+gi.require_version('Gst', '1.0')
 from pprint import pprint
 
 

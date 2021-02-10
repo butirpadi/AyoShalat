@@ -2,7 +2,7 @@
 from PySide6.QtGui import QIcon
 from azanplay import AzanPlay
 from PySide6.QtWidgets import QErrorMessage, QMainWindow, QMenu, QSystemTrayIcon
-from main import Ui_MainWindow
+from main_ui import Ui_MainWindow
 import pathlib
 import os
 import io
@@ -172,22 +172,49 @@ class AyoShalat(QMainWindow):
 
     def openSetting(self):
         print('opening file')
-        try
-        fileob = open(r'/home/eries/.iprayrc', 'r')
-        lines = fileob.readlines()
 
-        city = lines[0].split(':')[1].strip()
-        lat = lines[1].split(':')[1].strip()
-        long = lines[2].split(':')[1].strip()
-        utc = lines[3].split(':')[1].strip()
-        method = lines[4].split(':')[1].strip()
-        mathhab = lines[5].split(':')[1].strip()
-        # offset = lines[4].split(':')[1]
+        try:
 
-        self.ui.txLat.setText(lat)
-        self.ui.txLong.setText(long)
-        self.ui.txUtc.setText(utc)
-        self.ui.cbMethod.setCurrentIndex(int(method)-1)
-        self.ui.cbMathhab.setCurrentIndex(int(mathhab)-1)
+            fileob = open(r'/home/eries/.iprayrc', 'r')
+            lines = fileob.readlines()
 
-        fileob.close()
+            city = lines[0].split(':')[1].strip()
+            lat = lines[1].split(':')[1].strip()
+            long = lines[2].split(':')[1].strip()
+            utc = lines[3].split(':')[1].strip()
+            method = lines[4].split(':')[1].strip()
+            mathhab = lines[5].split(':')[1].strip()
+            # offset = lines[4].split(':')[1]
+
+            self.ui.txLat.setText(lat)
+            self.ui.txLong.setText(long)
+            self.ui.txUtc.setText(utc)
+            self.ui.cbMethod.setCurrentIndex(int(method)-1)
+            self.ui.cbMathhab.setCurrentIndex(int(mathhab)-1)
+
+            fileob.close()
+        except FileNotFoundError:
+            # init file setting
+            setting_lines = []
+            setting_lines.append('City: city_name' + '\n')
+            setting_lines.append(
+                'Latitude: -7.502814765426055\n')
+            setting_lines.append(
+                'Longitude: 112.71057820736571\n')
+            setting_lines.append('UTC: 7\n')
+            setting_lines.append(
+                'AngleMethod: 5\n')
+            setting_lines.append(
+                'Mathhab: 1\n')
+            setting_lines.append(
+                'OffsetList: ' + '0 0 0 0 0 0' + '\n')
+
+            fileob = open(r'/home/eries/.iprayrc', 'w')
+
+            for line in setting_lines:
+                fileob.writelines(line)
+
+            fileob.close()
+
+            # open setting
+            self.openSetting()
