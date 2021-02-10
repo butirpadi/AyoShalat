@@ -147,9 +147,9 @@ color: rgb(255, 255, 255);</string>
 color: rgb(255, 255, 255);</string>
       </property>
       <property name="currentIndex">
-       <number>1</number>
+       <number>0</number>
       </property>
-      <widget class="QWidget" name="tab_2">
+      <widget class="QWidget" name="tab_pray_info">
        <attribute name="title">
         <string>Prayer Times</string>
        </attribute>
@@ -312,38 +312,13 @@ color: rgb(255, 255, 255);</string>
         </item>
        </layout>
       </widget>
-      <widget class="QWidget" name="tab">
+      <widget class="QWidget" name="tab_setting">
        <attribute name="title">
         <string>Setting</string>
        </attribute>
        <layout class="QGridLayout" name="gridLayout_2">
-        <item row="8" column="1">
-         <layout class="QHBoxLayout" name="horizontalLayout_2">
-          <item>
-           <widget class="QPushButton" name="btnPlay">
-            <property name="text">
-             <string>Play</string>
-            </property>
-           </widget>
-          </item>
-          <item>
-           <widget class="QPushButton" name="btnStop">
-            <property name="text">
-             <string>Stop</string>
-            </property>
-           </widget>
-          </item>
-          <item>
-           <widget class="QPushButton" name="btnSave">
-            <property name="text">
-             <string>Save</string>
-            </property>
-           </widget>
-          </item>
-         </layout>
-        </item>
-        <item row="8" column="0" rowspan="2">
-         <spacer name="verticalSpacer">
+        <item row="10" column="2">
+         <spacer name="verticalSpacer_2">
           <property name="orientation">
            <enum>Qt::Vertical</enum>
           </property>
@@ -355,55 +330,10 @@ color: rgb(255, 255, 255);</string>
           </property>
          </spacer>
         </item>
-        <item row="3" column="1">
+        <item row="3" column="2">
          <widget class="QLineEdit" name="txLong"/>
         </item>
-        <item row="7" column="0">
-         <widget class="QLabel" name="label_6">
-          <property name="text">
-           <string>Mathab</string>
-          </property>
-         </widget>
-        </item>
-        <item row="6" column="0">
-         <widget class="QLabel" name="label_4">
-          <property name="text">
-           <string>Method</string>
-          </property>
-         </widget>
-        </item>
-        <item row="3" column="0">
-         <widget class="QLabel" name="label_2">
-          <property name="text">
-           <string>Longitude</string>
-          </property>
-         </widget>
-        </item>
-        <item row="1" column="0">
-         <widget class="QLabel" name="label">
-          <property name="text">
-           <string>Latitude</string>
-          </property>
-         </widget>
-        </item>
-        <item row="7" column="1">
-         <widget class="QComboBox" name="cbMathhab">
-          <item>
-           <property name="text">
-            <string>Shafi'i</string>
-           </property>
-          </item>
-          <item>
-           <property name="text">
-            <string>Hanafi</string>
-           </property>
-          </item>
-         </widget>
-        </item>
-        <item row="5" column="1">
-         <widget class="QLineEdit" name="txUtc"/>
-        </item>
-        <item row="6" column="1">
+        <item row="6" column="2">
          <widget class="QComboBox" name="cbMethod">
           <item>
            <property name="text">
@@ -447,6 +377,55 @@ color: rgb(255, 255, 255);</string>
           </item>
          </widget>
         </item>
+        <item row="7" column="2">
+         <widget class="QComboBox" name="cbMathhab">
+          <item>
+           <property name="text">
+            <string>Shafi'i</string>
+           </property>
+          </item>
+          <item>
+           <property name="text">
+            <string>Hanafi</string>
+           </property>
+          </item>
+         </widget>
+        </item>
+        <item row="9" column="2">
+         <layout class="QHBoxLayout" name="horizontalLayout_2">
+          <item>
+           <widget class="QPushButton" name="btnPlay">
+            <property name="text">
+             <string>Play</string>
+            </property>
+           </widget>
+          </item>
+          <item>
+           <widget class="QPushButton" name="btnStop">
+            <property name="text">
+             <string>Stop</string>
+            </property>
+           </widget>
+          </item>
+          <item>
+           <widget class="QPushButton" name="btnSave">
+            <property name="text">
+             <string>Save</string>
+            </property>
+           </widget>
+          </item>
+         </layout>
+        </item>
+        <item row="1" column="0">
+         <widget class="QLabel" name="label">
+          <property name="text">
+           <string>Latitude</string>
+          </property>
+         </widget>
+        </item>
+        <item row="5" column="2">
+         <widget class="QLineEdit" name="txUtc"/>
+        </item>
         <item row="5" column="0">
          <widget class="QLabel" name="label_3">
           <property name="text">
@@ -454,8 +433,32 @@ color: rgb(255, 255, 255);</string>
           </property>
          </widget>
         </item>
-        <item row="9" column="1">
-         <spacer name="verticalSpacer_2">
+        <item row="6" column="0">
+         <widget class="QLabel" name="label_4">
+          <property name="text">
+           <string>Method</string>
+          </property>
+         </widget>
+        </item>
+        <item row="3" column="0">
+         <widget class="QLabel" name="label_2">
+          <property name="text">
+           <string>Longitude</string>
+          </property>
+         </widget>
+        </item>
+        <item row="7" column="0">
+         <widget class="QLabel" name="label_6">
+          <property name="text">
+           <string>Mathab</string>
+          </property>
+         </widget>
+        </item>
+        <item row="1" column="2">
+         <widget class="QLineEdit" name="txLat"/>
+        </item>
+        <item row="9" column="0" rowspan="2">
+         <spacer name="verticalSpacer">
           <property name="orientation">
            <enum>Qt::Vertical</enum>
           </property>
@@ -467,8 +470,19 @@ color: rgb(255, 255, 255);</string>
           </property>
          </spacer>
         </item>
-        <item row="1" column="1">
-         <widget class="QLineEdit" name="txLat"/>
+        <item row="8" column="2">
+         <widget class="QCheckBox" name="ckStartTray">
+          <property name="text">
+           <string>Start in Tray</string>
+          </property>
+         </widget>
+        </item>
+        <item row="8" column="0">
+         <widget class="QLabel" name="label_5">
+          <property name="text">
+           <string/>
+          </property>
+         </widget>
         </item>
        </layout>
       </widget>
