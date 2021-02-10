@@ -1,4 +1,3 @@
-from gi.repository import Gst
 from ctypes import c_buffer
 from random import random
 from time import sleep
@@ -8,6 +7,7 @@ from playsound import PlaysoundException
 import os
 import gi
 gi.require_version('Gst', '1.0')
+from gi.repository import Gst
 from pprint import pprint
 
 
