@@ -1,7 +1,7 @@
 # This Python file uses the following encoding: utf-8
 from PySide6.QtGui import QIcon
 from azanplay import AzanPlay
-from PySide6.QtWidgets import QErrorMessage, QMainWindow, QMenu, QSystemTrayIcon
+from PySide6.QtWidgets import QErrorMessage, QMainWindow, QMenu, QSystemTrayIcon, QWidget
 from main_ui import Ui_MainWindow
 import pathlib
 import os
@@ -37,6 +37,12 @@ class AyoShalat(QMainWindow):
         # init thread
         self.docalc = threading.Thread(
             target=self.do_calculate, name="Azan Calculating")
+        
+        # init icon
+        self.current_directory = str(pathlib.Path(__file__).parent.absolute())
+        self.icopath = self.current_directory + '/icon/masjid.xpm'
+        self.setWindowIcon(QIcon(self.icopath))
+        self.default_azan = self.current_directory + '/audio/azan.mp3'
 
         # open setting
         self.openSetting()
@@ -60,11 +66,8 @@ class AyoShalat(QMainWindow):
             # create tray icon
             qtray = QSystemTrayIcon(self)
 
-            # icon
-            current_directory = str(pathlib.Path(__file__).parent.absolute())
-            icopath = current_directory + '/icon/masjid.xpm'
-
-            qtray.setIcon(QIcon(icopath))
+            
+            qtray.setIcon(QIcon(self.icopath))
             qtray.setVisible(True)
             qtray.setContextMenu(traymenu)
             qtray.show()
@@ -158,12 +161,9 @@ class AyoShalat(QMainWindow):
         self.azanpy.stop()
 
     def playAzan(self):
-        file = "audio/azan.mp3"
-        print('Playing azan : ' + file)
-        # pls = playsound(file)
+        print('Playing azan : ' + self.default_azan)
         self.azanpy = AzanPlay()
-        self.azanpy.play(file)
-        print('Done')
+        self.azanpy.play(self.default_azan)
 
     def showTimes(self):
         self.ui.txFajr.setText(self.times[1] + ':00')

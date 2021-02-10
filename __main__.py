@@ -1,3 +1,5 @@
+#! /usr/bin/python
+
 import sys
 from PySide6.QtGui import QIcon
 from PySide6.QtWidgets import QApplication
@@ -11,9 +13,9 @@ if __name__ == "__main__":
     window = AyoShalat()
 
     # set icon
-    current_directory = str(pathlib.Path(__file__).parent.absolute())
-    icopath = current_directory + '/icon/masjid.xpm'
-    window.setWindowIcon(QIcon(icopath))
+    # current_directory = str(pathlib.Path(__file__).parent.absolute())
+    # icopath = current_directory + '/icon/masjid.xpm'
+    # window.setWindowIcon(QIcon(icopath))
 
     # set window in center of screen
     # window.setGeometry(app.primaryScreen().geometry().getRect().)
