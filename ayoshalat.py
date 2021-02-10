@@ -11,6 +11,7 @@ from pprint import pprint
 import time
 import datetime
 import threading
+import pwd
 
 
 class AyoShalat(QMainWindow):
@@ -26,6 +27,9 @@ class AyoShalat(QMainWindow):
         self.ui.btnHide.clicked.connect(self.hide)
         self.ui.btnExit.clicked.connect(self.exit)
         self.ui.btnSave.clicked.connect(self.do_save)
+
+        # get username of this login user
+        self.myusername = pwd.getpwuid(os.getuid()).pw_name
 
         # get time
         self.init_times()
@@ -95,7 +99,7 @@ class AyoShalat(QMainWindow):
         setting_lines.append(
             'OffsetList: ' + '0 0 0 0 0 0' + '\n')
 
-        fileob = open(r'/home/eries/.iprayrc', 'w')
+        fileob = open(r'/home/' + self.myusername + '/.iprayrc', 'w')
 
         for line in setting_lines:
             fileob.writelines(line)
@@ -154,9 +158,7 @@ class AyoShalat(QMainWindow):
         self.azanpy.stop()
 
     def playAzan(self):
-        # file = "/home/eries/Documents/azan.mp3"
         file = "audio/azan.mp3"
-        # wavfile = "/home/eries/Documents/azan.wav"
         print('Playing azan : ' + file)
         # pls = playsound(file)
         self.azanpy = AzanPlay()
@@ -174,8 +176,7 @@ class AyoShalat(QMainWindow):
         print('opening file')
 
         try:
-
-            fileob = open(r'/home/eries/.iprayrc', 'r')
+            fileob = open(r'/home/' + self.myusername + '/.iprayrc', 'r')
             lines = fileob.readlines()
 
             city = lines[0].split(':')[1].strip()
@@ -209,7 +210,7 @@ class AyoShalat(QMainWindow):
             setting_lines.append(
                 'OffsetList: ' + '0 0 0 0 0 0' + '\n')
 
-            fileob = open(r'/home/eries/.iprayrc', 'w')
+            fileob = open(r'/home/' + self.myusername + '/.iprayrc', 'w')
 
             for line in setting_lines:
                 fileob.writelines(line)
