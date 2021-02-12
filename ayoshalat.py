@@ -1,4 +1,5 @@
 # This Python file uses the following encoding: utf-8
+from PySide6.QtCore import QSize
 from azan_dialog_ui_window import AzanDialogUiWindow
 from PySide6.QtGui import QIcon, Qt
 from azanplay import AzanPlay
@@ -23,6 +24,9 @@ class AyoShalat(QMainWindow):
         self.ui = Ui_MainWindow()
         self.ui.setupUi(self)
 
+        self.current_directory = str(pathlib.Path(__file__).parent.absolute())
+        self.set_image_attribute()
+
         # set clicked
         self.ui.btnPlay.clicked.connect(self.playAzan)
         self.ui.btnStop.clicked.connect(self.stopAzan)
@@ -30,6 +34,11 @@ class AyoShalat(QMainWindow):
         self.ui.btnHide.clicked.connect(self.hide)
         self.ui.btnExit.clicked.connect(self.exit)
         self.ui.btnSave.clicked.connect(self.do_save)
+        self.ui.btnSetting.clicked.connect(self.show_frame_setting)
+        self.ui.btnTimeTable.clicked.connect(self.show_time_table)
+
+        # init form setting
+        self.ui.frameSetting.setVisible(False)
 
         # get username of this login user
         self.myusername = pwd.getpwuid(os.getuid()).pw_name
@@ -42,7 +51,6 @@ class AyoShalat(QMainWindow):
             target=self.do_calculate, name="Azan Calculating")
 
         # init icon
-        self.current_directory = str(pathlib.Path(__file__).parent.absolute())
         self.setting_file = self.current_directory + '/setting.txt'
         self.icopath = self.current_directory + '/icon/masjid.xpm'
         self.setWindowIcon(QIcon(self.icopath))
@@ -56,6 +64,12 @@ class AyoShalat(QMainWindow):
 
         # show tray on start
         self.show_tray()
+    
+    def show_frame_setting(self):
+        self.ui.frameSetting.setVisible(True)
+    
+    def show_time_table(self):
+        self.ui.frameSetting.setVisible(False)
 
     def show_tray(self):
         if QSystemTrayIcon.isSystemTrayAvailable:
@@ -271,3 +285,93 @@ class AyoShalat(QMainWindow):
 
             # open setting
             self.openSetting()
+
+    def set_image_attribute(self):
+        icon = QIcon()
+        icon.addFile(self.current_directory + u"/icon/masjid.xpm",QSize(), QIcon.Normal, QIcon.Off)
+        # MainWindow.setWindowIcon(icon)
+        self.ui.centralwidget.setWindowIcon(icon)        
+
+        self.ui.frameSetting.setStyleSheet(u"#frameSetting{\n"
+                                    "	background-image:url('" + self.current_directory +
+                                    "/icon/bg6-3.jpg');\n"
+                                    "	background-position:center;\n"
+                                    "	background-size:cover;\n"
+                                    "}\n"
+                                    ".QLabel{\n"
+                                    "color:white;}\n")
+        
+        self.ui.frame_5.setStyleSheet(u"#frame_5{\n"
+                                    "	background-image:url('" + self.current_directory +
+                                    "/icon/bg6-3.jpg');\n"
+                                    "	background-position:center;\n"
+                                    "	background-size:cover;\n"
+                                    "}")
+
+        self.ui.lblLocation.setStyleSheet(u"#lblLocation{\n"
+                                        "	color:white;\n"
+                                        "	background-image:url('" + self.current_directory +
+                                        "/icon/location_on-24px.svg');\n"
+                                        "background-position:center;\n"
+                                        "}")
+
+        self.ui.label_10.setStyleSheet(u".QLabel{\n"
+                                    "	background-image:url('" + self.current_directory +
+                                    "/icon/noun_Sea Sunset_395675.svg');\n"
+                                    "	background-position:center;\n"
+                                    "	background-repeat:no-repeat;\n"
+                                    "}")
+
+        self.ui.label_16.setStyleSheet(u".QLabel{\n"
+                                    "	background-image:url('" + self.current_directory +
+                                    "/icon/noun_Sunrise _395417.svg');\n"
+                                    "	background-position:center;\n"
+                                    "	background-repeat:no-repeat;\n"
+                                    "}")
+
+        self.ui.frame_4.setStyleSheet(u"#frame_4{\n"
+                                    "	background-image:url('" + self.current_directory +
+                                    "/icon/today-24px.svg');\n"
+                                    "	background-repeat:no-repeat;\n"
+                                    "	background-position:center;\n"
+                                    "}")
+
+        self.ui.label_11.setStyleSheet(u"background-image:url('" + self.current_directory + "/icon/chevron_left-24px.svg');\n"
+                                    "background-repeat:no-repeat;\n"
+                                    "background-position:right center;")
+
+        self.ui.label_14.setStyleSheet(u"background-image:url('" + self.current_directory + "/icon/chevron_left-24px.svg');\n"
+                                    "background-repeat:no-repeat;\n"
+                                    "background-position:right center;")
+
+        self.ui.label_17.setStyleSheet(u"background-image:url('" + self.current_directory + "/icon/chevron_left-24px.svg');\n"
+                                    "background-repeat:no-repeat;\n"
+                                    "background-position:right center;")
+
+        self.ui.label_20.setStyleSheet(u"background-image:url('" + self.current_directory + "/icon/chevron_left-24px.svg');\n"
+                                    "background-repeat:no-repeat;\n"
+                                    "background-position:right center;")
+
+        self.ui.label_23.setStyleSheet(u"background-image:url('" + self.current_directory + "/icon/chevron_left-24px.svg');\n"
+                                    "background-repeat:no-repeat;\n"
+                                    "background-position:right center;")
+
+        icon1 = QIcon()
+        icon1.addFile(self.current_directory + u"/icon/date_range-24px.svg",
+                        QSize(), QIcon.Normal, QIcon.On)
+        self.ui.btnTimeTable.setIcon(icon1)
+
+        icon2 = QIcon()
+        icon2.addFile(self.current_directory + u"/icon/settings-24px.svg",
+                        QSize(), QIcon.Normal, QIcon.On)
+        self.ui.btnSetting.setIcon(icon2)
+
+        icon3 = QIcon()
+        icon3.addFile(self.current_directory +
+                        u"/icon/hide_source-24px.svg", QSize(), QIcon.Normal, QIcon.On)
+        self.ui.btnHide.setIcon(icon3)
+
+        icon4 = QIcon()
+        icon4.addFile(self.current_directory +
+                        u"/icon/exit_to_app-24px.svg", QSize(), QIcon.Normal, QIcon.On)
+        self.ui.btnExit.setIcon(icon4)

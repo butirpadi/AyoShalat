@@ -17,15 +17,15 @@ class Ui_AzanDialog(object):
     def setupUi(self, AzanDialog):
         if not AzanDialog.objectName():
             AzanDialog.setObjectName(u"AzanDialog")
-        AzanDialog.setWindowModality(Qt.WindowModal)
-        AzanDialog.resize(277, 395)
-        sizePolicy = QSizePolicy(QSizePolicy.Fixed, QSizePolicy.Fixed)
-        sizePolicy.setHorizontalStretch(0)
-        sizePolicy.setVerticalStretch(0)
-        sizePolicy.setHeightForWidth(AzanDialog.sizePolicy().hasHeightForWidth())
-        AzanDialog.setSizePolicy(sizePolicy)
-        AzanDialog.setMinimumSize(QSize(277, 395))
-        AzanDialog.setMaximumSize(QSize(277, 395))
+        # AzanDialog.setWindowModality(Qt.WindowModal)
+        # AzanDialog.resize(277, 395)
+        # sizePolicy = QSizePolicy(QSizePolicy.Fixed, QSizePolicy.Fixed)
+        # sizePolicy.setHorizontalStretch(0)
+        # sizePolicy.setVerticalStretch(0)
+        # sizePolicy.setHeightForWidth(AzanDialog.sizePolicy().hasHeightForWidth())
+        # AzanDialog.setSizePolicy(sizePolicy)
+        # AzanDialog.setMinimumSize(QSize(277, 395))
+        # AzanDialog.setMaximumSize(QSize(277, 395))
 
         self.retranslateUi(AzanDialog)
 
