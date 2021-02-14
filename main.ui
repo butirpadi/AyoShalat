@@ -49,57 +49,7 @@ background-color:#f6f6f6;
    <bool>true</bool>
   </property>
   <widget class="QWidget" name="centralwidget">
-   <widget class="QTabWidget" name="tabWidget">
-    <property name="geometry">
-     <rect>
-      <x>340</x>
-      <y>340</y>
-      <width>354</width>
-      <height>446</height>
-     </rect>
-    </property>
-    <property name="styleSheet">
-     <string notr="true"/>
-    </property>
-    <property name="currentIndex">
-     <number>1</number>
-    </property>
-    <widget class="QWidget" name="tab_pray_info">
-     <attribute name="title">
-      <string>Prayer Times</string>
-     </attribute>
-     <layout class="QGridLayout" name="gridLayout_3">
-      <property name="verticalSpacing">
-       <number>10</number>
-      </property>
-      <item row="2" column="0" colspan="2">
-       <spacer name="verticalSpacer_3">
-        <property name="orientation">
-         <enum>Qt::Vertical</enum>
-        </property>
-        <property name="sizeHint" stdset="0">
-         <size>
-          <width>20</width>
-          <height>40</height>
-         </size>
-        </property>
-       </spacer>
-      </item>
-     </layout>
-    </widget>
-    <widget class="QWidget" name="tab_setting">
-     <attribute name="title">
-      <string>Setting</string>
-     </attribute>
-     <layout class="QGridLayout" name="gridLayout_2"/>
-    </widget>
-    <widget class="QWidget" name="tab">
-     <attribute name="title">
-      <string>Page</string>
-     </attribute>
-    </widget>
-   </widget>
-   <widget class="QFrame" name="frame_5">
+   <widget class="QFrame" name="frameDashboardUpper">
     <property name="geometry">
      <rect>
       <x>-10</x>
@@ -109,10 +59,9 @@ background-color:#f6f6f6;
      </rect>
     </property>
     <property name="styleSheet">
-     <string notr="true">#frame_5{
+     <string notr="true">#frameDashboardUpper{
 	background-image:url('icon/bg6-3.jpg');
-	background-position:center;
-	background-size:cover;
+        background-position:center;
 }</string>
     </property>
     <property name="frameShape">
@@ -503,8 +452,7 @@ background-position:center;
     <property name="styleSheet">
      <string notr="true">#frame_time_table{
 	background-color: rgb(255, 255, 255);
-	border-radius:10;
-	box-shadow: 10px 10px 5px darkgray;
+        border-radius:10;
 border-style:outer;
 border:1px solid #cbcbcb;
 }</string>
@@ -636,9 +584,9 @@ border:1px solid #cbcbcb;
       <property name="geometry">
        <rect>
         <x>10</x>
-        <y>5</y>
+        <y>3</y>
         <width>71</width>
-        <height>17</height>
+        <height>25</height>
        </rect>
       </property>
       <property name="sizePolicy">
@@ -646,6 +594,12 @@ border:1px solid #cbcbcb;
         <horstretch>0</horstretch>
         <verstretch>0</verstretch>
        </sizepolicy>
+      </property>
+      <property name="minimumSize">
+       <size>
+        <width>0</width>
+        <height>25</height>
+       </size>
       </property>
       <property name="font">
        <font>
@@ -664,10 +618,16 @@ border:1px solid #cbcbcb;
       <property name="geometry">
        <rect>
         <x>240</x>
-        <y>2</y>
+        <y>3</y>
         <width>21</width>
-        <height>20</height>
+        <height>25</height>
        </rect>
+      </property>
+      <property name="minimumSize">
+       <size>
+        <width>0</width>
+        <height>25</height>
+       </size>
       </property>
       <property name="styleSheet">
        <string notr="true">background-image:url('icon/chevron_left-24px.svg');
@@ -684,13 +644,13 @@ background-position:right center;</string>
         <x>120</x>
         <y>3</y>
         <width>111</width>
-        <height>20</height>
+        <height>25</height>
        </rect>
       </property>
       <property name="minimumSize">
        <size>
         <width>0</width>
-        <height>17</height>
+        <height>25</height>
        </size>
       </property>
       <property name="font">
@@ -747,10 +707,16 @@ background-position:right center;</string>
       <property name="geometry">
        <rect>
         <x>10</x>
-        <y>5</y>
+        <y>3</y>
         <width>71</width>
-        <height>17</height>
+        <height>25</height>
        </rect>
+      </property>
+      <property name="minimumSize">
+       <size>
+        <width>0</width>
+        <height>25</height>
+       </size>
       </property>
       <property name="font">
        <font>
@@ -770,10 +736,16 @@ background-position:right center;</string>
       <property name="geometry">
        <rect>
         <x>240</x>
-        <y>2</y>
+        <y>3</y>
         <width>21</width>
-        <height>20</height>
+        <height>25</height>
        </rect>
+      </property>
+      <property name="minimumSize">
+       <size>
+        <width>0</width>
+        <height>25</height>
+       </size>
       </property>
       <property name="styleSheet">
        <string notr="true">background-image:url('icon/chevron_left-24px.svg');
@@ -796,7 +768,7 @@ background-position:right center;</string>
       <property name="minimumSize">
        <size>
         <width>0</width>
-        <height>17</height>
+        <height>25</height>
        </size>
       </property>
       <property name="font">
@@ -853,10 +825,16 @@ background-position:right center;</string>
       <property name="geometry">
        <rect>
         <x>10</x>
-        <y>5</y>
+        <y>3</y>
         <width>71</width>
-        <height>17</height>
+        <height>25</height>
        </rect>
+      </property>
+      <property name="minimumSize">
+       <size>
+        <width>0</width>
+        <height>25</height>
+       </size>
       </property>
       <property name="font">
        <font>
@@ -876,10 +854,16 @@ background-position:right center;</string>
       <property name="geometry">
        <rect>
         <x>240</x>
-        <y>2</y>
+        <y>3</y>
         <width>21</width>
-        <height>20</height>
+        <height>25</height>
        </rect>
+      </property>
+      <property name="minimumSize">
+       <size>
+        <width>0</width>
+        <height>25</height>
+       </size>
       </property>
       <property name="styleSheet">
        <string notr="true">background-image:url('icon/chevron_left-24px.svg');
@@ -896,13 +880,13 @@ background-position:right center;</string>
         <x>120</x>
         <y>3</y>
         <width>111</width>
-        <height>17</height>
+        <height>25</height>
        </rect>
       </property>
       <property name="minimumSize">
        <size>
         <width>0</width>
-        <height>17</height>
+        <height>25</height>
        </size>
       </property>
       <property name="font">
@@ -959,10 +943,16 @@ background-position:right center;</string>
       <property name="geometry">
        <rect>
         <x>10</x>
-        <y>5</y>
+        <y>3</y>
         <width>71</width>
-        <height>17</height>
+        <height>25</height>
        </rect>
+      </property>
+      <property name="minimumSize">
+       <size>
+        <width>0</width>
+        <height>25</height>
+       </size>
       </property>
       <property name="font">
        <font>
@@ -982,10 +972,16 @@ background-position:right center;</string>
       <property name="geometry">
        <rect>
         <x>240</x>
-        <y>2</y>
+        <y>3</y>
         <width>21</width>
-        <height>20</height>
+        <height>25</height>
        </rect>
+      </property>
+      <property name="minimumSize">
+       <size>
+        <width>0</width>
+        <height>25</height>
+       </size>
       </property>
       <property name="styleSheet">
        <string notr="true">background-image:url('icon/chevron_left-24px.svg');
@@ -1002,13 +998,13 @@ background-position:right center;</string>
         <x>120</x>
         <y>3</y>
         <width>110</width>
-        <height>17</height>
+        <height>25</height>
        </rect>
       </property>
       <property name="minimumSize">
        <size>
         <width>0</width>
-        <height>17</height>
+        <height>25</height>
        </size>
       </property>
       <property name="font">
@@ -1065,10 +1061,16 @@ background-position:right center;</string>
       <property name="geometry">
        <rect>
         <x>10</x>
-        <y>5</y>
+        <y>3</y>
         <width>71</width>
-        <height>17</height>
+        <height>25</height>
        </rect>
+      </property>
+      <property name="minimumSize">
+       <size>
+        <width>0</width>
+        <height>25</height>
+       </size>
       </property>
       <property name="font">
        <font>
@@ -1088,10 +1090,16 @@ background-position:right center;</string>
       <property name="geometry">
        <rect>
         <x>240</x>
-        <y>2</y>
+        <y>3</y>
         <width>21</width>
-        <height>20</height>
+        <height>25</height>
        </rect>
+      </property>
+      <property name="minimumSize">
+       <size>
+        <width>0</width>
+        <height>25</height>
+       </size>
       </property>
       <property name="styleSheet">
        <string notr="true">background-image:url('icon/chevron_left-24px.svg');
@@ -1108,13 +1116,13 @@ background-position:right center;</string>
         <x>120</x>
         <y>3</y>
         <width>110</width>
-        <height>17</height>
+        <height>25</height>
        </rect>
       </property>
       <property name="minimumSize">
        <size>
         <width>0</width>
-        <height>17</height>
+        <height>25</height>
        </size>
       </property>
       <property name="font">
@@ -1138,7 +1146,7 @@ background-position:right center;</string>
      </widget>
     </widget>
    </widget>
-   <widget class="QFrame" name="frame_15">
+   <widget class="QFrame" name="frameButtonBar">
     <property name="geometry">
      <rect>
       <x>0</x>
@@ -1148,9 +1156,16 @@ background-position:right center;</string>
      </rect>
     </property>
     <property name="styleSheet">
-     <string notr="true">#frame_15{
+     <string notr="true">#frameButtonBar{
 	border-style:outline;
 	border-top: 1px solid #bdbdbd;
+}
+.QPushButton{
+	color:#626262;
+	border:none;
+}
+.QPushButton:hover{
+	background-color:whitesmoke;
 }</string>
     </property>
     <property name="frameShape">
@@ -1193,9 +1208,7 @@ background-position:right center;</string>
         </font>
        </property>
        <property name="styleSheet">
-        <string notr="true">.QPushButton{
-	color:#626262;
-}</string>
+        <string notr="true"/>
        </property>
        <property name="text">
         <string>Prayer</string>
@@ -1231,9 +1244,7 @@ background-position:right center;</string>
         </font>
        </property>
        <property name="styleSheet">
-        <string notr="true">.QPushButton{
-	color:#626262;
-}</string>
+        <string notr="true"/>
        </property>
        <property name="text">
         <string>Setting</string>
@@ -1269,9 +1280,7 @@ background-position:right center;</string>
         </font>
        </property>
        <property name="styleSheet">
-        <string notr="true">.QPushButton{
-	color:#626262;
-}</string>
+        <string notr="true"/>
        </property>
        <property name="text">
         <string>Hide</string>
@@ -1307,9 +1316,7 @@ background-position:right center;</string>
         </font>
        </property>
        <property name="styleSheet">
-        <string notr="true">.QPushButton{
-	color:#626262;
-}</string>
+        <string notr="true"/>
        </property>
        <property name="text">
         <string>Exit</string>
@@ -1340,19 +1347,16 @@ background-position:right center;</string>
      <rect>
       <x>0</x>
       <y>0</y>
-      <width>391</width>
-      <height>455</height>
+      <width>321</width>
+      <height>453</height>
      </rect>
     </property>
     <property name="styleSheet">
-     <string notr="true">.QFrame{
-	background-color:#22355d;
-color:white;
-}
-.QLabel{
+     <string notr="true">#frameSetting{
+	background-color:#f6f6f6;
 	color:white;
 }
-.QCheckBox{
+.QLabel{
 	color:white;
 }</string>
     </property>
@@ -1362,14 +1366,107 @@ color:white;
     <property name="frameShadow">
      <enum>QFrame::Raised</enum>
     </property>
-    <layout class="QGridLayout" name="gridLayout">
-     <property name="verticalSpacing">
-      <number>6</number>
+    <widget class="QFrame" name="containerSetting">
+     <property name="geometry">
+      <rect>
+       <x>14</x>
+       <y>55</y>
+       <width>291</width>
+       <height>381</height>
+      </rect>
      </property>
-     <item row="12" column="1" colspan="3">
+     <property name="styleSheet">
+      <string notr="true">.QLineEdit{
+	border:none;
+	border-radius:2px;
+	background-color:rgb(223, 223, 223);
+}
+#containerSetting{
+	background-color: rgb(255, 255, 255);
+	border-radius:10;
+	border-style:outer;
+	border:1px solid #cbcbcb;
+}
+.QLabel{
+	color:black;
+}
+.QPushButton{
+	border:none;
+	border-radius:2px;
+	background-color:rgb(0, 85, 127);
+	color:#fff;
+}
+.QCheckBox{
+	color:black;
+}</string>
+     </property>
+     <property name="frameShape">
+      <enum>QFrame::StyledPanel</enum>
+     </property>
+     <property name="frameShadow">
+      <enum>QFrame::Raised</enum>
+     </property>
+     <widget class="QLabel" name="label_3">
+      <property name="geometry">
+       <rect>
+        <x>20</x>
+        <y>120</y>
+        <width>70</width>
+        <height>25</height>
+       </rect>
+      </property>
+      <property name="minimumSize">
+       <size>
+        <width>70</width>
+        <height>25</height>
+       </size>
+      </property>
+      <property name="maximumSize">
+       <size>
+        <width>70</width>
+        <height>25</height>
+       </size>
+      </property>
+      <property name="font">
+       <font>
+        <family>Ubuntu</family>
+        <pointsize>10</pointsize>
+       </font>
+      </property>
+      <property name="styleSheet">
+       <string notr="true"/>
+      </property>
+      <property name="text">
+       <string>UTC</string>
+      </property>
+     </widget>
+     <widget class="QWidget" name="layoutWidget">
+      <property name="geometry">
+       <rect>
+        <x>20</x>
+        <y>250</y>
+        <width>251</width>
+        <height>41</height>
+       </rect>
+      </property>
       <layout class="QHBoxLayout" name="horizontalLayout_2">
        <item>
         <widget class="QPushButton" name="btnPlay">
+         <property name="minimumSize">
+          <size>
+           <width>0</width>
+           <height>30</height>
+          </size>
+         </property>
+         <property name="maximumSize">
+          <size>
+           <width>16777215</width>
+           <height>30</height>
+          </size>
+         </property>
+         <property name="styleSheet">
+          <string notr="true"/>
+         </property>
          <property name="text">
           <string>Play</string>
          </property>
@@ -1377,6 +1474,21 @@ color:white;
        </item>
        <item>
         <widget class="QPushButton" name="btnStop">
+         <property name="minimumSize">
+          <size>
+           <width>0</width>
+           <height>30</height>
+          </size>
+         </property>
+         <property name="maximumSize">
+          <size>
+           <width>16777215</width>
+           <height>30</height>
+          </size>
+         </property>
+         <property name="styleSheet">
+          <string notr="true"/>
+         </property>
          <property name="text">
           <string>Stop</string>
          </property>
@@ -1384,395 +1496,527 @@ color:white;
        </item>
        <item>
         <widget class="QPushButton" name="btnSave">
+         <property name="minimumSize">
+          <size>
+           <width>0</width>
+           <height>30</height>
+          </size>
+         </property>
+         <property name="maximumSize">
+          <size>
+           <width>16777215</width>
+           <height>30</height>
+          </size>
+         </property>
+         <property name="styleSheet">
+          <string notr="true"/>
+         </property>
          <property name="text">
           <string>Save</string>
          </property>
         </widget>
        </item>
       </layout>
-     </item>
-     <item row="1" column="1">
-      <widget class="QLineEdit" name="txLat">
-       <property name="minimumSize">
-        <size>
-         <width>210</width>
-         <height>25</height>
-        </size>
-       </property>
-       <property name="maximumSize">
-        <size>
-         <width>210</width>
-         <height>16777215</height>
-        </size>
-       </property>
-       <property name="font">
-        <font>
-         <family>Ubuntu</family>
-         <pointsize>10</pointsize>
-        </font>
-       </property>
-       <property name="frame">
-        <bool>false</bool>
-       </property>
-      </widget>
-     </item>
-     <item row="3" column="0">
-      <widget class="QLabel" name="label_3">
-       <property name="minimumSize">
-        <size>
-         <width>70</width>
-         <height>25</height>
-        </size>
-       </property>
-       <property name="maximumSize">
-        <size>
-         <width>70</width>
-         <height>25</height>
-        </size>
-       </property>
-       <property name="font">
-        <font>
-         <family>Ubuntu</family>
-         <pointsize>10</pointsize>
-        </font>
-       </property>
-       <property name="text">
-        <string>UTC</string>
-       </property>
-      </widget>
-     </item>
-     <item row="0" column="0">
-      <widget class="QLabel" name="label_41">
-       <property name="minimumSize">
-        <size>
-         <width>0</width>
-         <height>40</height>
-        </size>
-       </property>
-       <property name="font">
-        <font>
-         <family>Ubuntu</family>
-         <pointsize>16</pointsize>
-        </font>
-       </property>
-       <property name="styleSheet">
-        <string notr="true"/>
-       </property>
-       <property name="text">
-        <string>Setting</string>
-       </property>
-       <property name="alignment">
-        <set>Qt::AlignLeading|Qt::AlignLeft|Qt::AlignTop</set>
-       </property>
-      </widget>
-     </item>
-     <item row="4" column="0">
-      <widget class="QLabel" name="label_4">
-       <property name="minimumSize">
-        <size>
-         <width>70</width>
-         <height>25</height>
-        </size>
-       </property>
-       <property name="maximumSize">
-        <size>
-         <width>70</width>
-         <height>25</height>
-        </size>
-       </property>
-       <property name="font">
-        <font>
-         <family>Ubuntu</family>
-         <pointsize>10</pointsize>
-        </font>
-       </property>
-       <property name="text">
-        <string>Method</string>
-       </property>
-      </widget>
-     </item>
-     <item row="4" column="1">
-      <widget class="QComboBox" name="cbMethod">
-       <property name="minimumSize">
-        <size>
-         <width>210</width>
-         <height>25</height>
-        </size>
-       </property>
-       <property name="maximumSize">
-        <size>
-         <width>210</width>
-         <height>16777215</height>
-        </size>
-       </property>
-       <property name="font">
-        <font>
-         <family>Ubuntu</family>
-         <pointsize>10</pointsize>
-        </font>
-       </property>
-       <property name="frame">
-        <bool>false</bool>
-       </property>
-       <item>
-        <property name="text">
-         <string>Egyptian General Authority of Survey</string>
-        </property>
-       </item>
-       <item>
-        <property name="text">
-         <string>University of Islamic Sciences, Karachi (Shaf'i)</string>
-        </property>
-       </item>
-       <item>
-        <property name="text">
-         <string>University of Islamic Sciences, Karachi (Hanafi)</string>
-        </property>
-       </item>
-       <item>
-        <property name="text">
-         <string>Islamic Society of North America</string>
-        </property>
-       </item>
-       <item>
-        <property name="text">
-         <string>Muslim World League (MWL)</string>
-        </property>
-       </item>
-       <item>
-        <property name="text">
-         <string>Umm Al-Qurra University</string>
-        </property>
-       </item>
-       <item>
-        <property name="text">
-         <string>Fixed Isha Angle Interval (always 90)</string>
-        </property>
-       </item>
-       <item>
-        <property name="text">
-         <string>Egyptian General Authority of Survey (Egypt)</string>
-        </property>
-       </item>
-      </widget>
-     </item>
-     <item row="1" column="0">
-      <widget class="QLabel" name="label">
-       <property name="minimumSize">
-        <size>
-         <width>70</width>
-         <height>25</height>
-        </size>
-       </property>
-       <property name="maximumSize">
-        <size>
-         <width>70</width>
-         <height>25</height>
-        </size>
-       </property>
-       <property name="font">
-        <font>
-         <family>Ubuntu</family>
-         <pointsize>10</pointsize>
-        </font>
-       </property>
-       <property name="styleSheet">
-        <string notr="true">.QLabel{
-	color:white;
+     </widget>
+     <widget class="QCheckBox" name="ckStartTray">
+      <property name="geometry">
+       <rect>
+        <x>20</x>
+        <y>220</y>
+        <width>101</width>
+        <height>25</height>
+       </rect>
+      </property>
+      <property name="minimumSize">
+       <size>
+        <width>20</width>
+        <height>25</height>
+       </size>
+      </property>
+      <property name="maximumSize">
+       <size>
+        <width>210</width>
+        <height>25</height>
+       </size>
+      </property>
+      <property name="font">
+       <font>
+        <family>Ubuntu</family>
+        <pointsize>10</pointsize>
+       </font>
+      </property>
+      <property name="styleSheet">
+       <string notr="true"/>
+      </property>
+      <property name="text">
+       <string>Start in Tray</string>
+      </property>
+     </widget>
+     <widget class="QLabel" name="label">
+      <property name="geometry">
+       <rect>
+        <x>20</x>
+        <y>20</y>
+        <width>70</width>
+        <height>25</height>
+       </rect>
+      </property>
+      <property name="minimumSize">
+       <size>
+        <width>70</width>
+        <height>25</height>
+       </size>
+      </property>
+      <property name="maximumSize">
+       <size>
+        <width>70</width>
+        <height>25</height>
+       </size>
+      </property>
+      <property name="font">
+       <font>
+        <family>Ubuntu</family>
+        <pointsize>10</pointsize>
+       </font>
+      </property>
+      <property name="styleSheet">
+       <string notr="true"/>
+      </property>
+      <property name="text">
+       <string>Latitude</string>
+      </property>
+     </widget>
+     <widget class="QLabel" name="label_6">
+      <property name="geometry">
+       <rect>
+        <x>100</x>
+        <y>120</y>
+        <width>70</width>
+        <height>25</height>
+       </rect>
+      </property>
+      <property name="minimumSize">
+       <size>
+        <width>70</width>
+        <height>25</height>
+       </size>
+      </property>
+      <property name="maximumSize">
+       <size>
+        <width>70</width>
+        <height>25</height>
+       </size>
+      </property>
+      <property name="font">
+       <font>
+        <family>Ubuntu</family>
+        <pointsize>10</pointsize>
+       </font>
+      </property>
+      <property name="styleSheet">
+       <string notr="true"/>
+      </property>
+      <property name="text">
+       <string>Mathab</string>
+      </property>
+     </widget>
+     <widget class="QComboBox" name="cbMathhab">
+      <property name="geometry">
+       <rect>
+        <x>100</x>
+        <y>140</y>
+        <width>171</width>
+        <height>25</height>
+       </rect>
+      </property>
+      <property name="minimumSize">
+       <size>
+        <width>20</width>
+        <height>25</height>
+       </size>
+      </property>
+      <property name="maximumSize">
+       <size>
+        <width>320</width>
+        <height>16777215</height>
+       </size>
+      </property>
+      <property name="font">
+       <font>
+        <family>Ubuntu</family>
+        <pointsize>10</pointsize>
+       </font>
+      </property>
+      <property name="styleSheet">
+       <string notr="true">#cbMathhab{
+	border:none;
+	border:none;
+	border-radius:2px;
+	background-color:rgb(223, 223, 223);
 }</string>
-       </property>
+      </property>
+      <property name="frame">
+       <bool>false</bool>
+      </property>
+      <item>
        <property name="text">
-        <string>Latitude</string>
+        <string>Shafi'i</string>
        </property>
-      </widget>
-     </item>
-     <item row="5" column="1">
-      <widget class="QComboBox" name="cbMathhab">
-       <property name="minimumSize">
-        <size>
-         <width>210</width>
-         <height>25</height>
-        </size>
-       </property>
-       <property name="maximumSize">
-        <size>
-         <width>210</width>
-         <height>16777215</height>
-        </size>
-       </property>
-       <property name="font">
-        <font>
-         <family>Ubuntu</family>
-         <pointsize>10</pointsize>
-        </font>
-       </property>
-       <property name="frame">
-        <bool>false</bool>
-       </property>
-       <item>
-        <property name="text">
-         <string>Shafi'i</string>
-        </property>
-       </item>
-       <item>
-        <property name="text">
-         <string>Hanafi</string>
-        </property>
-       </item>
-      </widget>
-     </item>
-     <item row="10" column="0" colspan="2">
-      <widget class="QLabel" name="label_5">
+      </item>
+      <item>
        <property name="text">
-        <string/>
+        <string>Hanafi</string>
        </property>
-      </widget>
-     </item>
-     <item row="11" column="0">
-      <spacer name="verticalSpacer">
-       <property name="orientation">
-        <enum>Qt::Vertical</enum>
-       </property>
-       <property name="sizeHint" stdset="0">
-        <size>
-         <width>20</width>
-         <height>175</height>
-        </size>
-       </property>
-      </spacer>
-     </item>
-     <item row="5" column="0">
-      <widget class="QLabel" name="label_6">
-       <property name="minimumSize">
-        <size>
-         <width>70</width>
-         <height>25</height>
-        </size>
-       </property>
-       <property name="maximumSize">
-        <size>
-         <width>70</width>
-         <height>25</height>
-        </size>
-       </property>
-       <property name="font">
-        <font>
-         <family>Ubuntu</family>
-         <pointsize>10</pointsize>
-        </font>
-       </property>
+      </item>
+     </widget>
+     <widget class="QComboBox" name="cbMethod">
+      <property name="geometry">
+       <rect>
+        <x>20</x>
+        <y>190</y>
+        <width>251</width>
+        <height>25</height>
+       </rect>
+      </property>
+      <property name="minimumSize">
+       <size>
+        <width>20</width>
+        <height>25</height>
+       </size>
+      </property>
+      <property name="maximumSize">
+       <size>
+        <width>320</width>
+        <height>16777215</height>
+       </size>
+      </property>
+      <property name="font">
+       <font>
+        <family>Ubuntu</family>
+        <pointsize>10</pointsize>
+       </font>
+      </property>
+      <property name="styleSheet">
+       <string notr="true">#cbMethod{
+	border:none;
+	border:none;
+	border-radius:2px;
+	background-color:rgb(223, 223, 223);
+}</string>
+      </property>
+      <property name="frame">
+       <bool>false</bool>
+      </property>
+      <item>
        <property name="text">
-        <string>Mathab</string>
+        <string>Egyptian General Authority of Survey</string>
        </property>
-      </widget>
-     </item>
-     <item row="3" column="1">
-      <widget class="QLineEdit" name="txUtc">
-       <property name="minimumSize">
-        <size>
-         <width>210</width>
-         <height>25</height>
-        </size>
-       </property>
-       <property name="maximumSize">
-        <size>
-         <width>210</width>
-         <height>16777215</height>
-        </size>
-       </property>
-       <property name="font">
-        <font>
-         <family>Ubuntu</family>
-         <pointsize>10</pointsize>
-        </font>
-       </property>
-       <property name="frame">
-        <bool>false</bool>
-       </property>
-      </widget>
-     </item>
-     <item row="2" column="1">
-      <widget class="QLineEdit" name="txLong">
-       <property name="minimumSize">
-        <size>
-         <width>210</width>
-         <height>25</height>
-        </size>
-       </property>
-       <property name="maximumSize">
-        <size>
-         <width>210</width>
-         <height>16777215</height>
-        </size>
-       </property>
-       <property name="font">
-        <font>
-         <family>Ubuntu</family>
-         <pointsize>10</pointsize>
-        </font>
-       </property>
-       <property name="frame">
-        <bool>false</bool>
-       </property>
-      </widget>
-     </item>
-     <item row="2" column="0">
-      <widget class="QLabel" name="label_2">
-       <property name="minimumSize">
-        <size>
-         <width>70</width>
-         <height>25</height>
-        </size>
-       </property>
-       <property name="maximumSize">
-        <size>
-         <width>70</width>
-         <height>25</height>
-        </size>
-       </property>
-       <property name="font">
-        <font>
-         <family>Ubuntu</family>
-         <pointsize>10</pointsize>
-        </font>
-       </property>
+      </item>
+      <item>
        <property name="text">
-        <string>Longitude</string>
+        <string>University of Islamic Sciences, Karachi (Shaf'i)</string>
        </property>
-      </widget>
-     </item>
-     <item row="6" column="1">
-      <widget class="QCheckBox" name="ckStartTray">
-       <property name="minimumSize">
-        <size>
-         <width>210</width>
-         <height>25</height>
-        </size>
-       </property>
-       <property name="maximumSize">
-        <size>
-         <width>210</width>
-         <height>25</height>
-        </size>
-       </property>
-       <property name="font">
-        <font>
-         <family>Ubuntu</family>
-         <pointsize>10</pointsize>
-        </font>
-       </property>
+      </item>
+      <item>
        <property name="text">
-        <string>Start in Tray</string>
+        <string>University of Islamic Sciences, Karachi (Hanafi)</string>
        </property>
-      </widget>
-     </item>
-    </layout>
+      </item>
+      <item>
+       <property name="text">
+        <string>Islamic Society of North America</string>
+       </property>
+      </item>
+      <item>
+       <property name="text">
+        <string>Muslim World League (MWL)</string>
+       </property>
+      </item>
+      <item>
+       <property name="text">
+        <string>Umm Al-Qurra University</string>
+       </property>
+      </item>
+      <item>
+       <property name="text">
+        <string>Fixed Isha Angle Interval (always 90)</string>
+       </property>
+      </item>
+      <item>
+       <property name="text">
+        <string>Egyptian General Authority of Survey (Egypt)</string>
+       </property>
+      </item>
+     </widget>
+     <widget class="QLabel" name="label_2">
+      <property name="geometry">
+       <rect>
+        <x>20</x>
+        <y>70</y>
+        <width>70</width>
+        <height>25</height>
+       </rect>
+      </property>
+      <property name="minimumSize">
+       <size>
+        <width>70</width>
+        <height>25</height>
+       </size>
+      </property>
+      <property name="maximumSize">
+       <size>
+        <width>70</width>
+        <height>25</height>
+       </size>
+      </property>
+      <property name="font">
+       <font>
+        <family>Ubuntu</family>
+        <pointsize>10</pointsize>
+       </font>
+      </property>
+      <property name="styleSheet">
+       <string notr="true"/>
+      </property>
+      <property name="text">
+       <string>Longitude</string>
+      </property>
+     </widget>
+     <widget class="QLabel" name="label_4">
+      <property name="geometry">
+       <rect>
+        <x>20</x>
+        <y>170</y>
+        <width>70</width>
+        <height>25</height>
+       </rect>
+      </property>
+      <property name="minimumSize">
+       <size>
+        <width>70</width>
+        <height>25</height>
+       </size>
+      </property>
+      <property name="maximumSize">
+       <size>
+        <width>70</width>
+        <height>25</height>
+       </size>
+      </property>
+      <property name="font">
+       <font>
+        <family>Ubuntu</family>
+        <pointsize>10</pointsize>
+       </font>
+      </property>
+      <property name="styleSheet">
+       <string notr="true"/>
+      </property>
+      <property name="text">
+       <string>Method</string>
+      </property>
+     </widget>
+     <widget class="QLineEdit" name="txLong">
+      <property name="geometry">
+       <rect>
+        <x>20</x>
+        <y>90</y>
+        <width>251</width>
+        <height>25</height>
+       </rect>
+      </property>
+      <property name="minimumSize">
+       <size>
+        <width>20</width>
+        <height>25</height>
+       </size>
+      </property>
+      <property name="maximumSize">
+       <size>
+        <width>320</width>
+        <height>16777215</height>
+       </size>
+      </property>
+      <property name="font">
+       <font>
+        <family>Ubuntu</family>
+        <pointsize>10</pointsize>
+       </font>
+      </property>
+      <property name="styleSheet">
+       <string notr="true"/>
+      </property>
+      <property name="frame">
+       <bool>false</bool>
+      </property>
+     </widget>
+     <widget class="QLineEdit" name="txUtc">
+      <property name="geometry">
+       <rect>
+        <x>20</x>
+        <y>140</y>
+        <width>71</width>
+        <height>25</height>
+       </rect>
+      </property>
+      <property name="minimumSize">
+       <size>
+        <width>20</width>
+        <height>25</height>
+       </size>
+      </property>
+      <property name="maximumSize">
+       <size>
+        <width>320</width>
+        <height>16777215</height>
+       </size>
+      </property>
+      <property name="font">
+       <font>
+        <family>Ubuntu</family>
+        <pointsize>10</pointsize>
+       </font>
+      </property>
+      <property name="styleSheet">
+       <string notr="true"/>
+      </property>
+      <property name="frame">
+       <bool>false</bool>
+      </property>
+     </widget>
+     <widget class="QLineEdit" name="txLat">
+      <property name="geometry">
+       <rect>
+        <x>20</x>
+        <y>40</y>
+        <width>251</width>
+        <height>28</height>
+       </rect>
+      </property>
+      <property name="minimumSize">
+       <size>
+        <width>20</width>
+        <height>25</height>
+       </size>
+      </property>
+      <property name="maximumSize">
+       <size>
+        <width>320</width>
+        <height>16777215</height>
+       </size>
+      </property>
+      <property name="font">
+       <font>
+        <family>Ubuntu</family>
+        <pointsize>10</pointsize>
+       </font>
+      </property>
+      <property name="styleSheet">
+       <string notr="true"/>
+      </property>
+      <property name="frame">
+       <bool>false</bool>
+      </property>
+     </widget>
+    </widget>
+    <widget class="QLabel" name="label_22">
+     <property name="geometry">
+      <rect>
+       <x>50</x>
+       <y>10</y>
+       <width>81</width>
+       <height>40</height>
+      </rect>
+     </property>
+     <property name="minimumSize">
+      <size>
+       <width>20</width>
+       <height>20</height>
+      </size>
+     </property>
+     <property name="maximumSize">
+      <size>
+       <width>9999</width>
+       <height>9999</height>
+      </size>
+     </property>
+     <property name="font">
+      <font>
+       <family>Ubuntu</family>
+       <pointsize>14</pointsize>
+      </font>
+     </property>
+     <property name="styleSheet">
+      <string notr="true"/>
+     </property>
+     <property name="text">
+      <string>Setting</string>
+     </property>
+    </widget>
+    <widget class="QLabel" name="lblIconSetting">
+     <property name="geometry">
+      <rect>
+       <x>20</x>
+       <y>10</y>
+       <width>31</width>
+       <height>40</height>
+      </rect>
+     </property>
+     <property name="minimumSize">
+      <size>
+       <width>30</width>
+       <height>30</height>
+      </size>
+     </property>
+     <property name="maximumSize">
+      <size>
+       <width>9999</width>
+       <height>9999</height>
+      </size>
+     </property>
+     <property name="font">
+      <font>
+       <family>Ubuntu</family>
+       <pointsize>14</pointsize>
+      </font>
+     </property>
+     <property name="styleSheet">
+      <string notr="true"/>
+     </property>
+     <property name="text">
+      <string/>
+     </property>
+    </widget>
+    <widget class="QFrame" name="frameSettingBottom">
+     <property name="geometry">
+      <rect>
+       <x>0</x>
+       <y>271</y>
+       <width>321</width>
+       <height>191</height>
+      </rect>
+     </property>
+     <property name="styleSheet">
+      <string notr="true">#frameSettingBottom{
+	background-color:#f6f6f6;
+}</string>
+     </property>
+     <property name="frameShape">
+      <enum>QFrame::StyledPanel</enum>
+     </property>
+     <property name="frameShadow">
+      <enum>QFrame::Raised</enum>
+     </property>
+    </widget>
+    <zorder>frameSettingBottom</zorder>
+    <zorder>containerSetting</zorder>
+    <zorder>label_22</zorder>
+    <zorder>lblIconSetting</zorder>
    </widget>
-   <zorder>frame_5</zorder>
-   <zorder>tabWidget</zorder>
-   <zorder>frame_15</zorder>
+   <zorder>frameDashboardUpper</zorder>
    <zorder>frame_time_table</zorder>
    <zorder>frameSetting</zorder>
+   <zorder>frameButtonBar</zorder>
   </widget>
  </widget>
  <resources/>

@@ -36,39 +36,16 @@ class Ui_MainWindow(object):
         MainWindow.setAnimated(True)
         self.centralwidget = QWidget(MainWindow)
         self.centralwidget.setObjectName(u"centralwidget")
-        self.tabWidget = QTabWidget(self.centralwidget)
-        self.tabWidget.setObjectName(u"tabWidget")
-        self.tabWidget.setGeometry(QRect(340, 340, 354, 446))
-        self.tabWidget.setStyleSheet(u"")
-        self.tab_pray_info = QWidget()
-        self.tab_pray_info.setObjectName(u"tab_pray_info")
-        self.gridLayout_3 = QGridLayout(self.tab_pray_info)
-        self.gridLayout_3.setObjectName(u"gridLayout_3")
-        self.gridLayout_3.setVerticalSpacing(10)
-        self.verticalSpacer_3 = QSpacerItem(20, 40, QSizePolicy.Minimum, QSizePolicy.Expanding)
-
-        self.gridLayout_3.addItem(self.verticalSpacer_3, 2, 0, 1, 2)
-
-        self.tabWidget.addTab(self.tab_pray_info, "")
-        self.tab_setting = QWidget()
-        self.tab_setting.setObjectName(u"tab_setting")
-        self.gridLayout_2 = QGridLayout(self.tab_setting)
-        self.gridLayout_2.setObjectName(u"gridLayout_2")
-        self.tabWidget.addTab(self.tab_setting, "")
-        self.tab = QWidget()
-        self.tab.setObjectName(u"tab")
-        self.tabWidget.addTab(self.tab, "")
-        self.frame_5 = QFrame(self.centralwidget)
-        self.frame_5.setObjectName(u"frame_5")
-        self.frame_5.setGeometry(QRect(-10, 0, 391, 271))
-        self.frame_5.setStyleSheet(u"#frame_5{\n"
+        self.frameDashboardUpper = QFrame(self.centralwidget)
+        self.frameDashboardUpper.setObjectName(u"frameDashboardUpper")
+        self.frameDashboardUpper.setGeometry(QRect(-10, 0, 391, 271))
+        self.frameDashboardUpper.setStyleSheet(u"#frameDashboardUpper{\n"
 "	background-image:url('icon/bg6-3.jpg');\n"
-"	background-position:center;\n"
-"	background-size:cover;\n"
+"        background-position:center;\n"
 "}")
-        self.frame_5.setFrameShape(QFrame.StyledPanel)
-        self.frame_5.setFrameShadow(QFrame.Raised)
-        self.label_31 = QLabel(self.frame_5)
+        self.frameDashboardUpper.setFrameShape(QFrame.StyledPanel)
+        self.frameDashboardUpper.setFrameShadow(QFrame.Raised)
+        self.label_31 = QLabel(self.frameDashboardUpper)
         self.label_31.setObjectName(u"label_31")
         self.label_31.setGeometry(QRect(30, 56, 171, 17))
         font = QFont()
@@ -78,7 +55,7 @@ class Ui_MainWindow(object):
         self.label_31.setStyleSheet(u".QLabel{\n"
 "	color:white;\n"
 "}")
-        self.lblUpcomingWaktu = QLabel(self.frame_5)
+        self.lblUpcomingWaktu = QLabel(self.frameDashboardUpper)
         self.lblUpcomingWaktu.setObjectName(u"lblUpcomingWaktu")
         self.lblUpcomingWaktu.setGeometry(QRect(30, 80, 71, 18))
         font1 = QFont()
@@ -90,14 +67,14 @@ class Ui_MainWindow(object):
 "	color:white;\n"
 "	font-weight:bold;\n"
 "}")
-        self.lblUpcomingJam = QLabel(self.frame_5)
+        self.lblUpcomingJam = QLabel(self.frameDashboardUpper)
         self.lblUpcomingJam.setObjectName(u"lblUpcomingJam")
         self.lblUpcomingJam.setGeometry(QRect(101, 81, 61, 17))
         self.lblUpcomingJam.setFont(font)
         self.lblUpcomingJam.setStyleSheet(u".QLabel{\n"
 "	color:white;\n"
 "}")
-        self.lblRemaining = QLabel(self.frame_5)
+        self.lblRemaining = QLabel(self.frameDashboardUpper)
         self.lblRemaining.setObjectName(u"lblRemaining")
         self.lblRemaining.setGeometry(QRect(30, 102, 141, 41))
         font2 = QFont()
@@ -109,7 +86,7 @@ class Ui_MainWindow(object):
 "}")
         self.lblRemaining.setAlignment(Qt.AlignLeading|Qt.AlignLeft|Qt.AlignTop)
         self.lblRemaining.setWordWrap(True)
-        self.frame_6 = QFrame(self.frame_5)
+        self.frame_6 = QFrame(self.frameDashboardUpper)
         self.frame_6.setObjectName(u"frame_6")
         self.frame_6.setGeometry(QRect(200, 65, 20, 61))
         self.frame_6.setStyleSheet(u"#frame_6{\n"
@@ -118,7 +95,7 @@ class Ui_MainWindow(object):
 "}")
         self.frame_6.setFrameShape(QFrame.StyledPanel)
         self.frame_6.setFrameShadow(QFrame.Raised)
-        self.lblCurrentWaktu = QLabel(self.frame_5)
+        self.lblCurrentWaktu = QLabel(self.frameDashboardUpper)
         self.lblCurrentWaktu.setObjectName(u"lblCurrentWaktu")
         self.lblCurrentWaktu.setGeometry(QRect(210, 66, 171, 61))
         font3 = QFont()
@@ -130,7 +107,7 @@ class Ui_MainWindow(object):
 "	color:white;\n"
 "}")
         self.lblCurrentWaktu.setAlignment(Qt.AlignLeading|Qt.AlignLeft|Qt.AlignTop)
-        self.lblLocation = QLabel(self.frame_5)
+        self.lblLocation = QLabel(self.frameDashboardUpper)
         self.lblLocation.setObjectName(u"lblLocation")
         self.lblLocation.setGeometry(QRect(30, 19, 21, 21))
         self.lblLocation.setFont(font)
@@ -139,7 +116,7 @@ class Ui_MainWindow(object):
 "	background-image:url('icon/location_on-24px.svg');\n"
 "background-position:center;\n"
 "}")
-        self.lblCity = QLabel(self.frame_5)
+        self.lblCity = QLabel(self.frameDashboardUpper)
         self.lblCity.setObjectName(u"lblCity")
         self.lblCity.setGeometry(QRect(52, 16, 101, 21))
         self.lblCity.setFont(font2)
@@ -147,7 +124,7 @@ class Ui_MainWindow(object):
 "	color:white;\n"
 "}")
         self.lblCity.setAlignment(Qt.AlignBottom|Qt.AlignLeading|Qt.AlignLeft)
-        self.label_10 = QLabel(self.frame_5)
+        self.label_10 = QLabel(self.frameDashboardUpper)
         self.label_10.setObjectName(u"label_10")
         self.label_10.setGeometry(QRect(60, 136, 51, 32))
         self.label_10.setStyleSheet(u".QLabel{\n"
@@ -155,7 +132,7 @@ class Ui_MainWindow(object):
 "	background-position:center;\n"
 "	background-repeat:no-repeat;\n"
 "}")
-        self.label_36 = QLabel(self.frame_5)
+        self.label_36 = QLabel(self.frameDashboardUpper)
         self.label_36.setObjectName(u"label_36")
         self.label_36.setGeometry(QRect(60, 163, 51, 16))
         self.label_36.setFont(font2)
@@ -164,7 +141,7 @@ class Ui_MainWindow(object):
 "}")
         self.label_36.setAlignment(Qt.AlignHCenter|Qt.AlignTop)
         self.label_36.setWordWrap(True)
-        self.lblSunset = QLabel(self.frame_5)
+        self.lblSunset = QLabel(self.frameDashboardUpper)
         self.lblSunset.setObjectName(u"lblSunset")
         self.lblSunset.setGeometry(QRect(60, 176, 51, 16))
         font4 = QFont()
@@ -177,7 +154,7 @@ class Ui_MainWindow(object):
 "}")
         self.lblSunset.setAlignment(Qt.AlignHCenter|Qt.AlignTop)
         self.lblSunset.setWordWrap(True)
-        self.label_46 = QLabel(self.frame_5)
+        self.label_46 = QLabel(self.frameDashboardUpper)
         self.label_46.setObjectName(u"label_46")
         self.label_46.setGeometry(QRect(230, 163, 51, 16))
         self.label_46.setFont(font2)
@@ -186,7 +163,7 @@ class Ui_MainWindow(object):
 "}")
         self.label_46.setAlignment(Qt.AlignHCenter|Qt.AlignTop)
         self.label_46.setWordWrap(True)
-        self.label_16 = QLabel(self.frame_5)
+        self.label_16 = QLabel(self.frameDashboardUpper)
         self.label_16.setObjectName(u"label_16")
         self.label_16.setGeometry(QRect(230, 136, 51, 32))
         self.label_16.setStyleSheet(u".QLabel{\n"
@@ -194,7 +171,7 @@ class Ui_MainWindow(object):
 "	background-position:center;\n"
 "	background-repeat:no-repeat;\n"
 "}")
-        self.lblSunrise = QLabel(self.frame_5)
+        self.lblSunrise = QLabel(self.frameDashboardUpper)
         self.lblSunrise.setObjectName(u"lblSunrise")
         self.lblSunrise.setGeometry(QRect(230, 176, 51, 16))
         self.lblSunrise.setFont(font4)
@@ -208,8 +185,7 @@ class Ui_MainWindow(object):
         self.frame_time_table.setGeometry(QRect(15, 204, 291, 241))
         self.frame_time_table.setStyleSheet(u"#frame_time_table{\n"
 "	background-color: rgb(255, 255, 255);\n"
-"	border-radius:10;\n"
-"	box-shadow: 10px 10px 5px darkgray;\n"
+"        border-radius:10;\n"
 "border-style:outer;\n"
 "border:1px solid #cbcbcb;\n"
 "}")
@@ -264,24 +240,26 @@ class Ui_MainWindow(object):
         self.frameFajr.setFrameShadow(QFrame.Plain)
         self.label_9 = QLabel(self.frameFajr)
         self.label_9.setObjectName(u"label_9")
-        self.label_9.setGeometry(QRect(10, 5, 71, 17))
+        self.label_9.setGeometry(QRect(10, 3, 71, 25))
         sizePolicy1 = QSizePolicy(QSizePolicy.Expanding, QSizePolicy.Preferred)
         sizePolicy1.setHorizontalStretch(0)
         sizePolicy1.setVerticalStretch(0)
         sizePolicy1.setHeightForWidth(self.label_9.sizePolicy().hasHeightForWidth())
         self.label_9.setSizePolicy(sizePolicy1)
+        self.label_9.setMinimumSize(QSize(0, 25))
         self.label_9.setFont(font2)
         self.label_9.setStyleSheet(u"color:black;")
         self.label_11 = QLabel(self.frameFajr)
         self.label_11.setObjectName(u"label_11")
-        self.label_11.setGeometry(QRect(240, 2, 21, 20))
+        self.label_11.setGeometry(QRect(240, 3, 21, 25))
+        self.label_11.setMinimumSize(QSize(0, 25))
         self.label_11.setStyleSheet(u"background-image:url('icon/chevron_left-24px.svg');\n"
 "background-repeat:no-repeat;\n"
 "background-position:right center;")
         self.txFajr = QLabel(self.frameFajr)
         self.txFajr.setObjectName(u"txFajr")
-        self.txFajr.setGeometry(QRect(120, 3, 111, 20))
-        self.txFajr.setMinimumSize(QSize(0, 17))
+        self.txFajr.setGeometry(QRect(120, 3, 111, 25))
+        self.txFajr.setMinimumSize(QSize(0, 25))
         self.txFajr.setFont(font2)
         self.txFajr.setLayoutDirection(Qt.LeftToRight)
         self.txFajr.setStyleSheet(u"color:black;")
@@ -301,7 +279,8 @@ class Ui_MainWindow(object):
         self.frameDhuhr.setFrameShadow(QFrame.Raised)
         self.label_12 = QLabel(self.frameDhuhr)
         self.label_12.setObjectName(u"label_12")
-        self.label_12.setGeometry(QRect(10, 5, 71, 17))
+        self.label_12.setGeometry(QRect(10, 3, 71, 25))
+        self.label_12.setMinimumSize(QSize(0, 25))
         font7 = QFont()
         font7.setFamily(u"Ubuntu")
         font7.setPointSize(10)
@@ -310,14 +289,15 @@ class Ui_MainWindow(object):
         self.label_12.setStyleSheet(u"color:black;")
         self.label_14 = QLabel(self.frameDhuhr)
         self.label_14.setObjectName(u"label_14")
-        self.label_14.setGeometry(QRect(240, 2, 21, 20))
+        self.label_14.setGeometry(QRect(240, 3, 21, 25))
+        self.label_14.setMinimumSize(QSize(0, 25))
         self.label_14.setStyleSheet(u"background-image:url('icon/chevron_left-24px.svg');\n"
 "background-repeat:no-repeat;\n"
 "background-position:right center;")
         self.txDhuhr = QLabel(self.frameDhuhr)
         self.txDhuhr.setObjectName(u"txDhuhr")
         self.txDhuhr.setGeometry(QRect(120, 3, 111, 25))
-        self.txDhuhr.setMinimumSize(QSize(0, 17))
+        self.txDhuhr.setMinimumSize(QSize(0, 25))
         self.txDhuhr.setFont(font2)
         self.txDhuhr.setLayoutDirection(Qt.LeftToRight)
         self.txDhuhr.setStyleSheet(u"color:black;")
@@ -337,19 +317,21 @@ class Ui_MainWindow(object):
         self.frame_7.setFrameShadow(QFrame.Raised)
         self.label_15 = QLabel(self.frame_7)
         self.label_15.setObjectName(u"label_15")
-        self.label_15.setGeometry(QRect(10, 5, 71, 17))
+        self.label_15.setGeometry(QRect(10, 3, 71, 25))
+        self.label_15.setMinimumSize(QSize(0, 25))
         self.label_15.setFont(font7)
         self.label_15.setStyleSheet(u"")
         self.label_17 = QLabel(self.frame_7)
         self.label_17.setObjectName(u"label_17")
-        self.label_17.setGeometry(QRect(240, 2, 21, 20))
+        self.label_17.setGeometry(QRect(240, 3, 21, 25))
+        self.label_17.setMinimumSize(QSize(0, 25))
         self.label_17.setStyleSheet(u"background-image:url('icon/chevron_left-24px.svg');\n"
 "background-repeat:no-repeat;\n"
 "background-position:right center;")
         self.txAshr = QLabel(self.frame_7)
         self.txAshr.setObjectName(u"txAshr")
-        self.txAshr.setGeometry(QRect(120, 3, 111, 17))
-        self.txAshr.setMinimumSize(QSize(0, 17))
+        self.txAshr.setGeometry(QRect(120, 3, 111, 25))
+        self.txAshr.setMinimumSize(QSize(0, 25))
         self.txAshr.setFont(font2)
         self.txAshr.setLayoutDirection(Qt.LeftToRight)
         self.txAshr.setStyleSheet(u"color:black;")
@@ -369,19 +351,21 @@ class Ui_MainWindow(object):
         self.frame_8.setFrameShadow(QFrame.Raised)
         self.label_18 = QLabel(self.frame_8)
         self.label_18.setObjectName(u"label_18")
-        self.label_18.setGeometry(QRect(10, 5, 71, 17))
+        self.label_18.setGeometry(QRect(10, 3, 71, 25))
+        self.label_18.setMinimumSize(QSize(0, 25))
         self.label_18.setFont(font7)
         self.label_18.setStyleSheet(u"")
         self.label_20 = QLabel(self.frame_8)
         self.label_20.setObjectName(u"label_20")
-        self.label_20.setGeometry(QRect(240, 2, 21, 20))
+        self.label_20.setGeometry(QRect(240, 3, 21, 25))
+        self.label_20.setMinimumSize(QSize(0, 25))
         self.label_20.setStyleSheet(u"background-image:url('icon/chevron_left-24px.svg');\n"
 "background-repeat:no-repeat;\n"
 "background-position:right center;")
         self.txMaghrib = QLabel(self.frame_8)
         self.txMaghrib.setObjectName(u"txMaghrib")
-        self.txMaghrib.setGeometry(QRect(120, 3, 110, 17))
-        self.txMaghrib.setMinimumSize(QSize(0, 17))
+        self.txMaghrib.setGeometry(QRect(120, 3, 110, 25))
+        self.txMaghrib.setMinimumSize(QSize(0, 25))
         self.txMaghrib.setFont(font2)
         self.txMaghrib.setLayoutDirection(Qt.LeftToRight)
         self.txMaghrib.setStyleSheet(u"color:black;")
@@ -401,44 +385,51 @@ class Ui_MainWindow(object):
         self.frame_9.setFrameShadow(QFrame.Raised)
         self.label_21 = QLabel(self.frame_9)
         self.label_21.setObjectName(u"label_21")
-        self.label_21.setGeometry(QRect(10, 5, 71, 17))
+        self.label_21.setGeometry(QRect(10, 3, 71, 25))
+        self.label_21.setMinimumSize(QSize(0, 25))
         self.label_21.setFont(font7)
         self.label_21.setStyleSheet(u"")
         self.label_23 = QLabel(self.frame_9)
         self.label_23.setObjectName(u"label_23")
-        self.label_23.setGeometry(QRect(240, 2, 21, 20))
+        self.label_23.setGeometry(QRect(240, 3, 21, 25))
+        self.label_23.setMinimumSize(QSize(0, 25))
         self.label_23.setStyleSheet(u"background-image:url('icon/chevron_left-24px.svg');\n"
 "background-repeat:no-repeat;\n"
 "background-position:right center;")
         self.txIsya = QLabel(self.frame_9)
         self.txIsya.setObjectName(u"txIsya")
-        self.txIsya.setGeometry(QRect(120, 3, 110, 17))
-        self.txIsya.setMinimumSize(QSize(0, 17))
+        self.txIsya.setGeometry(QRect(120, 3, 110, 25))
+        self.txIsya.setMinimumSize(QSize(0, 25))
         self.txIsya.setFont(font2)
         self.txIsya.setLayoutDirection(Qt.LeftToRight)
         self.txIsya.setStyleSheet(u"color: black;")
         self.txIsya.setAlignment(Qt.AlignRight|Qt.AlignTrailing|Qt.AlignVCenter)
-        self.frame_15 = QFrame(self.centralwidget)
-        self.frame_15.setObjectName(u"frame_15")
-        self.frame_15.setGeometry(QRect(0, 455, 321, 45))
-        self.frame_15.setStyleSheet(u"#frame_15{\n"
+        self.frameButtonBar = QFrame(self.centralwidget)
+        self.frameButtonBar.setObjectName(u"frameButtonBar")
+        self.frameButtonBar.setGeometry(QRect(0, 455, 321, 45))
+        self.frameButtonBar.setStyleSheet(u"#frameButtonBar{\n"
 "	border-style:outline;\n"
 "	border-top: 1px solid #bdbdbd;\n"
+"}\n"
+".QPushButton{\n"
+"	color:#626262;\n"
+"	border:none;\n"
+"}\n"
+".QPushButton:hover{\n"
+"	background-color:whitesmoke;\n"
 "}")
-        self.frame_15.setFrameShape(QFrame.NoFrame)
-        self.frame_15.setFrameShadow(QFrame.Plain)
-        self.frame_15.setLineWidth(0)
-        self.horizontalLayout_3 = QHBoxLayout(self.frame_15)
+        self.frameButtonBar.setFrameShape(QFrame.NoFrame)
+        self.frameButtonBar.setFrameShadow(QFrame.Plain)
+        self.frameButtonBar.setLineWidth(0)
+        self.horizontalLayout_3 = QHBoxLayout(self.frameButtonBar)
         self.horizontalLayout_3.setSpacing(0)
         self.horizontalLayout_3.setObjectName(u"horizontalLayout_3")
         self.horizontalLayout_3.setContentsMargins(0, 0, 0, 0)
-        self.btnTimeTable = QPushButton(self.frame_15)
+        self.btnTimeTable = QPushButton(self.frameButtonBar)
         self.btnTimeTable.setObjectName(u"btnTimeTable")
         self.btnTimeTable.setMinimumSize(QSize(0, 45))
         self.btnTimeTable.setFont(font2)
-        self.btnTimeTable.setStyleSheet(u".QPushButton{\n"
-"	color:#626262;\n"
-"}")
+        self.btnTimeTable.setStyleSheet(u"")
         icon1 = QIcon()
         icon1.addFile(u"icon/date_range-24px.svg", QSize(), QIcon.Normal, QIcon.On)
         self.btnTimeTable.setIcon(icon1)
@@ -447,13 +438,11 @@ class Ui_MainWindow(object):
 
         self.horizontalLayout_3.addWidget(self.btnTimeTable)
 
-        self.btnSetting = QPushButton(self.frame_15)
+        self.btnSetting = QPushButton(self.frameButtonBar)
         self.btnSetting.setObjectName(u"btnSetting")
         self.btnSetting.setMinimumSize(QSize(0, 45))
         self.btnSetting.setFont(font2)
-        self.btnSetting.setStyleSheet(u".QPushButton{\n"
-"	color:#626262;\n"
-"}")
+        self.btnSetting.setStyleSheet(u"")
         icon2 = QIcon()
         icon2.addFile(u"icon/settings-24px.svg", QSize(), QIcon.Normal, QIcon.On)
         self.btnSetting.setIcon(icon2)
@@ -462,13 +451,11 @@ class Ui_MainWindow(object):
 
         self.horizontalLayout_3.addWidget(self.btnSetting)
 
-        self.btnHide = QPushButton(self.frame_15)
+        self.btnHide = QPushButton(self.frameButtonBar)
         self.btnHide.setObjectName(u"btnHide")
         self.btnHide.setMinimumSize(QSize(0, 45))
         self.btnHide.setFont(font2)
-        self.btnHide.setStyleSheet(u".QPushButton{\n"
-"	color:#626262;\n"
-"}")
+        self.btnHide.setStyleSheet(u"")
         icon3 = QIcon()
         icon3.addFile(u"icon/hide_source-24px.svg", QSize(), QIcon.Normal, QIcon.On)
         self.btnHide.setIcon(icon3)
@@ -477,13 +464,11 @@ class Ui_MainWindow(object):
 
         self.horizontalLayout_3.addWidget(self.btnHide)
 
-        self.btnExit = QPushButton(self.frame_15)
+        self.btnExit = QPushButton(self.frameButtonBar)
         self.btnExit.setObjectName(u"btnExit")
         self.btnExit.setMinimumSize(QSize(0, 45))
         self.btnExit.setFont(font2)
-        self.btnExit.setStyleSheet(u".QPushButton{\n"
-"	color:#626262;\n"
-"}")
+        self.btnExit.setStyleSheet(u"")
         icon4 = QIcon()
         icon4.addFile(u"icon/exit_to_app-24px.svg", QSize(), QIcon.Normal, QIcon.On)
         self.btnExit.setIcon(icon4)
@@ -495,80 +480,118 @@ class Ui_MainWindow(object):
         self.frameSetting = QFrame(self.centralwidget)
         self.frameSetting.setObjectName(u"frameSetting")
         self.frameSetting.setEnabled(True)
-        self.frameSetting.setGeometry(QRect(0, 0, 391, 455))
-        self.frameSetting.setStyleSheet(u".QFrame{\n"
-"	background-color:#22355d;\n"
-"color:white;\n"
-"}\n"
-".QLabel{\n"
+        self.frameSetting.setGeometry(QRect(0, 0, 321, 453))
+        self.frameSetting.setStyleSheet(u"#frameSetting{\n"
+"	background-color:#f6f6f6;\n"
 "	color:white;\n"
 "}\n"
-".QCheckBox{\n"
+".QLabel{\n"
 "	color:white;\n"
 "}")
         self.frameSetting.setFrameShape(QFrame.StyledPanel)
         self.frameSetting.setFrameShadow(QFrame.Raised)
-        self.gridLayout = QGridLayout(self.frameSetting)
-        self.gridLayout.setObjectName(u"gridLayout")
-        self.gridLayout.setVerticalSpacing(6)
-        self.horizontalLayout_2 = QHBoxLayout()
-        self.horizontalLayout_2.setObjectName(u"horizontalLayout_2")
-        self.btnPlay = QPushButton(self.frameSetting)
-        self.btnPlay.setObjectName(u"btnPlay")
-
-        self.horizontalLayout_2.addWidget(self.btnPlay)
-
-        self.btnStop = QPushButton(self.frameSetting)
-        self.btnStop.setObjectName(u"btnStop")
-
-        self.horizontalLayout_2.addWidget(self.btnStop)
-
-        self.btnSave = QPushButton(self.frameSetting)
-        self.btnSave.setObjectName(u"btnSave")
-
-        self.horizontalLayout_2.addWidget(self.btnSave)
-
-
-        self.gridLayout.addLayout(self.horizontalLayout_2, 12, 1, 1, 3)
-
-        self.txLat = QLineEdit(self.frameSetting)
-        self.txLat.setObjectName(u"txLat")
-        self.txLat.setMinimumSize(QSize(210, 25))
-        self.txLat.setMaximumSize(QSize(210, 16777215))
-        self.txLat.setFont(font2)
-        self.txLat.setFrame(False)
-
-        self.gridLayout.addWidget(self.txLat, 1, 1, 1, 1)
-
-        self.label_3 = QLabel(self.frameSetting)
+        self.containerSetting = QFrame(self.frameSetting)
+        self.containerSetting.setObjectName(u"containerSetting")
+        self.containerSetting.setGeometry(QRect(14, 55, 291, 381))
+        self.containerSetting.setStyleSheet(u".QLineEdit{\n"
+"	border:none;\n"
+"	border-radius:2px;\n"
+"	background-color:rgb(223, 223, 223);\n"
+"}\n"
+"#containerSetting{\n"
+"	background-color: rgb(255, 255, 255);\n"
+"	border-radius:10;\n"
+"	border-style:outer;\n"
+"	border:1px solid #cbcbcb;\n"
+"}\n"
+".QLabel{\n"
+"	color:black;\n"
+"}\n"
+".QPushButton{\n"
+"	border:none;\n"
+"	border-radius:2px;\n"
+"	background-color:rgb(0, 85, 127);\n"
+"	color:#fff;\n"
+"}\n"
+".QCheckBox{\n"
+"	color:black;\n"
+"}")
+        self.containerSetting.setFrameShape(QFrame.StyledPanel)
+        self.containerSetting.setFrameShadow(QFrame.Raised)
+        self.label_3 = QLabel(self.containerSetting)
         self.label_3.setObjectName(u"label_3")
+        self.label_3.setGeometry(QRect(20, 120, 70, 25))
         self.label_3.setMinimumSize(QSize(70, 25))
         self.label_3.setMaximumSize(QSize(70, 25))
         self.label_3.setFont(font2)
+        self.label_3.setStyleSheet(u"")
+        self.layoutWidget = QWidget(self.containerSetting)
+        self.layoutWidget.setObjectName(u"layoutWidget")
+        self.layoutWidget.setGeometry(QRect(20, 250, 251, 41))
+        self.horizontalLayout_2 = QHBoxLayout(self.layoutWidget)
+        self.horizontalLayout_2.setObjectName(u"horizontalLayout_2")
+        self.horizontalLayout_2.setContentsMargins(0, 0, 0, 0)
+        self.btnPlay = QPushButton(self.layoutWidget)
+        self.btnPlay.setObjectName(u"btnPlay")
+        self.btnPlay.setMinimumSize(QSize(0, 30))
+        self.btnPlay.setMaximumSize(QSize(16777215, 30))
+        self.btnPlay.setStyleSheet(u"")
 
-        self.gridLayout.addWidget(self.label_3, 3, 0, 1, 1)
+        self.horizontalLayout_2.addWidget(self.btnPlay)
 
-        self.label_41 = QLabel(self.frameSetting)
-        self.label_41.setObjectName(u"label_41")
-        self.label_41.setMinimumSize(QSize(0, 40))
-        font8 = QFont()
-        font8.setFamily(u"Ubuntu")
-        font8.setPointSize(16)
-        self.label_41.setFont(font8)
-        self.label_41.setStyleSheet(u"")
-        self.label_41.setAlignment(Qt.AlignLeading|Qt.AlignLeft|Qt.AlignTop)
+        self.btnStop = QPushButton(self.layoutWidget)
+        self.btnStop.setObjectName(u"btnStop")
+        self.btnStop.setMinimumSize(QSize(0, 30))
+        self.btnStop.setMaximumSize(QSize(16777215, 30))
+        self.btnStop.setStyleSheet(u"")
 
-        self.gridLayout.addWidget(self.label_41, 0, 0, 1, 1)
+        self.horizontalLayout_2.addWidget(self.btnStop)
 
-        self.label_4 = QLabel(self.frameSetting)
-        self.label_4.setObjectName(u"label_4")
-        self.label_4.setMinimumSize(QSize(70, 25))
-        self.label_4.setMaximumSize(QSize(70, 25))
-        self.label_4.setFont(font2)
+        self.btnSave = QPushButton(self.layoutWidget)
+        self.btnSave.setObjectName(u"btnSave")
+        self.btnSave.setMinimumSize(QSize(0, 30))
+        self.btnSave.setMaximumSize(QSize(16777215, 30))
+        self.btnSave.setStyleSheet(u"")
 
-        self.gridLayout.addWidget(self.label_4, 4, 0, 1, 1)
+        self.horizontalLayout_2.addWidget(self.btnSave)
 
-        self.cbMethod = QComboBox(self.frameSetting)
+        self.ckStartTray = QCheckBox(self.containerSetting)
+        self.ckStartTray.setObjectName(u"ckStartTray")
+        self.ckStartTray.setGeometry(QRect(20, 220, 101, 25))
+        self.ckStartTray.setMinimumSize(QSize(20, 25))
+        self.ckStartTray.setMaximumSize(QSize(210, 25))
+        self.ckStartTray.setFont(font2)
+        self.ckStartTray.setStyleSheet(u"")
+        self.label = QLabel(self.containerSetting)
+        self.label.setObjectName(u"label")
+        self.label.setGeometry(QRect(20, 20, 70, 25))
+        self.label.setMinimumSize(QSize(70, 25))
+        self.label.setMaximumSize(QSize(70, 25))
+        self.label.setFont(font2)
+        self.label.setStyleSheet(u"")
+        self.label_6 = QLabel(self.containerSetting)
+        self.label_6.setObjectName(u"label_6")
+        self.label_6.setGeometry(QRect(100, 120, 70, 25))
+        self.label_6.setMinimumSize(QSize(70, 25))
+        self.label_6.setMaximumSize(QSize(70, 25))
+        self.label_6.setFont(font2)
+        self.label_6.setStyleSheet(u"")
+        self.cbMathhab = QComboBox(self.containerSetting)
+        self.cbMathhab.addItem("")
+        self.cbMathhab.addItem("")
+        self.cbMathhab.setObjectName(u"cbMathhab")
+        self.cbMathhab.setGeometry(QRect(100, 140, 171, 25))
+        self.cbMathhab.setMinimumSize(QSize(20, 25))
+        self.cbMathhab.setMaximumSize(QSize(320, 16777215))
+        self.cbMathhab.setFont(font2)
+        self.cbMathhab.setStyleSheet(u"#cbMathhab{\n"
+"	border:none;\n"
+"	border:none;\n"
+"	border-radius:2px;\n"
+"	background-color:rgb(223, 223, 223);\n"
+"}")
+        self.cbMathhab.setFrame(False)
+        self.cbMethod = QComboBox(self.containerSetting)
         self.cbMethod.addItem("")
         self.cbMethod.addItem("")
         self.cbMethod.addItem("")
@@ -578,97 +601,91 @@ class Ui_MainWindow(object):
         self.cbMethod.addItem("")
         self.cbMethod.addItem("")
         self.cbMethod.setObjectName(u"cbMethod")
-        self.cbMethod.setMinimumSize(QSize(210, 25))
-        self.cbMethod.setMaximumSize(QSize(210, 16777215))
+        self.cbMethod.setGeometry(QRect(20, 190, 251, 25))
+        self.cbMethod.setMinimumSize(QSize(20, 25))
+        self.cbMethod.setMaximumSize(QSize(320, 16777215))
         self.cbMethod.setFont(font2)
-        self.cbMethod.setFrame(False)
-
-        self.gridLayout.addWidget(self.cbMethod, 4, 1, 1, 1)
-
-        self.label = QLabel(self.frameSetting)
-        self.label.setObjectName(u"label")
-        self.label.setMinimumSize(QSize(70, 25))
-        self.label.setMaximumSize(QSize(70, 25))
-        self.label.setFont(font2)
-        self.label.setStyleSheet(u".QLabel{\n"
-"	color:white;\n"
+        self.cbMethod.setStyleSheet(u"#cbMethod{\n"
+"	border:none;\n"
+"	border:none;\n"
+"	border-radius:2px;\n"
+"	background-color:rgb(223, 223, 223);\n"
 "}")
-
-        self.gridLayout.addWidget(self.label, 1, 0, 1, 1)
-
-        self.cbMathhab = QComboBox(self.frameSetting)
-        self.cbMathhab.addItem("")
-        self.cbMathhab.addItem("")
-        self.cbMathhab.setObjectName(u"cbMathhab")
-        self.cbMathhab.setMinimumSize(QSize(210, 25))
-        self.cbMathhab.setMaximumSize(QSize(210, 16777215))
-        self.cbMathhab.setFont(font2)
-        self.cbMathhab.setFrame(False)
-
-        self.gridLayout.addWidget(self.cbMathhab, 5, 1, 1, 1)
-
-        self.label_5 = QLabel(self.frameSetting)
-        self.label_5.setObjectName(u"label_5")
-
-        self.gridLayout.addWidget(self.label_5, 10, 0, 1, 2)
-
-        self.verticalSpacer = QSpacerItem(20, 175, QSizePolicy.Minimum, QSizePolicy.Expanding)
-
-        self.gridLayout.addItem(self.verticalSpacer, 11, 0, 1, 1)
-
-        self.label_6 = QLabel(self.frameSetting)
-        self.label_6.setObjectName(u"label_6")
-        self.label_6.setMinimumSize(QSize(70, 25))
-        self.label_6.setMaximumSize(QSize(70, 25))
-        self.label_6.setFont(font2)
-
-        self.gridLayout.addWidget(self.label_6, 5, 0, 1, 1)
-
-        self.txUtc = QLineEdit(self.frameSetting)
-        self.txUtc.setObjectName(u"txUtc")
-        self.txUtc.setMinimumSize(QSize(210, 25))
-        self.txUtc.setMaximumSize(QSize(210, 16777215))
-        self.txUtc.setFont(font2)
-        self.txUtc.setFrame(False)
-
-        self.gridLayout.addWidget(self.txUtc, 3, 1, 1, 1)
-
-        self.txLong = QLineEdit(self.frameSetting)
-        self.txLong.setObjectName(u"txLong")
-        self.txLong.setMinimumSize(QSize(210, 25))
-        self.txLong.setMaximumSize(QSize(210, 16777215))
-        self.txLong.setFont(font2)
-        self.txLong.setFrame(False)
-
-        self.gridLayout.addWidget(self.txLong, 2, 1, 1, 1)
-
-        self.label_2 = QLabel(self.frameSetting)
+        self.cbMethod.setFrame(False)
+        self.label_2 = QLabel(self.containerSetting)
         self.label_2.setObjectName(u"label_2")
+        self.label_2.setGeometry(QRect(20, 70, 70, 25))
         self.label_2.setMinimumSize(QSize(70, 25))
         self.label_2.setMaximumSize(QSize(70, 25))
         self.label_2.setFont(font2)
-
-        self.gridLayout.addWidget(self.label_2, 2, 0, 1, 1)
-
-        self.ckStartTray = QCheckBox(self.frameSetting)
-        self.ckStartTray.setObjectName(u"ckStartTray")
-        self.ckStartTray.setMinimumSize(QSize(210, 25))
-        self.ckStartTray.setMaximumSize(QSize(210, 25))
-        self.ckStartTray.setFont(font2)
-
-        self.gridLayout.addWidget(self.ckStartTray, 6, 1, 1, 1)
-
+        self.label_2.setStyleSheet(u"")
+        self.label_4 = QLabel(self.containerSetting)
+        self.label_4.setObjectName(u"label_4")
+        self.label_4.setGeometry(QRect(20, 170, 70, 25))
+        self.label_4.setMinimumSize(QSize(70, 25))
+        self.label_4.setMaximumSize(QSize(70, 25))
+        self.label_4.setFont(font2)
+        self.label_4.setStyleSheet(u"")
+        self.txLong = QLineEdit(self.containerSetting)
+        self.txLong.setObjectName(u"txLong")
+        self.txLong.setGeometry(QRect(20, 90, 251, 25))
+        self.txLong.setMinimumSize(QSize(20, 25))
+        self.txLong.setMaximumSize(QSize(320, 16777215))
+        self.txLong.setFont(font2)
+        self.txLong.setStyleSheet(u"")
+        self.txLong.setFrame(False)
+        self.txUtc = QLineEdit(self.containerSetting)
+        self.txUtc.setObjectName(u"txUtc")
+        self.txUtc.setGeometry(QRect(20, 140, 71, 25))
+        self.txUtc.setMinimumSize(QSize(20, 25))
+        self.txUtc.setMaximumSize(QSize(320, 16777215))
+        self.txUtc.setFont(font2)
+        self.txUtc.setStyleSheet(u"")
+        self.txUtc.setFrame(False)
+        self.txLat = QLineEdit(self.containerSetting)
+        self.txLat.setObjectName(u"txLat")
+        self.txLat.setGeometry(QRect(20, 40, 251, 28))
+        self.txLat.setMinimumSize(QSize(20, 25))
+        self.txLat.setMaximumSize(QSize(320, 16777215))
+        self.txLat.setFont(font2)
+        self.txLat.setStyleSheet(u"")
+        self.txLat.setFrame(False)
+        self.label_22 = QLabel(self.frameSetting)
+        self.label_22.setObjectName(u"label_22")
+        self.label_22.setGeometry(QRect(50, 10, 81, 40))
+        self.label_22.setMinimumSize(QSize(20, 20))
+        self.label_22.setMaximumSize(QSize(9999, 9999))
+        font8 = QFont()
+        font8.setFamily(u"Ubuntu")
+        font8.setPointSize(14)
+        self.label_22.setFont(font8)
+        self.label_22.setStyleSheet(u"")
+        self.lblIconSetting = QLabel(self.frameSetting)
+        self.lblIconSetting.setObjectName(u"lblIconSetting")
+        self.lblIconSetting.setGeometry(QRect(20, 10, 31, 40))
+        self.lblIconSetting.setMinimumSize(QSize(30, 30))
+        self.lblIconSetting.setMaximumSize(QSize(9999, 9999))
+        self.lblIconSetting.setFont(font8)
+        self.lblIconSetting.setStyleSheet(u"")
+        self.frameSettingBottom = QFrame(self.frameSetting)
+        self.frameSettingBottom.setObjectName(u"frameSettingBottom")
+        self.frameSettingBottom.setGeometry(QRect(0, 271, 321, 191))
+        self.frameSettingBottom.setStyleSheet(u"#frameSettingBottom{\n"
+"	background-color:#f6f6f6;\n"
+"}")
+        self.frameSettingBottom.setFrameShape(QFrame.StyledPanel)
+        self.frameSettingBottom.setFrameShadow(QFrame.Raised)
+        self.frameSettingBottom.raise_()
+        self.containerSetting.raise_()
+        self.label_22.raise_()
+        self.lblIconSetting.raise_()
         MainWindow.setCentralWidget(self.centralwidget)
-        self.frame_5.raise_()
-        self.tabWidget.raise_()
-        self.frame_15.raise_()
+        self.frameDashboardUpper.raise_()
         self.frame_time_table.raise_()
         self.frameSetting.raise_()
+        self.frameButtonBar.raise_()
 
         self.retranslateUi(MainWindow)
-
-        self.tabWidget.setCurrentIndex(1)
-
 
         QMetaObject.connectSlotsByName(MainWindow)
     # setupUi
@@ -678,9 +695,6 @@ class Ui_MainWindow(object):
 #if QT_CONFIG(tooltip)
         MainWindow.setToolTip(QCoreApplication.translate("MainWindow", u"AyoShalat", None))
 #endif // QT_CONFIG(tooltip)
-        self.tabWidget.setTabText(self.tabWidget.indexOf(self.tab_pray_info), QCoreApplication.translate("MainWindow", u"Prayer Times", None))
-        self.tabWidget.setTabText(self.tabWidget.indexOf(self.tab_setting), QCoreApplication.translate("MainWindow", u"Setting", None))
-        self.tabWidget.setTabText(self.tabWidget.indexOf(self.tab), QCoreApplication.translate("MainWindow", u"Page", None))
         self.label_31.setText(QCoreApplication.translate("MainWindow", u"UPCOMING PRAYER", None))
         self.lblUpcomingWaktu.setText(QCoreApplication.translate("MainWindow", u"Maghrib", None))
         self.lblUpcomingJam.setText(QCoreApplication.translate("MainWindow", u"12:00", None))
@@ -715,12 +729,16 @@ class Ui_MainWindow(object):
         self.btnSetting.setText(QCoreApplication.translate("MainWindow", u"Setting", None))
         self.btnHide.setText(QCoreApplication.translate("MainWindow", u"Hide", None))
         self.btnExit.setText(QCoreApplication.translate("MainWindow", u"Exit", None))
+        self.label_3.setText(QCoreApplication.translate("MainWindow", u"UTC", None))
         self.btnPlay.setText(QCoreApplication.translate("MainWindow", u"Play", None))
         self.btnStop.setText(QCoreApplication.translate("MainWindow", u"Stop", None))
         self.btnSave.setText(QCoreApplication.translate("MainWindow", u"Save", None))
-        self.label_3.setText(QCoreApplication.translate("MainWindow", u"UTC", None))
-        self.label_41.setText(QCoreApplication.translate("MainWindow", u"Setting", None))
-        self.label_4.setText(QCoreApplication.translate("MainWindow", u"Method", None))
+        self.ckStartTray.setText(QCoreApplication.translate("MainWindow", u"Start in Tray", None))
+        self.label.setText(QCoreApplication.translate("MainWindow", u"Latitude", None))
+        self.label_6.setText(QCoreApplication.translate("MainWindow", u"Mathab", None))
+        self.cbMathhab.setItemText(0, QCoreApplication.translate("MainWindow", u"Shafi'i", None))
+        self.cbMathhab.setItemText(1, QCoreApplication.translate("MainWindow", u"Hanafi", None))
+
         self.cbMethod.setItemText(0, QCoreApplication.translate("MainWindow", u"Egyptian General Authority of Survey", None))
         self.cbMethod.setItemText(1, QCoreApplication.translate("MainWindow", u"University of Islamic Sciences, Karachi (Shaf'i)", None))
         self.cbMethod.setItemText(2, QCoreApplication.translate("MainWindow", u"University of Islamic Sciences, Karachi (Hanafi)", None))
@@ -730,13 +748,9 @@ class Ui_MainWindow(object):
         self.cbMethod.setItemText(6, QCoreApplication.translate("MainWindow", u"Fixed Isha Angle Interval (always 90)", None))
         self.cbMethod.setItemText(7, QCoreApplication.translate("MainWindow", u"Egyptian General Authority of Survey (Egypt)", None))
 
-        self.label.setText(QCoreApplication.translate("MainWindow", u"Latitude", None))
-        self.cbMathhab.setItemText(0, QCoreApplication.translate("MainWindow", u"Shafi'i", None))
-        self.cbMathhab.setItemText(1, QCoreApplication.translate("MainWindow", u"Hanafi", None))
-
-        self.label_5.setText("")
-        self.label_6.setText(QCoreApplication.translate("MainWindow", u"Mathab", None))
         self.label_2.setText(QCoreApplication.translate("MainWindow", u"Longitude", None))
-        self.ckStartTray.setText(QCoreApplication.translate("MainWindow", u"Start in Tray", None))
+        self.label_4.setText(QCoreApplication.translate("MainWindow", u"Method", None))
+        self.label_22.setText(QCoreApplication.translate("MainWindow", u"Setting", None))
+        self.lblIconSetting.setText("")
     # retranslateUi
 

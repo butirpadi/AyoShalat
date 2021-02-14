@@ -1,8 +1,9 @@
 #! /usr/bin/python
 
 import sys
-from PySide6.QtGui import QIcon
-from PySide6.QtWidgets import QApplication
+from PySide6.QtGui import QGuiApplication, QIcon, Qt
+from PySide6.QtQml import QQmlApplicationEngine
+from PySide6.QtWidgets import QApplication, QMessageBox
 from ayoshalat import AyoShalat
 import os
 import pathlib
@@ -17,6 +18,7 @@ if __name__ == "__main__":
     screen = app.primaryScreen().geometry().getRect()
     win = window.geometry().getRect()
     window.setGeometry((screen[2]/2)-(win[2]/2),(screen[3]/2)-(win[3]/2),0,0)
+    # window.setWindowFlags(Qt.FramelessWindowHint) # disable window decoration
     start_in_tray = 'False'
 
     # open app setting
@@ -28,21 +30,28 @@ if __name__ == "__main__":
 
         start_in_tray = setting_lines[0].split(':')[1].strip()       
 
-        # if open_in_tray == 'False':
-        #     # self.hide()
-        #     print('showing window')
-        #     window.show()        
         fileob.close()
     except FileNotFoundError:
         print('error load setting')    
     
     if start_in_tray == 'False':
         window.show()
-    else:
-        window.show()
-        window.hide()
+    # else:
+        # QMessageBox().show()
+    #     window.show()
+    #     window.hide()
 
     window.runningme()
     app.exec_()
     os._exit(0)
     # sys.exit()
+
+    # app = QGuiApplication(sys.argv)
+    # engine = QQmlApplicationEngine()
+    # engine.load(os.path.join(os.path.dirname(__file__), "qml/dashboard.qml"))
+
+    # if not engine.rootObjects():
+    #     sys.exit(-1)
+    # sys.exit(app.exec_())
+
+

@@ -1,7 +1,7 @@
 # This Python file uses the following encoding: utf-8
-from PySide6.QtCore import QSize
+from PySide6.QtCore import QRect, QSize
 from azan_dialog_ui_window import AzanDialogUiWindow
-from PySide6.QtGui import QIcon, Qt
+from PySide6.QtGui import QIcon, QMouseEvent, Qt
 from azanplay import AzanPlay
 from PySide6.QtWidgets import QErrorMessage, QMainWindow, QMenu, QSystemTrayIcon, QWidget
 from main_ui import Ui_MainWindow
@@ -25,7 +25,7 @@ class AyoShalat(QMainWindow):
         self.ui.setupUi(self)
 
         self.current_directory = str(pathlib.Path(__file__).parent.absolute())
-        self.set_image_attribute()
+        self.reformat_ui()
 
         # set clicked
         self.ui.btnPlay.clicked.connect(self.playAzan)
@@ -64,10 +64,10 @@ class AyoShalat(QMainWindow):
 
         # show tray on start
         self.show_tray()
-    
+
     def show_frame_setting(self):
         self.ui.frameSetting.setVisible(True)
-    
+
     def show_time_table(self):
         self.ui.frameSetting.setVisible(False)
 
@@ -80,7 +80,7 @@ class AyoShalat(QMainWindow):
 
             playazan_menu = traymenu.addAction('Play Azan')
             playazan_menu.triggered.connect(self.playAzan)
-            
+
             stop_azan_menu = traymenu.addAction('Stop Azan')
             stop_azan_menu.triggered.connect(self.stopAzan)
 
@@ -167,7 +167,7 @@ class AyoShalat(QMainWindow):
             duhr = self.times[3].strip()  # + ':00'
             ashr = self.times[4].strip()  # + ':00'
             maghrib = self.times[5].strip()  # + ':00'
-            isya = self.times[6].strip()  # + ':00'            
+            isya = self.times[6].strip()  # + ':00'
 
             # print('subh "' + subh + '"')
             # print('dhuhr "' + duhr + '"')
@@ -183,6 +183,19 @@ class AyoShalat(QMainWindow):
                 azanThread = threading.Thread(
                     target=self.playAzan, name="Azan Play")
                 azanThread.start()
+
+                # show current prayer time info
+                if now == subh:
+                    self.ui.lblCurrentWaktu.setText('Subh')
+                elif now == duhr:
+                    self.ui.lblCurrentWaktu.setText('Duhr')
+                elif now == ashr:
+                    self.ui.lblCurrentWaktu.setText('Asr')
+                elif now == maghrib:
+                    self.ui.lblCurrentWaktu.setText('Maghrib')
+                elif now == isya:
+                    self.ui.lblCurrentWaktu.setText('Isya`')
+
                 time.sleep(60)
 
     def runningme(self):
@@ -212,7 +225,6 @@ class AyoShalat(QMainWindow):
         azanui.setFixedWidth(im_width)
         azanui.setFixedHeight(im_height)
         azanui.setWindowModality(Qt.ApplicationModal)
-        azanui.setModal(True)
         azanui.show()
 
         self.azanpy = AzanPlay()
@@ -224,6 +236,10 @@ class AyoShalat(QMainWindow):
         self.ui.txAshr.setText(self.times[4] + ':00')
         self.ui.txMaghrib.setText(self.times[5] + ':00')
         self.ui.txIsya.setText(self.times[6] + ':00')
+
+        # show label current date name
+        self.ui.lblTodayName.setText('Today / ' + datetime.datetime.now().strftime('%A') )
+        self.ui.lblTodayDate.setText( datetime.datetime.now().strftime('%d %B %Y') + ' / Hijri Date'  )
 
     def openSetting(self):
         # opening app setting
@@ -286,92 +302,102 @@ class AyoShalat(QMainWindow):
             # open setting
             self.openSetting()
 
-    def set_image_attribute(self):
-        icon = QIcon()
-        icon.addFile(self.current_directory + u"/icon/masjid.xpm",QSize(), QIcon.Normal, QIcon.Off)
-        # MainWindow.setWindowIcon(icon)
-        self.ui.centralwidget.setWindowIcon(icon)        
+    def show_current_prayer_time(self):
+        current_time = datetime.datetime.now()
 
+    def reformat_ui(self):
+        icon = QIcon()
+        icon.addFile(self.current_directory + u"/icon/masjid.xpm",
+                     QSize(), QIcon.Normal, QIcon.Off)
+        # MainWindow.setWindowIcon(icon)
+        self.ui.centralwidget.setWindowIcon(icon)
+
+        self.ui.frameSetting.setGeometry(QRect(-1, -1, 322, 461))
         self.ui.frameSetting.setStyleSheet(u"#frameSetting{\n"
-                                    "	background-image:url('" + self.current_directory +
-                                    "/icon/bg6-3.jpg');\n"
-                                    "	background-position:center;\n"
-                                    "	background-size:cover;\n"
-                                    "}\n"
-                                    ".QLabel{\n"
-                                    "color:white;}\n")
-        
-        self.ui.frame_5.setStyleSheet(u"#frame_5{\n"
-                                    "	background-image:url('" + self.current_directory +
-                                    "/icon/bg6-3.jpg');\n"
-                                    "	background-position:center;\n"
-                                    "	background-size:cover;\n"
-                                    "}")
+                                           "	background-image:url('" + self.current_directory +
+                                           "/icon/bg6-3.jpg');\n"
+                                           "	background-position:center;\n"
+                                           "}\n"
+                                           ".QLabel{\n"
+                                           "color:white;}\n")
+
+        self.ui.frameDashboardUpper.setGeometry(QRect(-10, -1, 391, 271))
+        self.ui.frameDashboardUpper.setStyleSheet(u"#frameDashboardUpper{\n"
+                                                  "	background-image:url('" + self.current_directory +
+                                                  "/icon/bg6-3.jpg');\n"
+                                                  "	background-position:center;\n"
+
+                                                  "}")
 
         self.ui.lblLocation.setStyleSheet(u"#lblLocation{\n"
-                                        "	color:white;\n"
-                                        "	background-image:url('" + self.current_directory +
-                                        "/icon/location_on-24px.svg');\n"
-                                        "background-position:center;\n"
-                                        "}")
+                                          "	color:white;\n"
+                                          "	background-image:url('" + self.current_directory +
+                                          "/icon/location_on-24px.svg');\n"
+                                          "background-position:center;\n"
+                                          "}")
 
         self.ui.label_10.setStyleSheet(u".QLabel{\n"
-                                    "	background-image:url('" + self.current_directory +
-                                    "/icon/noun_Sea Sunset_395675.svg');\n"
-                                    "	background-position:center;\n"
-                                    "	background-repeat:no-repeat;\n"
-                                    "}")
+                                       "	background-image:url('" + self.current_directory +
+                                       "/icon/noun_Sea Sunset_395675.svg');\n"
+                                       "	background-position:center;\n"
+                                       "	background-repeat:no-repeat;\n"
+                                       "}")
 
         self.ui.label_16.setStyleSheet(u".QLabel{\n"
-                                    "	background-image:url('" + self.current_directory +
-                                    "/icon/noun_Sunrise _395417.svg');\n"
-                                    "	background-position:center;\n"
-                                    "	background-repeat:no-repeat;\n"
-                                    "}")
+                                       "	background-image:url('" + self.current_directory +
+                                       "/icon/noun_Sunrise _395417.svg');\n"
+                                       "	background-position:center;\n"
+                                       "	background-repeat:no-repeat;\n"
+                                       "}")
 
         self.ui.frame_4.setStyleSheet(u"#frame_4{\n"
-                                    "	background-image:url('" + self.current_directory +
-                                    "/icon/today-24px.svg');\n"
-                                    "	background-repeat:no-repeat;\n"
-                                    "	background-position:center;\n"
-                                    "}")
+                                      "	background-image:url('" + self.current_directory +
+                                      "/icon/today-24px.svg');\n"
+                                      "	background-repeat:no-repeat;\n"
+                                      "	background-position:center;\n"
+                                      "}")
 
-        self.ui.label_11.setStyleSheet(u"background-image:url('" + self.current_directory + "/icon/chevron_left-24px.svg');\n"
-                                    "background-repeat:no-repeat;\n"
-                                    "background-position:right center;")
+        self.ui.label_11.setStyleSheet(u"background-image:url('" + self.current_directory + "/icon/notifications_none-24px.svg');\n"
+                                       "background-repeat:no-repeat;\n"
+                                       "background-position:right center;")
 
-        self.ui.label_14.setStyleSheet(u"background-image:url('" + self.current_directory + "/icon/chevron_left-24px.svg');\n"
-                                    "background-repeat:no-repeat;\n"
-                                    "background-position:right center;")
+        self.ui.label_14.setStyleSheet(u"background-image:url('" + self.current_directory + "/icon/notifications_none-24px.svg');\n"
+                                       "background-repeat:no-repeat;\n"
+                                       "background-position:right center;")
 
-        self.ui.label_17.setStyleSheet(u"background-image:url('" + self.current_directory + "/icon/chevron_left-24px.svg');\n"
-                                    "background-repeat:no-repeat;\n"
-                                    "background-position:right center;")
+        self.ui.label_17.setStyleSheet(u"background-image:url('" + self.current_directory + "/icon/notifications_none-24px.svg');\n"
+                                       "background-repeat:no-repeat;\n"
+                                       "background-position:right center;")
 
-        self.ui.label_20.setStyleSheet(u"background-image:url('" + self.current_directory + "/icon/chevron_left-24px.svg');\n"
-                                    "background-repeat:no-repeat;\n"
-                                    "background-position:right center;")
+        self.ui.label_20.setStyleSheet(u"background-image:url('" + self.current_directory + "/icon/notifications_none-24px.svg');\n"
+                                       "background-repeat:no-repeat;\n"
+                                       "background-position:right center;")
 
-        self.ui.label_23.setStyleSheet(u"background-image:url('" + self.current_directory + "/icon/chevron_left-24px.svg');\n"
-                                    "background-repeat:no-repeat;\n"
-                                    "background-position:right center;")
+        self.ui.label_23.setStyleSheet(u"background-image:url('" + self.current_directory + "/icon/notifications_none-24px.svg');\n"
+                                       "background-repeat:no-repeat;\n"
+                                       "background-position:right center;")
+        
+        self.ui.lblIconSetting.setStyleSheet(u"background-image:url('" + self.current_directory + "/icon/settings-24px-white.svg');\n"
+                                       "background-repeat:no-repeat;\n"
+                                       "background-position:left center;")
 
         icon1 = QIcon()
         icon1.addFile(self.current_directory + u"/icon/date_range-24px.svg",
-                        QSize(), QIcon.Normal, QIcon.On)
+                      QSize(), QIcon.Normal, QIcon.On)
         self.ui.btnTimeTable.setIcon(icon1)
 
         icon2 = QIcon()
         icon2.addFile(self.current_directory + u"/icon/settings-24px.svg",
-                        QSize(), QIcon.Normal, QIcon.On)
+                      QSize(), QIcon.Normal, QIcon.On)
         self.ui.btnSetting.setIcon(icon2)
 
         icon3 = QIcon()
         icon3.addFile(self.current_directory +
-                        u"/icon/hide_source-24px.svg", QSize(), QIcon.Normal, QIcon.On)
+                      u"/icon/hide_source-24px.svg", QSize(), QIcon.Normal, QIcon.On)
         self.ui.btnHide.setIcon(icon3)
 
         icon4 = QIcon()
         icon4.addFile(self.current_directory +
-                        u"/icon/exit_to_app-24px.svg", QSize(), QIcon.Normal, QIcon.On)
+                      u"/icon/exit_to_app-24px.svg", QSize(), QIcon.Normal, QIcon.On)
         self.ui.btnExit.setIcon(icon4)
+
