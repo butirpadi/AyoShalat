@@ -1,1 +1,7 @@
 open_in_tray : False
+lat : -7.502814765426055
+long : 112.71057820736571
+utc : 7
+method : 0
+time_format : 24h
+mathhab : 0

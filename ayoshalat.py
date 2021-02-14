@@ -1,14 +1,11 @@
 # This Python file uses the following encoding: utf-8
 from PySide6.QtCore import QRect, QSize
-from azan_dialog_ui_window import AzanDialogUiWindow
-from PySide6.QtGui import QIcon, QMouseEvent, Qt
+from PySide6.QtGui import QIcon
 from azanplay import AzanPlay
-from PySide6.QtWidgets import QErrorMessage, QMainWindow, QMenu, QSystemTrayIcon, QWidget
+from PySide6.QtWidgets import QDialog, QMainWindow, QMenu, QSystemTrayIcon, QWidget
 from main_ui import Ui_MainWindow
 import pathlib
 import os
-import io
-import subprocess
 from pprint import pprint
 import time
 import datetime
@@ -16,9 +13,29 @@ import threading
 import pwd
 import random
 from PIL import Image
+from prayertimes import PrayTimes
+from multiprocessing import Process
 
 
 class AyoShalat(QMainWindow):
+    # +=========+===============================================+
+    # | Method  | Description                                   |
+    # +=========+===============================================+
+    # | MWL     | Muslim World League                           |
+    # +---------+-----------------------------------------------+
+    # | ISNA    | Islamic Society of North America              |
+    # +---------+-----------------------------------------------+
+    # | Egypt   | Egyptian General Authority of Survey          |
+    # +---------+-----------------------------------------------+
+    # | Makkah  | Umm al-Qura University                        |
+    # +---------+-----------------------------------------------+
+    # | Karachi | University of Islamic Sciences, Karachi       |
+    # +---------+-----------------------------------------------+
+    # | Tehran  | Institute of Geophysics, University of Tehran |
+    # +---------+-----------------------------------------------+
+    # | Jafari  | Shia Ithna Ashari (Jafari)                    |
+    # +---------+-----------------------------------------------+
+
     def __init__(self):
         QMainWindow.__init__(self)
         self.ui = Ui_MainWindow()
@@ -37,18 +54,15 @@ class AyoShalat(QMainWindow):
         self.ui.btnSetting.clicked.connect(self.show_frame_setting)
         self.ui.btnTimeTable.clicked.connect(self.show_time_table)
 
+        self.calculation_method_array = ['MWL', 'ISNA',
+                                         'Egypt', 'Makkah', 'Karachi', 'Tehran', 'Jafari']
+        self.mathhab_array = ['Standard', 'Hanafi']
+
         # init form setting
         self.ui.frameSetting.setVisible(False)
 
         # get username of this login user
         self.myusername = pwd.getpwuid(os.getuid()).pw_name
-
-        # get time
-        self.init_times()
-
-        # init thread
-        self.docalc = threading.Thread(
-            target=self.do_calculate, name="Azan Calculating")
 
         # init icon
         self.setting_file = self.current_directory + '/setting.txt'
@@ -56,14 +70,22 @@ class AyoShalat(QMainWindow):
         self.setWindowIcon(QIcon(self.icopath))
         self.default_azan = self.current_directory + '/audio/azan.mp3'
 
-        # open setting
-        self.openSetting()
+        # OPEN SETTING ON START
+        self.openSettingNew()
+
+        # init thread
+        self.docalc = threading.Thread(
+            target=self.do_calculate, name="Azan Calculating")
+
+        self.init_times_new()
 
         # show times
         self.showTimes()
 
         # show tray on start
         self.show_tray()
+
+        # ---------------------------------------------------------------------------------------------------------------------
 
     def show_frame_setting(self):
         self.ui.frameSetting.setVisible(True)
@@ -97,44 +119,10 @@ class AyoShalat(QMainWindow):
             qtray.setContextMenu(traymenu)
             qtray.show()
 
-    def init_times(self):
-        opt = subprocess.Popen(['ipraytime', '--brief'],
-                               stdout=subprocess.PIPE)
-        timetable = io.TextIOWrapper(opt.stdout, encoding="utf-8")
-        self.times = list(timetable)[2].split()
-
-        # testing
-        # self.times[6] = "10:17"
-
     def do_save(self):
-        # checking input
-        if not self.ui.txLat.text().isdigit():
-            msg = QErrorMessage()
-            msg.showMessage('Latitude in false type.')
-
+        # using new module
         setting_lines = []
-        setting_lines.append('City: city_name' + '\n')
-        setting_lines.append(
-            'Latitude: ' + self.ui.txLat.text().strip() + '\n')
-        setting_lines.append(
-            'Longitude: ' + self.ui.txLong.text().strip() + '\n')
-        setting_lines.append('UTC: ' + self.ui.txUtc.text().strip() + '\n')
-        setting_lines.append(
-            'AngleMethod: ' + str(self.ui.cbMethod.currentIndex() + 1) + '\n')
-        setting_lines.append(
-            'Mathhab: ' + str(self.ui.cbMathhab.currentIndex() + 1) + '\n')
-        setting_lines.append(
-            'OffsetList: ' + '0 0 0 0 0 0' + '\n')
 
-        fileob = open(r'/home/' + self.myusername + '/.iprayrc', 'w')
-
-        for line in setting_lines:
-            fileob.writelines(line)
-
-        fileob.close()
-
-        # save app setting
-        setting_lines = []
         if self.ui.ckStartTray.isChecked():
             print('tray is true')
             setting_lines.append('open_in_tray : True' + '\n')
@@ -142,47 +130,61 @@ class AyoShalat(QMainWindow):
             print('tray is false')
             setting_lines.append('open_in_tray : False' + '\n')
 
-        settingfile = open(self.setting_file, 'w')
+        setting_lines.append(
+            'lat : ' + self.ui.txLat.text().strip() + '\n')
+        setting_lines.append(
+            'long : ' + self.ui.txLong.text().strip() + '\n')
+        setting_lines.append('utc : ' + self.ui.txUtc.text().strip() + '\n')
+        setting_lines.append(
+            'method : ' + str(self.ui.cbMethod.currentIndex() ) + '\n')
+        setting_lines.append(
+            'time_format : 24h' +'\n')
+        setting_lines.append(
+            'mathhab : ' + str(self.ui.cbMathhab.currentIndex() ) + '\n')
+
+        fileob = open(self.setting_file, 'w')
+
         for line in setting_lines:
-            print(line)
-            settingfile.writelines(line)
-        settingfile.close()
+            fileob.writelines(line)
+
+        fileob.close()
+
         print('Save setting file app success')
         print('-------------------------')
 
         # reload setting
-        self.init_times()
+        self.openSettingNew()
+        self.init_times_new()
         self.showTimes()
 
     def do_calculate(self):
         while True:
             time.sleep(1)
+
+            # update time every time
+            self.init_times_new()
+
             # get current time
             current_time = datetime.datetime.now()
             # now = current_time.strftime("%-H:%M:%S")
-            now = current_time.strftime("%-H:%M")
-            now_prec = current_time.strftime("%-H:%M:%S")
+            # now = current_time.strftime("%-H:%M")
+            # using padding with zero on hours
+            now = current_time.strftime("%H:%M")
+            # now_prec = current_time.strftime("%H:%M:%S")
 
-            subh = self.times[1].strip()  # + ':00'
-            duhr = self.times[3].strip()  # + ':00'
-            ashr = self.times[4].strip()  # + ':00'
-            maghrib = self.times[5].strip()  # + ':00'
-            isya = self.times[6].strip()  # + ':00'
-
-            # print('subh "' + subh + '"')
-            # print('dhuhr "' + duhr + '"')
-            # print('ashr "' + ashr + '"')
-            # print('maghrib "' + maghrib + '"')
-            # print('isya "' + isya + '"')
-            # print('NOW "' + now + '"')
-            # print('NOW PREC"' + now_prec + '"')
-            # print('------------------------------')
-            # maghrib = "17:33"
+            # self.times[1].strip()  # + ':00'
+            subh = self.time_array['fajr'].strip()
+            # self.times[3].strip()  # + ':00'
+            duhr = self.time_array['dhuhr'].strip()
+            # self.times[4].strip()  # + ':00'
+            ashr = self.time_array['asr'].strip()
+            # self.times[5].strip()  # + ':00'
+            maghrib = self.time_array['maghrib'].strip()
+            # self.times[6].strip()  # + ':00'
+            isya = self.time_array['isha'].strip()
 
             if now == subh or now == duhr or now == ashr or now == maghrib or now == isya:
-                azanThread = threading.Thread(
-                    target=self.playAzan, name="Azan Play")
-                azanThread.start()
+                self.playAzan()
 
                 # show current prayer time info
                 if now == subh:
@@ -206,101 +208,108 @@ class AyoShalat(QMainWindow):
         # self.docalc._stop().set()
         print('--------------exiting---------------')
         os._exit(0)
-
-    def stopAzan(self):
-        self.azanpy.stop()
-
-    def playAzan(self):
+    
+    def showImageAzan(self):
+        print('inside show image azan')
         image_dir = self.current_directory + '/images'
         filename = random.choice(os.listdir(image_dir))
 
         image_path = image_dir + '/' + filename
         im = Image.open(image_path)
         im_width, im_height = im.size
-        # show dialog info shalat
-        azanui = AzanDialogUiWindow()
+               # azanui = QDialog(f=Qt.FramelessWindowHint)
+        azanui = QDialog()
+        azanui.setWindowTitle("It's time to Shalat")
         azanui.setStyleSheet(
             "background-image:url('" + image_path + "');background-position: center;background-repeat: no-repeat;")
-        # # # azanui.setParent(self)
-        azanui.setFixedWidth(im_width)
-        azanui.setFixedHeight(im_height)
-        azanui.setWindowModality(Qt.ApplicationModal)
-        azanui.show()
+        azanui.resize(im_width,im_height)
+        azanui.exec_()
 
-        self.azanpy = AzanPlay()
-        self.azanpy.play(self.default_azan)
+    def stopAzan(self):
+        self.azanThread.terminate()
+
+    def playAzan(self):
+        self.azanThread = Process(target=self._playAzan)
+        self.azanThread.start()
+
+        self.showImageAzan()
+        
+        # auto terminate after azan done
+        time.sleep(180)
+        self.azanThread.terminate()
+
+    def _playAzan(self):        
+        # play azan
+        azanpy = AzanPlay(self.default_azan)
+        azanpy.play()
+
 
     def showTimes(self):
-        self.ui.txFajr.setText(self.times[1] + ':00')
-        self.ui.txDhuhr.setText(self.times[3] + ':00')
-        self.ui.txAshr.setText(self.times[4] + ':00')
-        self.ui.txMaghrib.setText(self.times[5] + ':00')
-        self.ui.txIsya.setText(self.times[6] + ':00')
 
         # show label current date name
-        self.ui.lblTodayName.setText('Today / ' + datetime.datetime.now().strftime('%A') )
-        self.ui.lblTodayDate.setText( datetime.datetime.now().strftime('%d %B %Y') + ' / Hijri Date'  )
+        self.ui.lblTodayName.setText(
+            'Today / ' + datetime.datetime.now().strftime('%A'))
+        self.ui.lblTodayDate.setText(
+            datetime.datetime.now().strftime('%d %B %Y') + ' / Hijri Date')
+        self.ui.lblSunset.setText(self.time_array['sunset'])
+        self.ui.lblSunrise.setText(self.time_array['sunrise'])
 
-    def openSetting(self):
+        # using new calculation module
+        self.ui.txFajr.setText(self.time_array['fajr'].strip() + ':00')
+        self.ui.txDhuhr.setText(self.time_array['dhuhr'].strip() + ':00')
+        self.ui.txAshr.setText(self.time_array['asr'].strip() + ':00')
+        self.ui.txMaghrib.setText(self.time_array['maghrib'].strip() + ':00')
+        self.ui.txIsya.setText(self.time_array['isha'].strip() + ':00')
+
+    def init_times_new(self):
+        today = datetime.date.today()
+        PT = PrayTimes('MWL')
+        times = PT.get_times(today, (float(self.latitude), float(
+            self.longitude)), float(self.utc_offset))
+        self.time_array = times
+
+    def openSettingNew(self):
         # opening app setting
+        print('OPENING SETTING NEW')
         try:
             fileob = open(self.setting_file, 'r')
             setting_lines = fileob.readlines()
 
-            open_in_tray = setting_lines[0].split(':')[1].strip()
+            # open in tray
+            self.open_in_tray = setting_lines[0].split(
+                ':')[1].strip() or 'False'
+            # latitude
+            self.latitude = setting_lines[1].split(
+                ':')[1].strip() or -7.502814765426055
+            # longitude
+            self.longitude = setting_lines[2].split(
+                ':')[1].strip() or 112.71057820736571
+            # utc
+            self.utc_offset = setting_lines[3].split(':')[1].strip() or 7
+            # calculation method
+            self.calculation_method_index = int(setting_lines[4].split(':')[
+                1].strip()) or 0
+            self.calculation_method = self.calculation_method_array[int(
+                self.calculation_method_index)]
+            # time format
+            self.time_format = setting_lines[5].split(':')[1].strip() or '24h'
+            # mathhab
+            self.mathhab_index = int(setting_lines[6].split(':')[1].strip()) or 0
+            self.mathhab = self.mathhab_array[int(self.mathhab_index)]
 
-            if open_in_tray == 'True':
+            if self.open_in_tray == 'True':
                 # self.hide()
                 self.ui.ckStartTray.setChecked(True)
             fileob.close()
 
+            self.ui.txLat.setText(str(self.latitude))
+            self.ui.txLong.setText(str(self.longitude))
+            self.ui.txUtc.setText(str(self.utc_offset))
+            self.ui.cbMethod.setCurrentIndex(self.calculation_method_index)
+            self.ui.cbMathhab.setCurrentIndex(self.mathhab_index)
+
         except FileNotFoundError:
             print('error load setting')
-
-        try:
-            fileob = open(r'/home/' + self.myusername + '/.iprayrc', 'r')
-            lines = fileob.readlines()
-
-            city = lines[0].split(':')[1].strip()
-            lat = lines[1].split(':')[1].strip()
-            long = lines[2].split(':')[1].strip()
-            utc = lines[3].split(':')[1].strip()
-            method = lines[4].split(':')[1].strip()
-            mathhab = lines[5].split(':')[1].strip()
-            # offset = lines[4].split(':')[1]
-
-            self.ui.txLat.setText(lat)
-            self.ui.txLong.setText(long)
-            self.ui.txUtc.setText(utc)
-            self.ui.cbMethod.setCurrentIndex(int(method)-1)
-            self.ui.cbMathhab.setCurrentIndex(int(mathhab)-1)
-
-            fileob.close()
-        except FileNotFoundError:
-            # init file setting
-            setting_lines = []
-            setting_lines.append('City: city_name' + '\n')
-            setting_lines.append(
-                'Latitude: -7.502814765426055\n')
-            setting_lines.append(
-                'Longitude: 112.71057820736571\n')
-            setting_lines.append('UTC: 7\n')
-            setting_lines.append(
-                'AngleMethod: 5\n')
-            setting_lines.append(
-                'Mathhab: 1\n')
-            setting_lines.append(
-                'OffsetList: ' + '0 0 0 0 0 0' + '\n')
-
-            fileob = open(r'/home/' + self.myusername + '/.iprayrc', 'w')
-
-            for line in setting_lines:
-                fileob.writelines(line)
-
-            fileob.close()
-
-            # open setting
-            self.openSetting()
 
     def show_current_prayer_time(self):
         current_time = datetime.datetime.now()
@@ -376,10 +385,10 @@ class AyoShalat(QMainWindow):
         self.ui.label_23.setStyleSheet(u"background-image:url('" + self.current_directory + "/icon/notifications_none-24px.svg');\n"
                                        "background-repeat:no-repeat;\n"
                                        "background-position:right center;")
-        
+
         self.ui.lblIconSetting.setStyleSheet(u"background-image:url('" + self.current_directory + "/icon/settings-24px-white.svg');\n"
-                                       "background-repeat:no-repeat;\n"
-                                       "background-position:left center;")
+                                             "background-repeat:no-repeat;\n"
+                                             "background-position:left center;")
 
         icon1 = QIcon()
         icon1.addFile(self.current_directory + u"/icon/date_range-24px.svg",
@@ -400,4 +409,3 @@ class AyoShalat(QMainWindow):
         icon4.addFile(self.current_directory +
                       u"/icon/exit_to_app-24px.svg", QSize(), QIcon.Normal, QIcon.On)
         self.ui.btnExit.setIcon(icon4)
-

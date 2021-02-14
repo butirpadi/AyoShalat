@@ -1,9 +1,6 @@
 #! /usr/bin/python
 
-import sys
-from PySide6.QtGui import QGuiApplication, QIcon, Qt
-from PySide6.QtQml import QQmlApplicationEngine
-from PySide6.QtWidgets import QApplication, QMessageBox
+from PySide6.QtWidgets import QApplication
 from ayoshalat import AyoShalat
 import os
 import pathlib

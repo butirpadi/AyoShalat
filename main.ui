@@ -33,7 +33,7 @@
   </property>
   <property name="windowIcon">
    <iconset>
-    <normaloff>icon/masjid.xpm</normaloff>icon/masjid.xpm</iconset>
+    <normaloff>../../../.designer/backup/icon/masjid.xpm</normaloff>../../../.designer/backup/icon/masjid.xpm</iconset>
   </property>
   <property name="toolTip">
    <string>AyoShalat</string>
@@ -1215,7 +1215,7 @@ background-position:right center;</string>
        </property>
        <property name="icon">
         <iconset>
-         <normalon>icon/date_range-24px.svg</normalon>
+         <normalon>../../../.designer/backup/icon/date_range-24px.svg</normalon>
         </iconset>
        </property>
        <property name="iconSize">
@@ -1251,7 +1251,7 @@ background-position:right center;</string>
        </property>
        <property name="icon">
         <iconset>
-         <normalon>icon/settings-24px.svg</normalon>
+         <normalon>../../../.designer/backup/icon/settings-24px.svg</normalon>
         </iconset>
        </property>
        <property name="iconSize">
@@ -1287,7 +1287,7 @@ background-position:right center;</string>
        </property>
        <property name="icon">
         <iconset>
-         <normalon>icon/hide_source-24px.svg</normalon>
+         <normalon>../../../.designer/backup/icon/hide_source-24px.svg</normalon>
         </iconset>
        </property>
        <property name="iconSize">
@@ -1323,7 +1323,7 @@ background-position:right center;</string>
        </property>
        <property name="icon">
         <iconset>
-         <normalon>icon/exit_to_app-24px.svg</normalon>
+         <normalon>../../../.designer/backup/icon/exit_to_app-24px.svg</normalon>
         </iconset>
        </property>
        <property name="iconSize">
@@ -1709,17 +1709,7 @@ background-position:right center;</string>
       </property>
       <item>
        <property name="text">
-        <string>Egyptian General Authority of Survey</string>
-       </property>
-      </item>
-      <item>
-       <property name="text">
-        <string>University of Islamic Sciences, Karachi (Shaf'i)</string>
-       </property>
-      </item>
-      <item>
-       <property name="text">
-        <string>University of Islamic Sciences, Karachi (Hanafi)</string>
+        <string>Muslim World League</string>
        </property>
       </item>
       <item>
@@ -1729,22 +1719,27 @@ background-position:right center;</string>
       </item>
       <item>
        <property name="text">
-        <string>Muslim World League (MWL)</string>
+        <string>Egyptian General Authority of Survey</string>
        </property>
       </item>
       <item>
        <property name="text">
-        <string>Umm Al-Qurra University</string>
+        <string>Umm al-Qura University</string>
        </property>
       </item>
       <item>
        <property name="text">
-        <string>Fixed Isha Angle Interval (always 90)</string>
+        <string>University of Islamic Sciences, Karachi</string>
        </property>
       </item>
       <item>
        <property name="text">
-        <string>Egyptian General Authority of Survey (Egypt)</string>
+        <string>Institute of Geophysics, University of Tehran</string>
+       </property>
+      </item>
+      <item>
+       <property name="text">
+        <string>Shia Ithna Ashari (Jafari)</string>
        </property>
       </item>
      </widget>
