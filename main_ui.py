@@ -480,7 +480,7 @@ class Ui_MainWindow(object):
         self.frameSetting = QFrame(self.centralwidget)
         self.frameSetting.setObjectName(u"frameSetting")
         self.frameSetting.setEnabled(True)
-        self.frameSetting.setGeometry(QRect(0, 0, 321, 453))
+        self.frameSetting.setGeometry(QRect(0, 0, 321, 450))
         self.frameSetting.setStyleSheet(u"#frameSetting{\n"
 "	background-color:#f6f6f6;\n"
 "	color:white;\n"
@@ -492,7 +492,7 @@ class Ui_MainWindow(object):
         self.frameSetting.setFrameShadow(QFrame.Raised)
         self.containerSetting = QFrame(self.frameSetting)
         self.containerSetting.setObjectName(u"containerSetting")
-        self.containerSetting.setGeometry(QRect(14, 55, 291, 381))
+        self.containerSetting.setGeometry(QRect(15, 64, 291, 381))
         self.containerSetting.setStyleSheet(u".QLineEdit{\n"
 "	border:none;\n"
 "	border-radius:2px;\n"

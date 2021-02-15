@@ -1348,7 +1348,7 @@ background-position:right center;</string>
       <x>0</x>
       <y>0</y>
       <width>321</width>
-      <height>453</height>
+      <height>450</height>
      </rect>
     </property>
     <property name="styleSheet">
@@ -1369,8 +1369,8 @@ background-position:right center;</string>
     <widget class="QFrame" name="containerSetting">
      <property name="geometry">
       <rect>
-       <x>14</x>
-       <y>55</y>
+       <x>15</x>
+       <y>64</y>
        <width>291</width>
        <height>381</height>
       </rect>
