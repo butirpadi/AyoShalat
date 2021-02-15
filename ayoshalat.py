@@ -10,7 +10,7 @@ from pprint import pprint
 import time
 import datetime
 import threading
-import pwd
+# import pwd
 import random
 from PIL import Image
 from prayertimes import PrayTimes
@@ -62,7 +62,7 @@ class AyoShalat(QMainWindow):
         self.ui.frameSetting.setVisible(False)
 
         # get username of this login user
-        self.myusername = pwd.getpwuid(os.getuid()).pw_name
+        # self.myusername = pwd.getpwuid(os.getuid()).pw_name
 
         # init icon
         self.setting_file = self.current_directory + '/setting.txt'
