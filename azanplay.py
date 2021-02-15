@@ -1,5 +1,5 @@
 import pyglet
-
+import os
 
 class AzanPlay(object):
     def __init__(self, filepath):
@@ -11,10 +11,18 @@ class AzanPlay(object):
         pyglet.app.exit()
 
     def play(self):
-        if self.azansnd.is_queued:
-            self.player.seek(0.0)
-            self.player.play()
-        else:
+        if os.name == "nt" :
             self.player = self.azansnd.play()
-        
-        pyglet.app.run()
+            
+            try:
+                pyglet.app.run()
+            except RuntimeError:
+                print('error')
+        else:
+            if self.azansnd.is_queued:
+                self.player.seek(0.0)
+                self.player.play()
+            else:
+                self.player = self.azansnd.play()
+            
+            pyglet.app.run()
