@@ -76,6 +76,8 @@ class AyoShalat(QMainWindow):
         # init thread
         self.docalc = threading.Thread(
             target=self.do_calculate, name="Azan Calculating")
+        self.threadAzan = threading.Thread(
+            target=self._playAzan, name="Play Azan")
 
         self.init_times_new()
 
@@ -148,9 +150,6 @@ class AyoShalat(QMainWindow):
             fileob.writelines(line)
 
         fileob.close()
-
-        print('Save setting file app success')
-        print('-------------------------')
 
         # reload setting
         self.openSettingNew()
@@ -226,22 +225,26 @@ class AyoShalat(QMainWindow):
         azanui.exec_()
 
     def stopAzan(self):
-        self.azanThread.terminate()
+        # self.azanThread.terminate()
+        self.azanpy.stop()
+        # del self.azanpy
 
     def playAzan(self):
-        self.azanThread = Process(target=self._playAzan)
-        self.azanThread.start()
+        if threading.current_thread().isAlive():
+            self.threadAzan = threading.Thread(target=self._playAzan, name="Play Azan")
 
+        self.threadAzan.start()
         self.showImageAzan()
-        
-        # auto terminate after azan done
-        time.sleep(180)
-        self.azanThread.terminate()
 
     def _playAzan(self):        
         # play azan
-        azanpy = AzanPlay(self.default_azan)
-        azanpy.play()
+        try:
+            self.azanpy.play()
+        except AttributeError:
+            print('init azanpy')
+            self.azanpy = AzanPlay(self.default_azan)
+            self.azanpy.play()
+        
 
 
     def showTimes(self):
