@@ -2,7 +2,7 @@
 from PySide6.QtCore import QRect, QSize
 from PySide6.QtGui import QIcon
 from azanplay import AzanPlay
-from PySide6.QtWidgets import QDialog, QMainWindow, QMenu, QSystemTrayIcon, QWidget
+from PySide6.QtWidgets import QDialog, QMainWindow, QMenu, QSystemTrayIcon
 from main_ui import Ui_MainWindow
 import pathlib
 import os

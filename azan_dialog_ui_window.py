@@ -1,4 +1,4 @@
-from PySide6.QtWidgets import QDial, QDialog, QMainWindow
+from PySide6.QtWidgets import  QDialog
 from azan_dialog_ui import Ui_AzanDialog
 
 
