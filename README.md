@@ -1,7 +1,7 @@
 # AyoShalat
 Aplikasi Pengingat Waktu Shalat yang di bangun menggunakan Python. Aplikasi Sederhana ini, masih dalam pengembangan, Sudah dapat digunakan, dengan beberapa toleransi ketepatan waktu.
 
-![2021-02-12_14-59](https://user-images.githubusercontent.com/3039273/107917728-f8845180-6f9a-11eb-9fd2-d9f92f3a7c1b.png)
+![ayoshalat-dual-screen](https://user-images.githubusercontent.com/3039273/107918320-071f3880-6f9c-11eb-8ba4-8fb48bc175b0.png)
 
 
 # Instalasi
