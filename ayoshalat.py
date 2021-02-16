@@ -244,14 +244,18 @@ class AyoShalat(QMainWindow):
         self.threadAzan.start()
         self.showImageAzan()
 
-    def _playAzan(self):        
-        # play azan
-        try:
-            self.azanpy.play()
-        except AttributeError:
-            print('init azanpy')
+    def _playAzan(self):    
+        if os.name == 'nt':
             self.azanpy = AzanPlay(self.default_azan)
-            self.azanpy.play()
+            self.azanpy.play()    
+        else:
+            # play azan
+            try:
+                self.azanpy.play()
+            except AttributeError:
+                print('init azanpy')
+                self.azanpy = AzanPlay(self.default_azan)
+                self.azanpy.play()
         
 
 
