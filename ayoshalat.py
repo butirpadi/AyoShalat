@@ -2,7 +2,7 @@
 from PySide6.QtCore import QRect, QSize, Qt
 from PySide6.QtGui import QIcon
 from azanplay import AzanPlay
-from PySide6.QtWidgets import QDialog, QMainWindow, QMenu, QPushButton, QSystemTrayIcon
+from PySide6.QtWidgets import QDialog, QFrame, QMainWindow, QMenu, QPushButton, QSystemTrayIcon
 from main_ui import Ui_MainWindow
 import pathlib
 import os
@@ -223,10 +223,14 @@ class AyoShalat(QMainWindow):
             "background-image:url('" + image_path + "');background-position: center;background-repeat: no-repeat;")
         azanui.resize(im_width,im_height)
         azanui.setWindowFlags(Qt.FramelessWindowHint)
+
+        azanuiFrame = QFrame(azanui)
+        azanuiFrame.setGeometry(0,0,im_width,im_height)
         
-        btnDialog = QPushButton("",azanui)
+        btnDialog = QPushButton("",azanuiFrame)
         btnDialog.setGeometry(0,0,im_width,im_height)
-        btnDialog.setStyleSheet("#btnDialog{border:none;}")
+        btnDialog.setStyleSheet("{border:none;border-style:outline;}")
+        btnDialog.setFlat(True)
         btnDialog.clicked.connect(azanui.hide)
 
         azanui.exec_()
