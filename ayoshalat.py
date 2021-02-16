@@ -1,8 +1,8 @@
 # This Python file uses the following encoding: utf-8
-from PySide6.QtCore import QRect, QSize
+from PySide6.QtCore import QRect, QSize, Qt
 from PySide6.QtGui import QIcon
 from azanplay import AzanPlay
-from PySide6.QtWidgets import QDialog, QMainWindow, QMenu, QSystemTrayIcon
+from PySide6.QtWidgets import QDialog, QMainWindow, QMenu, QPushButton, QSystemTrayIcon
 from main_ui import Ui_MainWindow
 import pathlib
 import os
@@ -222,7 +222,15 @@ class AyoShalat(QMainWindow):
         azanui.setStyleSheet(
             "background-image:url('" + image_path + "');background-position: center;background-repeat: no-repeat;")
         azanui.resize(im_width,im_height)
+        azanui.setWindowFlags(Qt.FramelessWindowHint)
+        
+        btnDialog = QPushButton("",azanui)
+        btnDialog.setGeometry(0,0,im_width,im_height)
+        btnDialog.setStyleSheet("#btnDialog{border:none;}")
+        btnDialog.clicked.connect(azanui.hide)
+
         azanui.exec_()
+
 
     def stopAzan(self):
         # self.azanThread.terminate()
