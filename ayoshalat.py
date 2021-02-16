@@ -41,7 +41,11 @@ class AyoShalat(QMainWindow):
         self.ui = Ui_MainWindow()
         self.ui.setupUi(self)
 
-        self.current_directory = str(pathlib.Path(__file__).parent.absolute())
+        if os.name == 'nt':
+            self.current_directory = str(pathlib.Path(__file__).parent.absolute()).replace('\\' ,'/')
+        else:
+            self.current_directory = str(pathlib.Path(__file__).parent.absolute())
+            
         self.reformat_ui()
 
         # set clicked
