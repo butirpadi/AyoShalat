@@ -1,4 +1,4 @@
-open_in_tray : False
+open_in_tray : True
 lat : -7.502814765426055
 long : 112.71057820736571
 utc : 7

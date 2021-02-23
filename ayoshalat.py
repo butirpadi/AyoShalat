@@ -15,6 +15,7 @@ import random
 from PIL import Image
 from prayertimes import PrayTimes
 from multiprocessing import Process
+from tinydb import TinyDB, Query as TinyQuery
 
 
 class AyoShalat(QMainWindow):
@@ -126,34 +127,62 @@ class AyoShalat(QMainWindow):
             qtray.show()
 
     def do_save(self):
-        # using new module
-        setting_lines = []
+        # # using new module
+        # setting_lines = []
 
+        # if self.ui.ckStartTray.isChecked():
+        #     print('tray is true')
+        #     setting_lines.append('open_in_tray : True' + '\n')
+        # else:
+        #     print('tray is false')
+        #     setting_lines.append('open_in_tray : False' + '\n')
+
+        # setting_lines.append(
+        #     'lat : ' + self.ui.txLat.text().strip() + '\n')
+        # setting_lines.append(
+        #     'long : ' + self.ui.txLong.text().strip() + '\n')
+        # setting_lines.append('utc : ' + self.ui.txUtc.text().strip() + '\n')
+        # setting_lines.append(
+        #     'method : ' + str(self.ui.cbMethod.currentIndex() ) + '\n')
+        # setting_lines.append(
+        #     'time_format : 24h' +'\n')
+        # setting_lines.append(
+        #     'mathhab : ' + str(self.ui.cbMathhab.currentIndex() ) + '\n')
+
+        # fileob = open(self.setting_file, 'w')
+
+        # for line in setting_lines:
+        #     fileob.writelines(line)
+
+        # fileob.close()
+
+        # save setting to tinydb
         if self.ui.ckStartTray.isChecked():
-            print('tray is true')
-            setting_lines.append('open_in_tray : True' + '\n')
+            is_open_in_tray = 'True'
         else:
-            print('tray is false')
-            setting_lines.append('open_in_tray : False' + '\n')
+            is_open_in_tray = 'False'
+        vals = {
+            'open_in_tray': is_open_in_tray,
+            'latitude': self.ui.txLat.text().strip(),
+            'longitude': self.ui.txLong.text().strip(),
+            'utc_offset': self.ui.txUtc.text().strip(),
+            'calculation_method_index': str(self.ui.cbMethod.currentIndex()),
+            'time_format': '24h',
+            'mathhab_index': str(self.ui.cbMathhab.currentIndex()),
+        }
+        # setting_lines  = self.db.search(self.TinyData.code == 'setting')
+        # for setting in setting_lines:
+            
+                
+        #     setting['latitude'] = self.ui.txLat.text().strip()
+        #     setting['longitude'] = self.ui.txLong.text().strip()
+        #     setting['utc_offset'] = self.ui.txUtc.text().strip()
+        #     setting['calculation_method_index'] = str(self.ui.cbMethod.currentIndex())
+        #     setting['time_format'] = '24h'
+        #     setting['mathhab_index'] = str(self.ui.cbMathhab.currentIndex())
 
-        setting_lines.append(
-            'lat : ' + self.ui.txLat.text().strip() + '\n')
-        setting_lines.append(
-            'long : ' + self.ui.txLong.text().strip() + '\n')
-        setting_lines.append('utc : ' + self.ui.txUtc.text().strip() + '\n')
-        setting_lines.append(
-            'method : ' + str(self.ui.cbMethod.currentIndex() ) + '\n')
-        setting_lines.append(
-            'time_format : 24h' +'\n')
-        setting_lines.append(
-            'mathhab : ' + str(self.ui.cbMathhab.currentIndex() ) + '\n')
+        self.db.update(vals,self.TinyData.code == 'setting')
 
-        fileob = open(self.setting_file, 'w')
-
-        for line in setting_lines:
-            fileob.writelines(line)
-
-        fileob.close()
 
         # reload setting
         self.openSettingNew()
@@ -292,47 +321,98 @@ class AyoShalat(QMainWindow):
         self.time_array = times
 
     def openSettingNew(self):
-        # opening app setting
-        print('OPENING SETTING NEW')
+        # init database
+        self.db = TinyDB('dbmanager.json')
+        self.TinyData = TinyQuery()
+
+        # if len(self.db.all()) == 0:
+        #     # init database
+        #     item = {
+        #             'code': 'setting',
+        #             'open_in_tray': 'False',
+        #             'latitude': -7.502814765426055,
+        #             'longitude': 112.71057820736571,
+        #             'utc_offset': 7,
+        #             'calculation_method_index': 0,
+        #             'calculation_method': '',
+        #             'time_format': '24h',
+        #             'mathhab_index': 0,
+        #             'mathhab': '',
+        #         }
+        #     self.db.insert(item)
+
+        # opening app setting        
         try:
-            fileob = open(self.setting_file, 'r')
-            setting_lines = fileob.readlines()
+            setting_lines  = self.db.search(self.TinyData.code == 'setting')[0]
+        except IndexError:
+            item = {
+                    'code': 'setting',
+                    'open_in_tray': 'False',
+                    'latitude': -7.502814765426055,
+                    'longitude': 112.71057820736571,
+                    'utc_offset': 7,
+                    'calculation_method_index': 0,
+                    'calculation_method': '',
+                    'time_format': '24h',
+                    'mathhab_index': 0,
+                    'mathhab': '',
+                }
+            self.db.insert(item)
+            setting_lines  = self.db.search(self.TinyData.code == 'setting')[0]
 
-            # open in tray
-            self.open_in_tray = setting_lines[0].split(
-                ':')[1].strip() or 'False'
-            # latitude
-            self.latitude = setting_lines[1].split(
-                ':')[1].strip() or -7.502814765426055
-            # longitude
-            self.longitude = setting_lines[2].split(
-                ':')[1].strip() or 112.71057820736571
-            # utc
-            self.utc_offset = setting_lines[3].split(':')[1].strip() or 7
-            # calculation method
-            self.calculation_method_index = int(setting_lines[4].split(':')[
-                1].strip()) or 0
-            self.calculation_method = self.calculation_method_array[int(
-                self.calculation_method_index)]
-            # time format
-            self.time_format = setting_lines[5].split(':')[1].strip() or '24h'
-            # mathhab
-            self.mathhab_index = int(setting_lines[6].split(':')[1].strip()) or 0
-            self.mathhab = self.mathhab_array[int(self.mathhab_index)]
+        # fileob = open(self.setting_file, 'r')
+        # setting_lines = fileob.readlines()
 
-            if self.open_in_tray == 'True':
-                # self.hide()
-                self.ui.ckStartTray.setChecked(True)
-            fileob.close()
+        # open in tray
+        self.open_in_tray = setting_lines['open_in_tray'] or 'False'
+        # self.open_in_tray = setting_lines[0].split(
+        #     ':')[1].strip() or 'False'
 
-            self.ui.txLat.setText(str(self.latitude))
-            self.ui.txLong.setText(str(self.longitude))
-            self.ui.txUtc.setText(str(self.utc_offset))
-            self.ui.cbMethod.setCurrentIndex(self.calculation_method_index)
-            self.ui.cbMathhab.setCurrentIndex(self.mathhab_index)
+        # latitude
+        # self.latitude = setting_lines[1].split(
+        #     ':')[1].strip() or -7.502814765426055
+        self.latitude = setting_lines['latitude'] or -7.502814765426055
 
-        except FileNotFoundError:
-            print('error load setting')
+        # longitude
+        # self.longitude = setting_lines[2].split(
+        #     ':')[1].strip() or 112.71057820736571
+        self.longitude = setting_lines['longitude'] or 112.71057820736571
+
+        # utc
+        self.utc_offset = setting_lines['utc_offset'] or 7
+        # self.utc_offset = setting_lines[3].split(':')[1].strip() or 7
+
+        # calculation method
+        self.calculation_method_index = int(setting_lines['calculation_method_index']) or 0
+        # self.calculation_method_index = int(setting_lines[4].split(':')[
+        #     1].strip()) or 0
+        self.calculation_method = self.calculation_method_array[int(
+            self.calculation_method_index)]
+        # self.calculation_method = self.calculation_method_array[int(
+        #     self.calculation_method_index)]
+        
+        # time format
+        # self.time_format = setting_lines[5].split(':')[1].strip() or '24h'
+        self.time_format = setting_lines['time_format'] or '24h'
+
+        # mathhab
+        self.mathhab_index = int(setting_lines['mathhab_index']) or 0
+        # self.mathhab_index = int(setting_lines[6].split(':')[1].strip()) or 0
+
+        self.mathhab = self.mathhab_array[int(self.mathhab_index)]
+
+        if self.open_in_tray == 'True':
+            # self.hide()
+            self.ui.ckStartTray.setChecked(True)
+        # fileob.close()
+
+        self.ui.txLat.setText(str(self.latitude))
+        self.ui.txLong.setText(str(self.longitude))
+        self.ui.txUtc.setText(str(self.utc_offset))
+        self.ui.cbMethod.setCurrentIndex(self.calculation_method_index)
+        self.ui.cbMathhab.setCurrentIndex(self.mathhab_index)
+
+        
 
     def show_current_prayer_time(self):
         current_time = datetime.datetime.now()

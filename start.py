@@ -5,6 +5,7 @@ from ayoshalat import AyoShalat
 import os
 import pathlib
 from pprint import pprint
+from tinydb import TinyDB,Query as TinyQuery
 
 if __name__ == "__main__":
     app = QApplication([])
@@ -19,17 +20,38 @@ if __name__ == "__main__":
     start_in_tray = 'False'
 
     # open app setting
-    try:
-        current_directory = str(pathlib.Path(__file__).parent.absolute())
-        setting_file = current_directory + '/setting.txt'
-        fileob = open(setting_file, 'r')
-        setting_lines = fileob.readlines()
+    db = TinyDB('dbmanager.json')
+    TinyData = TinyQuery()
+    if len(db.all()) == 0:
+            # init database
+            item = {
+                    'code': 'setting',
+                    'open_in_tray': 'False',
+                    'latitude': -7.502814765426055,
+                    'longitude': 112.71057820736571,
+                    'utc_offset': 7,
+                    'calculation_method_index': 0,
+                    'calculation_method': '',
+                    'time_format': '24h',
+                    'mathhab_index': 0,
+                    'mathhab': '',
+                }
+            db.insert(item)
+    setting_lines  = db.search(TinyData.code == 'setting')[0]
+    start_in_tray = setting_lines['open_in_tray']
 
-        start_in_tray = setting_lines[0].split(':')[1].strip()       
 
-        fileob.close()
-    except FileNotFoundError:
-        print('error load setting')    
+    # try:
+    #     current_directory = str(pathlib.Path(__file__).parent.absolute())
+    #     setting_file = current_directory + '/setting.txt'
+    #     fileob = open(setting_file, 'r')
+    #     setting_lines = fileob.readlines()
+
+    #     start_in_tray = setting_lines[0].split(':')[1].strip()       
+
+    #     fileob.close()
+    # except FileNotFoundError:
+    #     print('error load setting')    
     
     if start_in_tray == 'False':
         window.show()
