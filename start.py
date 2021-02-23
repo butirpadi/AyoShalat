@@ -23,21 +23,21 @@ if __name__ == "__main__":
     db = TinyDB('dbmanager.json')
     TinyData = TinyQuery()
     if len(db.all()) == 0:
-            # init database
-            item = {
-                    'code': 'setting',
-                    'open_in_tray': 'False',
-                    'latitude': -7.502814765426055,
-                    'longitude': 112.71057820736571,
-                    'utc_offset': 7,
-                    'calculation_method_index': 0,
-                    'calculation_method': '',
-                    'time_format': '24h',
-                    'mathhab_index': 0,
-                    'mathhab': '',
-                    'before_pray_time': 0,
-                }
-            db.insert(item)
+        # init database
+        item = {
+                'code': 'setting',
+                'open_in_tray': 'False',
+                'latitude': -7.502814765426055,
+                'longitude': 112.71057820736571,
+                'utc_offset': 7,
+                'calculation_method_index': 0,
+                'calculation_method': '',
+                'time_format': '24h',
+                'mathhab_index': 0,
+                'mathhab': '',
+                'before_pray_time': 0,
+            }
+        db.insert(item)
     setting_lines  = db.search(TinyData.code == 'setting')[0]
     start_in_tray = setting_lines['open_in_tray']
 

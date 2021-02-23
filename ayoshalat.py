@@ -366,6 +366,8 @@ class AyoShalat(QMainWindow):
             self.open_setting()
 
     def init_db(self):
+        # delete first data
+        self.db.remove(self.TinyData.code == 'setting')
         item = {
                     'code': 'setting',
                     'open_in_tray': 'False',
