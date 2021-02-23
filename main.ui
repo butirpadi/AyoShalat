@@ -1444,7 +1444,7 @@ background-position:right center;</string>
       <property name="geometry">
        <rect>
         <x>20</x>
-        <y>250</y>
+        <y>320</y>
         <width>251</width>
         <height>41</height>
        </rect>
@@ -1522,7 +1522,7 @@ background-position:right center;</string>
       <property name="geometry">
        <rect>
         <x>20</x>
-        <y>220</y>
+        <y>270</y>
         <width>101</width>
         <height>25</height>
        </rect>
@@ -1911,6 +1911,42 @@ background-position:right center;</string>
       </property>
       <property name="frame">
        <bool>false</bool>
+      </property>
+     </widget>
+     <widget class="QLabel" name="label_5">
+      <property name="geometry">
+       <rect>
+        <x>20</x>
+        <y>220</y>
+        <width>251</width>
+        <height>25</height>
+       </rect>
+      </property>
+      <property name="text">
+       <string>Notification before pray time</string>
+      </property>
+     </widget>
+     <widget class="QLineEdit" name="txBeforeTime">
+      <property name="geometry">
+       <rect>
+        <x>20</x>
+        <y>240</y>
+        <width>61</width>
+        <height>25</height>
+       </rect>
+      </property>
+     </widget>
+     <widget class="QLabel" name="label_7">
+      <property name="geometry">
+       <rect>
+        <x>90</x>
+        <y>240</y>
+        <width>54</width>
+        <height>21</height>
+       </rect>
+      </property>
+      <property name="text">
+       <string>minutes</string>
       </property>
      </widget>
     </widget>
