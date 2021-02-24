@@ -171,21 +171,12 @@ class AyoShalat(QMainWindow):
 
             # get current time
             current_time = datetime.datetime.now()
-            # now = current_time.strftime("%-H:%M:%S")
-            # now = current_time.strftime("%-H:%M")
-            # using padding with zero on hours
             now = current_time.strftime("%H:%M")
-            # now_prec = current_time.strftime("%H:%M:%S")
 
-            # self.times[1].strip()  # + ':00'
             subh = self.time_array['fajr'].strip()
-            # self.times[3].strip()  # + ':00'
             duhr = self.time_array['dhuhr'].strip()
-            # self.times[4].strip()  # + ':00'
             ashr = self.time_array['asr'].strip()
-            # self.times[5].strip()  # + ':00'
             maghrib = self.time_array['maghrib'].strip()
-            # self.times[6].strip()  # + ':00'
             isya = self.time_array['isha'].strip()
 
             if now == subh or now == duhr or now == ashr or now == maghrib or now == isya:
@@ -204,6 +195,11 @@ class AyoShalat(QMainWindow):
                     self.ui.lblCurrentWaktu.setText('Isya`')
 
                 time.sleep(60)
+            
+            # -----------------------------------------------------------------------
+
+            # checking notification before pray time
+            
 
     def runningme(self):
         # do some stuff
@@ -295,7 +291,7 @@ class AyoShalat(QMainWindow):
 
     def open_setting(self):
         # init database
-        self.db = TinyDB('dbmanager.json')
+        self.db = TinyDB('ayodb.json')
         self.TinyData = TinyQuery()
 
         # opening app setting        
