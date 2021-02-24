@@ -16,6 +16,7 @@ from PIL import Image
 from prayertimes import PrayTimes
 from multiprocessing import Process
 from tinydb import TinyDB, Query as TinyQuery
+from distutils.util import strtobool
 
 
 class AyoShalat(QMainWindow):
@@ -43,10 +44,12 @@ class AyoShalat(QMainWindow):
         self.ui.setupUi(self)
 
         if os.name == 'nt':
-            self.current_directory = str(pathlib.Path(__file__).parent.absolute()).replace('\\' ,'/')
+            self.current_directory = str(pathlib.Path(
+                __file__).parent.absolute()).replace('\\', '/')
         else:
-            self.current_directory = str(pathlib.Path(__file__).parent.absolute())
-            
+            self.current_directory = str(
+                pathlib.Path(__file__).parent.absolute())
+
         self.reformat_ui()
 
         # set clicked
@@ -58,6 +61,7 @@ class AyoShalat(QMainWindow):
         self.ui.btnSave.clicked.connect(self.do_save)
         self.ui.btnSetting.clicked.connect(self.show_frame_setting)
         self.ui.btnTimeTable.clicked.connect(self.show_time_table)
+        self.ui.ckNotification.toggled.connect(self.toggle_check_notification)
 
         self.calculation_method_array = ['MWL', 'ISNA',
                                          'Egypt', 'Makkah', 'Karachi', 'Tehran', 'Jafari']
@@ -96,6 +100,15 @@ class AyoShalat(QMainWindow):
         self.show_tray()
 
         # ---------------------------------------------------------------------------------------------------------------------
+
+    def toggle_check_notification(self):
+        # toggle enable of txNotification
+        if self.ui.ckNotification.isChecked():
+            self.ui.txBeforeTime.show()
+            self.ui.label_7.show()
+        else:
+            self.ui.txBeforeTime.hide()
+            self.ui.label_7.hide()
 
     def show_frame_setting(self):
         self.ui.frameSetting.setVisible(True)
@@ -144,12 +157,12 @@ class AyoShalat(QMainWindow):
             'time_format': '24h',
             'mathhab_index': str(self.ui.cbMathhab.currentIndex()),
             'before_pray_time': self.ui.txBeforeTime.text().strip(),
+            'enable_notification_before': str(self.ui.ckNotification.isChecked()),
         }
         pprint(vals)
         # setting_lines  = self.db.search(self.TinyData.code == 'setting')
         # for setting in setting_lines:
-            
-                
+
         #     setting['latitude'] = self.ui.txLat.text().strip()
         #     setting['longitude'] = self.ui.txLong.text().strip()
         #     setting['utc_offset'] = self.ui.txUtc.text().strip()
@@ -157,8 +170,7 @@ class AyoShalat(QMainWindow):
         #     setting['time_format'] = '24h'
         #     setting['mathhab_index'] = str(self.ui.cbMathhab.currentIndex())
 
-        self.db.update(vals,self.TinyData.code == 'setting')
-
+        self.db.update(vals, self.TinyData.code == 'setting')
 
         # reload setting
         self.open_setting()
@@ -198,65 +210,68 @@ class AyoShalat(QMainWindow):
                     self.ui.lblCurrentWaktu.setText('Isya`')
 
                 time.sleep(60)
-            
+
             # -----------------------------------------------------------------------
 
             # checking notification before pray time
-            current_time = datetime.datetime.now()
-            
-            # subh
-            subh_date_str = str(current_time.year) + '/' + str(current_time.strftime('%m')) + '/' +  str(current_time.strftime('%d')) + ' ' + subh + ':00'
-            subh_date = datetime.datetime.strptime(subh_date_str, '%Y/%m/%d %H:%M:%S')
-            
-            # duhr
-            duhr_date_str = str(current_time.year) + '/' + str(current_time.strftime('%m')) + '/' +  str(current_time.strftime('%d')) + ' ' + duhr + ':00'
-            duhr_date = datetime.datetime.strptime(duhr_date_str, '%Y/%m/%d %H:%M:%S')
-            
-            # asr
-            asr_date_str = str(current_time.year) + '/' + str(current_time.strftime('%m')) + '/' +  str(current_time.strftime('%d')) + ' ' + ashr + ':00'
-            asr_date = datetime.datetime.strptime(asr_date_str, '%Y/%m/%d %H:%M:%S')
-            
-            # asr
-            maghrib_date_str = str(current_time.year) + '/' + str(current_time.strftime('%m')) + '/' +  str(current_time.strftime('%d')) + ' ' + maghrib + ':00'
-            maghrib_date = datetime.datetime.strptime(maghrib_date_str, '%Y/%m/%d %H:%M:%S')
-            
-            # isya
-            isya_date_str = str(current_time.year) + '/' + str(current_time.strftime('%m')) + '/' +  str(current_time.strftime('%d')) + ' ' + isya + ':00'
-            isya_date = datetime.datetime.strptime(isya_date_str, '%Y/%m/%d %H:%M:%S')
+            if self.enable_notification_before:
+                current_time = datetime.datetime.now()
 
-            if self.get_remaining_time(current_time,subh_date) == int(self.before_pray_time):
-                print('play notif')
-                self.playNotif()
-                time.sleep(75)
+                # subh
+                subh_date_str = str(current_time.year) + '/' + str(current_time.strftime(
+                    '%m')) + '/' + str(current_time.strftime('%d')) + ' ' + subh + ':00'
+                subh_date = datetime.datetime.strptime(
+                    subh_date_str, '%Y/%m/%d %H:%M:%S')
 
-            if self.get_remaining_time(current_time,duhr_date) == int(self.before_pray_time):
-                print('play notif')
-                self.playNotif()
-                time.sleep(75)
+                # duhr
+                duhr_date_str = str(current_time.year) + '/' + str(current_time.strftime(
+                    '%m')) + '/' + str(current_time.strftime('%d')) + ' ' + duhr + ':00'
+                duhr_date = datetime.datetime.strptime(
+                    duhr_date_str, '%Y/%m/%d %H:%M:%S')
 
-            if self.get_remaining_time(current_time,asr_date) == int(self.before_pray_time):
-                print('play notif')
-                self.playNotif()
-                time.sleep(75)
+                # asr
+                asr_date_str = str(current_time.year) + '/' + str(current_time.strftime(
+                    '%m')) + '/' + str(current_time.strftime('%d')) + ' ' + ashr + ':00'
+                asr_date = datetime.datetime.strptime(
+                    asr_date_str, '%Y/%m/%d %H:%M:%S')
 
-            if self.get_remaining_time(current_time,maghrib_date) == int(self.before_pray_time):
-                print('play notif')
-                self.playNotif()
-                time.sleep(75)
+                # asr
+                maghrib_date_str = str(current_time.year) + '/' + str(current_time.strftime(
+                    '%m')) + '/' + str(current_time.strftime('%d')) + ' ' + maghrib + ':00'
+                maghrib_date = datetime.datetime.strptime(
+                    maghrib_date_str, '%Y/%m/%d %H:%M:%S')
 
-            if self.get_remaining_time(current_time,isya_date) == int(self.before_pray_time):
-                print('play notif')
-                self.playNotif()
-                time.sleep(75)
-            
+                # isya
+                isya_date_str = str(current_time.year) + '/' + str(current_time.strftime(
+                    '%m')) + '/' + str(current_time.strftime('%d')) + ' ' + isya + ':00'
+                isya_date = datetime.datetime.strptime(
+                    isya_date_str, '%Y/%m/%d %H:%M:%S')
 
-    def get_remaining_time(self, time_1,time_2):
+                if self.get_remaining_time(current_time, subh_date) == int(self.before_pray_time):
+                    self.playNotif()
+                    time.sleep(75)
+
+                if self.get_remaining_time(current_time, duhr_date) == int(self.before_pray_time):
+                    self.playNotif()
+                    time.sleep(75)
+
+                if self.get_remaining_time(current_time, asr_date) == int(self.before_pray_time):
+                    self.playNotif()
+                    time.sleep(75)
+
+                if self.get_remaining_time(current_time, maghrib_date) == int(self.before_pray_time):
+                    self.playNotif()
+                    time.sleep(75)
+
+                if self.get_remaining_time(current_time, isya_date) == int(self.before_pray_time):
+                    self.playNotif()
+                    time.sleep(75)
+
+    def get_remaining_time(self, time_1, time_2):
         time_delta = (time_2 - time_1)
         total_seconds = time_delta.total_seconds()
         minutes = round(total_seconds/60)
-        print(minutes)
         return minutes
-            
 
     def runningme(self):
         # do some stuff
@@ -266,39 +281,38 @@ class AyoShalat(QMainWindow):
         # self.docalc._stop().set()
         print('--------------exiting---------------')
         os._exit(0)
-    
+
     def showImageAzan(self):
-        print('inside show image azan')
         image_dir = self.current_directory + '/images'
         filename = random.choice(os.listdir(image_dir))
 
         image_path = image_dir + '/' + filename
         im = Image.open(image_path)
         im_width, im_height = im.size
-               # azanui = QDialog(f=Qt.FramelessWindowHint)
+        # azanui = QDialog(f=Qt.FramelessWindowHint)
         azanui = QDialog()
         azanui.setWindowTitle("It's time to Shalat")
         azanui.setStyleSheet(
             "background-image:url('" + image_path + "');background-position: center;background-repeat: no-repeat;")
-        azanui.resize(im_width,im_height)
+        azanui.resize(im_width, im_height)
         azanui.setWindowFlags(Qt.FramelessWindowHint)
 
         azanuiFrame = QFrame(azanui)
-        azanuiFrame.setGeometry(0,0,im_width,im_height)
-        
-        btnDialog = QPushButton("",azanuiFrame)
-        btnDialog.setGeometry(0,0,im_width,im_height)
+        azanuiFrame.setGeometry(0, 0, im_width, im_height)
+
+        btnDialog = QPushButton("", azanuiFrame)
+        btnDialog.setGeometry(0, 0, im_width, im_height)
         btnDialog.setStyleSheet("{border:none;border-style:outline;}")
         btnDialog.setFlat(True)
         btnDialog.clicked.connect(azanui.hide)
 
         azanui.exec_()
 
-
     def stopAzan(self):
         # self.azanThread.terminate()
         self.azanpy.stop()
         # del self.azanpy
+
     def stopNotif(self):
         # self.azanThread.terminate()
         self.notifplay.stop()
@@ -307,45 +321,43 @@ class AyoShalat(QMainWindow):
     def playAzan(self):
         # if threading.current_thread().isAlive():
         if self.threadAzan.isAlive():
-            self.threadAzan = threading.Thread(target=self._playAzan, name="Play Azan")
+            self.threadAzan = threading.Thread(
+                target=self._playAzan, name="Play Azan")
 
         self.threadAzan.start()
         self.showImageAzan()
-    
+
     def playNotif(self):
         if threading.current_thread().isAlive():
-            self.threadAzan = threading.Thread(target=self._playNotif, name="Play Notif")
+            self.threadAzan = threading.Thread(
+                target=self._playNotif, name="Play Notif")
 
         self.threadNotif.start()
         # self.showImageAzan()
 
-    def _playAzan(self):    
+    def _playAzan(self):
         if os.name == 'nt':
             self.azanpy = AzanPlay(self.default_azan)
-            self.azanpy.play()    
+            self.azanpy.play()
         else:
             # play azan
             try:
                 self.azanpy.play()
             except AttributeError:
-                print('init azanpy')
                 self.azanpy = AzanPlay(self.default_azan)
                 self.azanpy.play()
-    
-    def _playNotif(self):    
+
+    def _playNotif(self):
         if os.name == 'nt':
             self.notifplay = AzanPlay(self.default_notif)
-            self.notifplay.play()    
+            self.notifplay.play()
         else:
             # play azan
             try:
                 self.notifplay.play()
             except AttributeError:
-                print('init azanpy')
                 self.notifplay = AzanPlay(self.default_notif)
                 self.notifplay.play()
-        
-
 
     def showTimes(self):
 
@@ -376,17 +388,17 @@ class AyoShalat(QMainWindow):
         self.db = TinyDB('ayodb.json')
         self.TinyData = TinyQuery()
 
-        # opening app setting        
+        # opening app setting
         try:
-            setting_lines  = self.db.search(self.TinyData.code == 'setting')[0]
+            setting_lines = self.db.search(self.TinyData.code == 'setting')[0]
         except IndexError:
             self.init_db()
-            setting_lines  = self.db.search(self.TinyData.code == 'setting')[0]        
+            setting_lines = self.db.search(self.TinyData.code == 'setting')[0]
 
         # fileob = open(self.setting_file, 'r')
         # setting_lines = fileob.readlines()
         try:
-                
+
             # open in tray
             self.open_in_tray = setting_lines['open_in_tray'] or 'False'
             # self.open_in_tray = setting_lines[0].split(
@@ -407,14 +419,15 @@ class AyoShalat(QMainWindow):
             # self.utc_offset = setting_lines[3].split(':')[1].strip() or 7
 
             # calculation method
-            self.calculation_method_index = int(setting_lines['calculation_method_index']) or 0
+            self.calculation_method_index = int(
+                setting_lines['calculation_method_index']) or 0
             # self.calculation_method_index = int(setting_lines[4].split(':')[
             #     1].strip()) or 0
             self.calculation_method = self.calculation_method_array[int(
                 self.calculation_method_index)]
             # self.calculation_method = self.calculation_method_array[int(
             #     self.calculation_method_index)]
-            
+
             # time format
             # self.time_format = setting_lines[5].split(':')[1].strip() or '24h'
             self.time_format = setting_lines['time_format'] or '24h'
@@ -426,6 +439,10 @@ class AyoShalat(QMainWindow):
             self.mathhab = self.mathhab_array[int(self.mathhab_index)]
 
             self.before_pray_time = setting_lines['before_pray_time']
+            print(setting_lines['enable_notification_before'])
+            print(bool(setting_lines['enable_notification_before']))
+            self.enable_notification_before = strtobool(
+                setting_lines['enable_notification_before'])
 
             if self.open_in_tray == 'True':
                 # self.hide()
@@ -438,8 +455,9 @@ class AyoShalat(QMainWindow):
             self.ui.txBeforeTime.setText(str(self.before_pray_time))
             self.ui.cbMethod.setCurrentIndex(self.calculation_method_index)
             self.ui.cbMathhab.setCurrentIndex(self.mathhab_index)
+            self.ui.ckNotification.setChecked(self.enable_notification_before)
+
         except KeyError:
-            print('Error in opening file')
             self.init_db()
             self.open_setting()
 
@@ -447,7 +465,7 @@ class AyoShalat(QMainWindow):
         # delete first data
         self.db.remove(self.TinyData.code == 'setting')
         item = {
-                    'code': 'setting',
+            'code': 'setting',
                     'open_in_tray': 'False',
                     'latitude': -7.502814765426055,
                     'longitude': 112.71057820736571,
@@ -457,15 +475,18 @@ class AyoShalat(QMainWindow):
                     'time_format': '24h',
                     'mathhab_index': 0,
                     'mathhab': '',
+                    'enable_notification_before': "False",
                     'before_pray_time': 0,
-                }
+        }
         self.db.insert(item)
-        
 
     def show_current_prayer_time(self):
         current_time = datetime.datetime.now()
 
     def reformat_ui(self):
+        self.ui.txBeforeTime.hide()
+        self.ui.label_7.hide()
+
         icon = QIcon()
         icon.addFile(self.current_directory + u"/icon/masjid.xpm",
                      QSize(), QIcon.Normal, QIcon.Off)

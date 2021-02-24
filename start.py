@@ -35,6 +35,7 @@ if __name__ == "__main__":
                 'time_format': '24h',
                 'mathhab_index': 0,
                 'mathhab': '',
+                'enable_notification_before' : "False",
                 'before_pray_time': 0,
             }
         db.insert(item)
