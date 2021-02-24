@@ -20,7 +20,7 @@ if __name__ == "__main__":
     start_in_tray = 'False'
 
     # open app setting
-    db = TinyDB('dbmanager.json')
+    db = TinyDB('ayodb.json')
     TinyData = TinyQuery()
     if len(db.all()) == 0:
         # init database
