@@ -74,6 +74,7 @@ class AyoShalat(QMainWindow):
         self.icopath = self.current_directory + '/icon/masjid.xpm'
         self.setWindowIcon(QIcon(self.icopath))
         self.default_azan = self.current_directory + '/audio/azan.mp3'
+        self.default_notif = self.current_directory + '/audio/hayyalashala.mp3'
 
         # OPEN SETTING ON START
         self.open_setting()
@@ -83,6 +84,8 @@ class AyoShalat(QMainWindow):
             target=self.do_calculate, name="Azan Calculating")
         self.threadAzan = threading.Thread(
             target=self._playAzan, name="Play Azan")
+        self.threadNotif = threading.Thread(
+            target=self._playNotif, name="Play Notif")
 
         self.init_times_new()
 
@@ -199,6 +202,60 @@ class AyoShalat(QMainWindow):
             # -----------------------------------------------------------------------
 
             # checking notification before pray time
+            current_time = datetime.datetime.now()
+            
+            # subh
+            subh_date_str = str(current_time.year) + '/' + str(current_time.strftime('%m')) + '/' +  str(current_time.strftime('%d')) + ' ' + subh + ':00'
+            subh_date = datetime.datetime.strptime(subh_date_str, '%Y/%m/%d %H:%M:%S')
+            
+            # duhr
+            duhr_date_str = str(current_time.year) + '/' + str(current_time.strftime('%m')) + '/' +  str(current_time.strftime('%d')) + ' ' + duhr + ':00'
+            duhr_date = datetime.datetime.strptime(duhr_date_str, '%Y/%m/%d %H:%M:%S')
+            
+            # asr
+            asr_date_str = str(current_time.year) + '/' + str(current_time.strftime('%m')) + '/' +  str(current_time.strftime('%d')) + ' ' + ashr + ':00'
+            asr_date = datetime.datetime.strptime(asr_date_str, '%Y/%m/%d %H:%M:%S')
+            
+            # asr
+            maghrib_date_str = str(current_time.year) + '/' + str(current_time.strftime('%m')) + '/' +  str(current_time.strftime('%d')) + ' ' + maghrib + ':00'
+            maghrib_date = datetime.datetime.strptime(maghrib_date_str, '%Y/%m/%d %H:%M:%S')
+            
+            # isya
+            isya_date_str = str(current_time.year) + '/' + str(current_time.strftime('%m')) + '/' +  str(current_time.strftime('%d')) + ' ' + isya + ':00'
+            isya_date = datetime.datetime.strptime(isya_date_str, '%Y/%m/%d %H:%M:%S')
+
+            if self.get_remaining_time(current_time,subh_date) == int(self.before_pray_time):
+                print('play notif')
+                self.playNotif()
+                time.sleep(75)
+
+            if self.get_remaining_time(current_time,duhr_date) == int(self.before_pray_time):
+                print('play notif')
+                self.playNotif()
+                time.sleep(75)
+
+            if self.get_remaining_time(current_time,asr_date) == int(self.before_pray_time):
+                print('play notif')
+                self.playNotif()
+                time.sleep(75)
+
+            if self.get_remaining_time(current_time,maghrib_date) == int(self.before_pray_time):
+                print('play notif')
+                self.playNotif()
+                time.sleep(75)
+
+            if self.get_remaining_time(current_time,isya_date) == int(self.before_pray_time):
+                print('play notif')
+                self.playNotif()
+                time.sleep(75)
+            
+
+    def get_remaining_time(self, time_1,time_2):
+        time_delta = (time_2 - time_1)
+        total_seconds = time_delta.total_seconds()
+        minutes = round(total_seconds/60)
+        print(minutes)
+        return minutes
             
 
     def runningme(self):
@@ -242,13 +299,25 @@ class AyoShalat(QMainWindow):
         # self.azanThread.terminate()
         self.azanpy.stop()
         # del self.azanpy
+    def stopNotif(self):
+        # self.azanThread.terminate()
+        self.notifplay.stop()
+        # del self.azanpy
 
     def playAzan(self):
-        if threading.current_thread().isAlive():
+        # if threading.current_thread().isAlive():
+        if self.threadAzan.isAlive():
             self.threadAzan = threading.Thread(target=self._playAzan, name="Play Azan")
 
         self.threadAzan.start()
         self.showImageAzan()
+    
+    def playNotif(self):
+        if threading.current_thread().isAlive():
+            self.threadAzan = threading.Thread(target=self._playNotif, name="Play Notif")
+
+        self.threadNotif.start()
+        # self.showImageAzan()
 
     def _playAzan(self):    
         if os.name == 'nt':
@@ -262,6 +331,19 @@ class AyoShalat(QMainWindow):
                 print('init azanpy')
                 self.azanpy = AzanPlay(self.default_azan)
                 self.azanpy.play()
+    
+    def _playNotif(self):    
+        if os.name == 'nt':
+            self.notifplay = AzanPlay(self.default_notif)
+            self.notifplay.play()    
+        else:
+            # play azan
+            try:
+                self.notifplay.play()
+            except AttributeError:
+                print('init azanpy')
+                self.notifplay = AzanPlay(self.default_notif)
+                self.notifplay.play()
         
 
 
