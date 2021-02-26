@@ -1,5 +1,4 @@
 import pyglet
-import os
 
 class AzanPlay(object):
     def __init__(self, filepath):
@@ -7,22 +6,14 @@ class AzanPlay(object):
         self.azansnd = pyglet.media.load(filepath)
 
     def stop(self):
-        self.player.pause()
+        self.player.delete()
         pyglet.app.exit()
 
     def play(self):
-        if os.name == "nt" :
-            self.player = self.azansnd.play()
-            
-            try:
-                pyglet.app.run()
-            except RuntimeError:
-                print('error')
-        else:
-            if self.azansnd.is_queued:
-                self.player.seek(0.0)
-                self.player.play()
-            else:
-                self.player = self.azansnd.play()
-            
-            pyglet.app.run()
+        print('playing')
+        media = pyglet.media.load(self.filepath)
+        self.player = pyglet.media.Player() 
+        self.player.queue(media) 
+        self.player.play()
+        pyglet.app.run() 
+

@@ -320,16 +320,16 @@ class AyoShalat(QMainWindow):
 
     def playAzan(self):
         # if threading.current_thread().isAlive():
-        if self.threadAzan.isAlive():
-            self.threadAzan = threading.Thread(
+        # if self.threadAzan.isAlive():
+        self.threadAzan = threading.Thread(
                 target=self._playAzan, name="Play Azan")
 
         self.threadAzan.start()
         self.showImageAzan()
 
     def playNotif(self):
-        if threading.current_thread().isAlive():
-            self.threadAzan = threading.Thread(
+        # if threading.current_thread().isAlive():
+        self.threadNotif = threading.Thread(
                 target=self._playNotif, name="Play Notif")
 
         self.threadNotif.start()

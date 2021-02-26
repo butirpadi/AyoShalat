@@ -42,37 +42,11 @@ if __name__ == "__main__":
     setting_lines  = db.search(TinyData.code == 'setting')[0]
     start_in_tray = setting_lines['open_in_tray']
 
-
-    # try:
-    #     current_directory = str(pathlib.Path(__file__).parent.absolute())
-    #     setting_file = current_directory + '/setting.txt'
-    #     fileob = open(setting_file, 'r')
-    #     setting_lines = fileob.readlines()
-
-    #     start_in_tray = setting_lines[0].split(':')[1].strip()       
-
-    #     fileob.close()
-    # except FileNotFoundError:
-    #     print('error load setting')    
-    
     if start_in_tray == 'False':
         window.show()
-    # else:
-        # QMessageBox().show()
-    #     window.show()
-    #     window.hide()
 
     window.runningme()
     app.exec_()
     os._exit(0)
-    # sys.exit()
-
-    # app = QGuiApplication(sys.argv)
-    # engine = QQmlApplicationEngine()
-    # engine.load(os.path.join(os.path.dirname(__file__), "qml/dashboard.qml"))
-
-    # if not engine.rootObjects():
-    #     sys.exit(-1)
-    # sys.exit(app.exec_())
 
 
