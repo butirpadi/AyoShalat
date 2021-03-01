@@ -189,20 +189,20 @@ class AyoShalat(QMainWindow):
             now = current_time.strftime("%H:%M")
 
             subh = self.time_array['fajr'].strip()
-            duhr = self.time_array['dhuhr'].strip()
-            ashr = self.time_array['asr'].strip()
+            dhuhr = self.time_array['dhuhr'].strip()
+            asr = self.time_array['asr'].strip()
             maghrib = self.time_array['maghrib'].strip()
             isya = self.time_array['isha'].strip()
 
-            if now == subh or now == duhr or now == ashr or now == maghrib or now == isya:
+            if now == subh or now == dhuhr or now == asr or now == maghrib or now == isya:
                 self.playAzan()
 
                 # show current prayer time info
                 if now == subh:
                     self.ui.lblCurrentWaktu.setText('Subh')
-                elif now == duhr:
-                    self.ui.lblCurrentWaktu.setText('Duhr')
-                elif now == ashr:
+                elif now == dhuhr:
+                    self.ui.lblCurrentWaktu.setText('dhuhr')
+                elif now == asr:
                     self.ui.lblCurrentWaktu.setText('Asr')
                 elif now == maghrib:
                     self.ui.lblCurrentWaktu.setText('Maghrib')
@@ -223,15 +223,15 @@ class AyoShalat(QMainWindow):
                 subh_date = datetime.datetime.strptime(
                     subh_date_str, '%Y/%m/%d %H:%M:%S')
 
-                # duhr
-                duhr_date_str = str(current_time.year) + '/' + str(current_time.strftime(
-                    '%m')) + '/' + str(current_time.strftime('%d')) + ' ' + duhr + ':00'
-                duhr_date = datetime.datetime.strptime(
-                    duhr_date_str, '%Y/%m/%d %H:%M:%S')
+                # dhuhr
+                dhuhr_date_str = str(current_time.year) + '/' + str(current_time.strftime(
+                    '%m')) + '/' + str(current_time.strftime('%d')) + ' ' + dhuhr + ':00'
+                dhuhr_date = datetime.datetime.strptime(
+                    dhuhr_date_str, '%Y/%m/%d %H:%M:%S')
 
                 # asr
                 asr_date_str = str(current_time.year) + '/' + str(current_time.strftime(
-                    '%m')) + '/' + str(current_time.strftime('%d')) + ' ' + ashr + ':00'
+                    '%m')) + '/' + str(current_time.strftime('%d')) + ' ' + asr + ':00'
                 asr_date = datetime.datetime.strptime(
                     asr_date_str, '%Y/%m/%d %H:%M:%S')
 
@@ -251,7 +251,7 @@ class AyoShalat(QMainWindow):
                     self.playNotif()
                     time.sleep(75)
 
-                if self.get_remaining_time(current_time, duhr_date) == int(self.before_pray_time):
+                if self.get_remaining_time(current_time, dhuhr_date) == int(self.before_pray_time):
                     self.playNotif()
                     time.sleep(75)
 
@@ -266,12 +266,36 @@ class AyoShalat(QMainWindow):
                 if self.get_remaining_time(current_time, isya_date) == int(self.before_pray_time):
                     self.playNotif()
                     time.sleep(75)
+                
 
-    def get_remaining_time(self, time_1, time_2):
+                # show upcoming
+                if current_time >= subh_date and current_time <= dhuhr_date:
+                    self.ui.lblUpcomingWaktu.setText("Dhuhr")
+                    self.ui.lblUpcomingJam.setText(self.time_array['dhuhr'])
+                    self.ui.lblCurrentWaktu.setText('Subh')
+                    remaining_str = str(int(self.get_remaining_second(current_time,dhuhr_date)//3600)) + ' hours and ' + str(int((self.get_remaining_second(current_time,dhuhr_date)//60)%60)) + ' minutes to go'
+                    self.ui.lblRemaining.setText(remaining_str)
+    
+    # def show_upcoming(self):
+    #     subh = self.time_array['fajr'].strip()
+    #     dhuhr = self.time_array['dhuhr'].strip()
+    #     asr = self.time_array['asr'].strip()
+    #     maghrib = self.time_array['maghrib'].strip()
+    #     isya = self.time_array['isha'].strip()
+
+    #     print(subh)
+    #     print(dhuhr)
+    #     print(asr)
+    #     print(maghrib)
+    #     print(isya)
+
+    def get_remaining_second(self,time_1,time_2):
         time_delta = (time_2 - time_1)
-        total_seconds = time_delta.total_seconds()
-        minutes = round(total_seconds/60)
-        return minutes
+        return time_delta.total_seconds() # in seconds
+        
+
+    def get_remaining_time(self, time_1, time_2):        
+        return round(self.get_remaining_second(time_1,time_2)/60) # in minutes
 
     def runningme(self):
         # do some stuff
@@ -365,7 +389,7 @@ class AyoShalat(QMainWindow):
         self.ui.lblTodayName.setText(
             'Today / ' + datetime.datetime.now().strftime('%A'))
         self.ui.lblTodayDate.setText(
-            datetime.datetime.now().strftime('%d %B %Y') + ' / Hijri Date')
+            datetime.datetime.now().strftime('%d %B %Y / %H:%M') )
         self.ui.lblSunset.setText(self.time_array['sunset'])
         self.ui.lblSunrise.setText(self.time_array['sunrise'])
 
