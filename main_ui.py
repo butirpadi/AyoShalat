@@ -524,19 +524,15 @@ class Ui_MainWindow(object):
 "	border:none;\n"
 "	border-radius:2px;\n"
 "	background-color:rgb(223, 223, 223);\n"
+"	selection-color: black;\n"
+"      selection-background-color: rgb(255, 186, 97);\n"
 "}\n"
 "\n"
 ".QComboBox::drop-down:button{\n"
 "	background-color: rgb(234,234,234);\n"
 "	width:25px;\n"
 "background-image:url('icon/expand_more-24px.svg')\n"
-"}\n"
-"\n"
-".QComboBox:item:hover{\n"
-"	background-color: red;\n"
-"}\n"
-"\n"
-"")
+"}")
         self.containerSetting.setFrameShape(QFrame.StyledPanel)
         self.containerSetting.setFrameShadow(QFrame.Raised)
         self.label_3 = QLabel(self.containerSetting)
