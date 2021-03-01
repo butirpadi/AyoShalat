@@ -334,7 +334,10 @@ class AyoShalat(QMainWindow):
 
     def stopAzan(self):
         # self.azanThread.terminate()
-        self.azanpy.stop()
+        try:
+            self.azanpy.stop()
+        except AttributeError as ae:
+            print(ae)
         # del self.azanpy
 
     def stopNotif(self):
@@ -463,8 +466,6 @@ class AyoShalat(QMainWindow):
             self.mathhab = self.mathhab_array[int(self.mathhab_index)]
 
             self.before_pray_time = setting_lines['before_pray_time']
-            print(setting_lines['enable_notification_before'])
-            print(bool(setting_lines['enable_notification_before']))
             self.enable_notification_before = strtobool(
                 setting_lines['enable_notification_before'])
 
