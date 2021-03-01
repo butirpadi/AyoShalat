@@ -1165,7 +1165,7 @@ background-position:right center;</string>
 	border:none;
 }
 .QPushButton:hover{
-	background-color:whitesmoke;
+	background: rgb(223, 223, 223);
 }</string>
     </property>
     <property name="frameShape">
@@ -1207,6 +1207,9 @@ background-position:right center;</string>
          <pointsize>10</pointsize>
         </font>
        </property>
+       <property name="toolTip">
+        <string>Show time table</string>
+       </property>
        <property name="styleSheet">
         <string notr="true"/>
        </property>
@@ -1242,6 +1245,9 @@ background-position:right center;</string>
          <family>Ubuntu</family>
          <pointsize>10</pointsize>
         </font>
+       </property>
+       <property name="toolTip">
+        <string>Setting</string>
        </property>
        <property name="styleSheet">
         <string notr="true"/>
@@ -1279,6 +1285,9 @@ background-position:right center;</string>
          <pointsize>10</pointsize>
         </font>
        </property>
+       <property name="toolTip">
+        <string>Hide current window</string>
+       </property>
        <property name="styleSheet">
         <string notr="true"/>
        </property>
@@ -1314,6 +1323,9 @@ background-position:right center;</string>
          <family>Ubuntu</family>
          <pointsize>10</pointsize>
         </font>
+       </property>
+       <property name="toolTip">
+        <string>Exit</string>
        </property>
        <property name="styleSheet">
         <string notr="true"/>
