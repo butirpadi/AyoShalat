@@ -1,6 +1,7 @@
 # This Python file uses the following encoding: utf-8
+from PySide6 import QtCore
 from PySide6.QtCore import QRect, QSize, Qt
-from PySide6.QtGui import QIcon
+from PySide6.QtGui import QCursor, QIcon
 from azanplay import AzanPlay
 from PySide6.QtWidgets import QDialog, QFrame, QMainWindow, QMenu, QPushButton, QSystemTrayIcon
 from main_ui import Ui_MainWindow
@@ -590,18 +591,22 @@ class AyoShalat(QMainWindow):
         icon1.addFile(self.current_directory + u"/icon/date_range-24px.svg",
                       QSize(), QIcon.Normal, QIcon.On)
         self.ui.btnTimeTable.setIcon(icon1)
+        self.ui.btnTimeTable.setCursor(QCursor(Qt.PointingHandCursor))
 
         icon2 = QIcon()
         icon2.addFile(self.current_directory + u"/icon/settings-24px.svg",
                       QSize(), QIcon.Normal, QIcon.On)
         self.ui.btnSetting.setIcon(icon2)
+        self.ui.btnSetting.setCursor(QCursor(Qt.PointingHandCursor))
 
         icon3 = QIcon()
         icon3.addFile(self.current_directory +
                       u"/icon/hide_source-24px.svg", QSize(), QIcon.Normal, QIcon.On)
         self.ui.btnHide.setIcon(icon3)
+        self.ui.btnHide.setCursor(QCursor(Qt.PointingHandCursor))
 
         icon4 = QIcon()
         icon4.addFile(self.current_directory +
                       u"/icon/exit_to_app-24px.svg", QSize(), QIcon.Normal, QIcon.On)
         self.ui.btnExit.setIcon(icon4)
+        self.ui.btnExit.setCursor(QCursor(Qt.PointingHandCursor))
