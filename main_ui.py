@@ -508,14 +508,35 @@ class Ui_MainWindow(object):
 "	color:black;\n"
 "}\n"
 ".QPushButton{\n"
-"	border:none;\n"
 "	border-radius:2px;\n"
 "	background-color:rgb(0, 85, 127);\n"
 "	color:#fff;\n"
 "}\n"
+".QPushButton:hover{\n"
+"	background-color:rgb(0, 135, 201);\n"
+"}\n"
 ".QCheckBox{\n"
 "	color:black;\n"
-"}")
+"}\n"
+"\n"
+".QComboBox{\n"
+"border:none;\n"
+"	border:none;\n"
+"	border-radius:2px;\n"
+"	background-color:rgb(223, 223, 223);\n"
+"}\n"
+"\n"
+".QComboBox::drop-down:button{\n"
+"	background-color: rgb(234,234,234);\n"
+"	width:25px;\n"
+"background-image:url('icon/expand_more-24px.svg')\n"
+"}\n"
+"\n"
+".QComboBox:item:hover{\n"
+"	background-color: red;\n"
+"}\n"
+"\n"
+"")
         self.containerSetting.setFrameShape(QFrame.StyledPanel)
         self.containerSetting.setFrameShadow(QFrame.Raised)
         self.label_3 = QLabel(self.containerSetting)
@@ -535,6 +556,7 @@ class Ui_MainWindow(object):
         self.btnPlay.setObjectName(u"btnPlay")
         self.btnPlay.setMinimumSize(QSize(0, 30))
         self.btnPlay.setMaximumSize(QSize(16777215, 30))
+        self.btnPlay.setCursor(QCursor(Qt.PointingHandCursor))
         self.btnPlay.setStyleSheet(u"")
 
         self.horizontalLayout_2.addWidget(self.btnPlay)
@@ -543,6 +565,7 @@ class Ui_MainWindow(object):
         self.btnStop.setObjectName(u"btnStop")
         self.btnStop.setMinimumSize(QSize(0, 30))
         self.btnStop.setMaximumSize(QSize(16777215, 30))
+        self.btnStop.setCursor(QCursor(Qt.PointingHandCursor))
         self.btnStop.setStyleSheet(u"")
 
         self.horizontalLayout_2.addWidget(self.btnStop)
@@ -551,6 +574,7 @@ class Ui_MainWindow(object):
         self.btnSave.setObjectName(u"btnSave")
         self.btnSave.setMinimumSize(QSize(0, 30))
         self.btnSave.setMaximumSize(QSize(16777215, 30))
+        self.btnSave.setCursor(QCursor(Qt.PointingHandCursor))
         self.btnSave.setStyleSheet(u"")
 
         self.horizontalLayout_2.addWidget(self.btnSave)
@@ -584,12 +608,7 @@ class Ui_MainWindow(object):
         self.cbMathhab.setMinimumSize(QSize(20, 25))
         self.cbMathhab.setMaximumSize(QSize(320, 16777215))
         self.cbMathhab.setFont(font2)
-        self.cbMathhab.setStyleSheet(u"#cbMathhab{\n"
-"	border:none;\n"
-"	border:none;\n"
-"	border-radius:2px;\n"
-"	background-color:rgb(223, 223, 223);\n"
-"}")
+        self.cbMathhab.setStyleSheet(u"")
         self.cbMathhab.setFrame(False)
         self.cbMethod = QComboBox(self.containerSetting)
         self.cbMethod.addItem("")
@@ -604,12 +623,7 @@ class Ui_MainWindow(object):
         self.cbMethod.setMinimumSize(QSize(20, 25))
         self.cbMethod.setMaximumSize(QSize(320, 16777215))
         self.cbMethod.setFont(font2)
-        self.cbMethod.setStyleSheet(u"#cbMethod{\n"
-"	border:none;\n"
-"	border:none;\n"
-"	border-radius:2px;\n"
-"	background-color:rgb(223, 223, 223);\n"
-"}")
+        self.cbMethod.setStyleSheet(u"")
         self.cbMethod.setFrame(False)
         self.label_2 = QLabel(self.containerSetting)
         self.label_2.setObjectName(u"label_2")
