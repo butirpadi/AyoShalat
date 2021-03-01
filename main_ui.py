@@ -416,7 +416,7 @@ class Ui_MainWindow(object):
 "	border:none;\n"
 "}\n"
 ".QPushButton:hover{\n"
-"	background-color:whitesmoke;\n"
+"	background: rgb(223, 223, 223);\n"
 "}")
         self.frameButtonBar.setFrameShape(QFrame.NoFrame)
         self.frameButtonBar.setFrameShadow(QFrame.Plain)
@@ -733,9 +733,21 @@ class Ui_MainWindow(object):
         self.label_21.setText(QCoreApplication.translate("MainWindow", u"Isya", None))
         self.label_23.setText("")
         self.txIsya.setText(QCoreApplication.translate("MainWindow", u"TextLabel", None))
+#if QT_CONFIG(tooltip)
+        self.btnTimeTable.setToolTip(QCoreApplication.translate("MainWindow", u"Show time table", None))
+#endif // QT_CONFIG(tooltip)
         self.btnTimeTable.setText(QCoreApplication.translate("MainWindow", u"Prayer", None))
+#if QT_CONFIG(tooltip)
+        self.btnSetting.setToolTip(QCoreApplication.translate("MainWindow", u"Setting", None))
+#endif // QT_CONFIG(tooltip)
         self.btnSetting.setText(QCoreApplication.translate("MainWindow", u"Setting", None))
+#if QT_CONFIG(tooltip)
+        self.btnHide.setToolTip(QCoreApplication.translate("MainWindow", u"Hide current window", None))
+#endif // QT_CONFIG(tooltip)
         self.btnHide.setText(QCoreApplication.translate("MainWindow", u"Hide", None))
+#if QT_CONFIG(tooltip)
+        self.btnExit.setToolTip(QCoreApplication.translate("MainWindow", u"Exit", None))
+#endif // QT_CONFIG(tooltip)
         self.btnExit.setText(QCoreApplication.translate("MainWindow", u"Exit", None))
         self.label_3.setText(QCoreApplication.translate("MainWindow", u"UTC", None))
         self.btnPlay.setText(QCoreApplication.translate("MainWindow", u"Play", None))

@@ -3,7 +3,7 @@ from PySide6 import QtCore
 from PySide6.QtCore import QRect, QSize, Qt
 from PySide6.QtGui import QCursor, QIcon
 from azanplay import AzanPlay
-from PySide6.QtWidgets import QDialog, QFrame, QMainWindow, QMenu, QPushButton, QSystemTrayIcon
+from PySide6.QtWidgets import QDialog, QFrame, QMainWindow, QMenu, QMessageBox, QPushButton, QSystemTrayIcon
 from main_ui import Ui_MainWindow
 import pathlib
 import os
@@ -58,7 +58,7 @@ class AyoShalat(QMainWindow):
         self.ui.btnStop.clicked.connect(self.stopAzan)
         # self.ui.btnHide.clicked.connect(self.openSetting)
         self.ui.btnHide.clicked.connect(self.hide)
-        self.ui.btnExit.clicked.connect(self.exit)
+        self.ui.btnExit.clicked.connect(self.do_close)
         self.ui.btnSave.clicked.connect(self.do_save)
         self.ui.btnSetting.clicked.connect(self.show_frame_setting)
         self.ui.btnTimeTable.clicked.connect(self.show_time_table)
@@ -101,6 +101,10 @@ class AyoShalat(QMainWindow):
         self.show_tray()
 
         # ---------------------------------------------------------------------------------------------------------------------
+    
+    def do_close(self):
+        if QMessageBox().question(self,'Close','Are you sure ?',QMessageBox.StandardButton.Yes,QMessageBox.StandardButton.No) == QMessageBox.StandardButton.Yes:
+            os._exit(0)
 
     def toggle_check_notification(self):
         # toggle enable of txNotification
@@ -133,7 +137,7 @@ class AyoShalat(QMainWindow):
             traymenu.addSeparator()
 
             exit_menu = traymenu.addAction('Exit')
-            exit_menu.triggered.connect(self.exit)
+            exit_menu.triggered.connect(self.do_close)
 
             # create tray icon
             qtray = QSystemTrayIcon(self)
@@ -301,11 +305,6 @@ class AyoShalat(QMainWindow):
     def runningme(self):
         # do some stuff
         self.docalc.start()
-
-    def exit(self):
-        # self.docalc._stop().set()
-        print('--------------exiting---------------')
-        os._exit(0)
 
     def showImageAzan(self):
         image_dir = self.current_directory + '/images'
