@@ -33,7 +33,7 @@
   </property>
   <property name="windowIcon">
    <iconset>
-    <normaloff>../../../.designer/backup/icon/masjid.xpm</normaloff>../../../.designer/backup/icon/masjid.xpm</iconset>
+    <normaloff>icon/masjid.xpm</normaloff>icon/masjid.xpm</iconset>
   </property>
   <property name="toolTip">
    <string>AyoShalat</string>
@@ -1218,7 +1218,7 @@ background-position:right center;</string>
        </property>
        <property name="icon">
         <iconset>
-         <normalon>../../../.designer/backup/icon/date_range-24px.svg</normalon>
+         <normalon>icon/date_range-24px.svg</normalon>
         </iconset>
        </property>
        <property name="iconSize">
@@ -1257,7 +1257,7 @@ background-position:right center;</string>
        </property>
        <property name="icon">
         <iconset>
-         <normalon>../../../.designer/backup/icon/settings-24px.svg</normalon>
+         <normalon>icon/settings-24px.svg</normalon>
         </iconset>
        </property>
        <property name="iconSize">
@@ -1296,7 +1296,7 @@ background-position:right center;</string>
        </property>
        <property name="icon">
         <iconset>
-         <normalon>../../../.designer/backup/icon/hide_source-24px.svg</normalon>
+         <normalon>icon/hide_source-24px.svg</normalon>
         </iconset>
        </property>
        <property name="iconSize">
@@ -1335,7 +1335,7 @@ background-position:right center;</string>
        </property>
        <property name="icon">
         <iconset>
-         <normalon>../../../.designer/backup/icon/exit_to_app-24px.svg</normalon>
+         <normalon>icon/exit_to_app-24px.svg</normalon>
         </iconset>
        </property>
        <property name="iconSize">
