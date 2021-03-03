@@ -280,6 +280,34 @@ class AyoShalat(QMainWindow):
                     self.ui.lblCurrentWaktu.setText('Subh')
                     remaining_str = str(int(self.get_remaining_second(current_time,dhuhr_date)//3600)) + ' hours and ' + str(int((self.get_remaining_second(current_time,dhuhr_date)//60)%60)) + ' minutes to go'
                     self.ui.lblRemaining.setText(remaining_str)
+                
+                if current_time >= dhuhr_date and current_time <= asr_date:
+                    self.ui.lblUpcomingWaktu.setText("Asr")
+                    self.ui.lblUpcomingJam.setText(self.time_array['asr'])
+                    self.ui.lblCurrentWaktu.setText('Duhr')
+                    remaining_str = str(int(self.get_remaining_second(current_time,asr_date)//3600)) + ' hours and ' + str(int((self.get_remaining_second(current_time,asr_date)//60)%60)) + ' minutes to go'
+                    self.ui.lblRemaining.setText(remaining_str)
+                
+                if current_time >= asr_date and current_time <= maghrib_date:
+                    self.ui.lblUpcomingWaktu.setText("Maghrib")
+                    self.ui.lblUpcomingJam.setText(self.time_array['maghrib'])
+                    self.ui.lblCurrentWaktu.setText('Asr')
+                    remaining_str = str(int(self.get_remaining_second(current_time,maghrib_date)//3600)) + ' hours and ' + str(int((self.get_remaining_second(current_time,maghrib_date)//60)%60)) + ' minutes to go'
+                    self.ui.lblRemaining.setText(remaining_str)
+                
+                if current_time >= maghrib_date and current_time <= isya_date:
+                    self.ui.lblUpcomingWaktu.setText("Isya")
+                    self.ui.lblUpcomingJam.setText(self.time_array['isya'])
+                    self.ui.lblCurrentWaktu.setText('Maghrib')
+                    remaining_str = str(int(self.get_remaining_second(current_time,isya_date)//3600)) + ' hours and ' + str(int((self.get_remaining_second(current_time,isya_date)//60)%60)) + ' minutes to go'
+                    self.ui.lblRemaining.setText(remaining_str)
+                
+                if current_time >= isya_date and current_time <= subh_date:
+                    self.ui.lblUpcomingWaktu.setText("Subh")
+                    self.ui.lblUpcomingJam.setText(self.time_array['fajr'])
+                    self.ui.lblCurrentWaktu.setText('Isya')
+                    remaining_str = str(int(self.get_remaining_second(current_time,subh_date)//3600)) + ' hours and ' + str(int((self.get_remaining_second(current_time,subh_date)//60)%60)) + ' minutes to go'
+                    self.ui.lblRemaining.setText(remaining_str)
     
     # def show_upcoming(self):
     #     subh = self.time_array['fajr'].strip()
