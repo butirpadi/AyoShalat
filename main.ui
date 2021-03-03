@@ -117,7 +117,7 @@ background-color:#f6f6f6;
 }</string>
      </property>
      <property name="text">
-      <string>Maghrib</string>
+      <string>Upcoming</string>
      </property>
     </widget>
     <widget class="QLabel" name="lblUpcomingJam">
@@ -165,7 +165,7 @@ background-color:#f6f6f6;
 }</string>
      </property>
      <property name="text">
-      <string>2 hours and 25 minutes to go</string>
+      <string>remaining in hours</string>
      </property>
      <property name="alignment">
       <set>Qt::AlignLeading|Qt::AlignLeft|Qt::AlignTop</set>
@@ -218,7 +218,7 @@ background-color:#f6f6f6;
 }</string>
      </property>
      <property name="text">
-      <string>Magrib</string>
+      <string>Current</string>
      </property>
      <property name="alignment">
       <set>Qt::AlignLeading|Qt::AlignLeft|Qt::AlignTop</set>
