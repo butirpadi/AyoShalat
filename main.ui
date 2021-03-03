@@ -452,9 +452,14 @@ background-position:center;
     <property name="styleSheet">
      <string notr="true">#frame_time_table{
 	background-color: rgb(255, 255, 255);
-        border-radius:10;
-border-style:outer;
-border:1px solid #cbcbcb;
+    border-radius:10;
+	border-style:outer;
+	border:1px solid #cbcbcb;
+}
+
+.QFrame{
+	border-bottom:1px solid whitesmoke;
+	border-radius:0;
 }</string>
     </property>
     <property name="frameShape">
@@ -562,17 +567,13 @@ border:1px solid #cbcbcb;
      <property name="geometry">
       <rect>
        <x>10</x>
-       <y>50</y>
+       <y>54</y>
        <width>271</width>
        <height>31</height>
       </rect>
      </property>
      <property name="styleSheet">
-      <string notr="true">#frameFajr{
-    border-style: outset;
-	border-bottom:1px solid whitesmoke;
-	border-radius:0;
-}</string>
+      <string notr="true"/>
      </property>
      <property name="frameShape">
       <enum>QFrame::NoFrame</enum>
@@ -604,7 +605,7 @@ border:1px solid #cbcbcb;
       <property name="font">
        <font>
         <family>Ubuntu</family>
-        <pointsize>10</pointsize>
+        <pointsize>11</pointsize>
        </font>
       </property>
       <property name="styleSheet">
@@ -656,7 +657,7 @@ background-position:right center;</string>
       <property name="font">
        <font>
         <family>Ubuntu</family>
-        <pointsize>10</pointsize>
+        <pointsize>11</pointsize>
        </font>
       </property>
       <property name="layoutDirection">
@@ -677,7 +678,7 @@ background-position:right center;</string>
      <property name="geometry">
       <rect>
        <x>10</x>
-       <y>84</y>
+       <y>88</y>
        <width>271</width>
        <height>31</height>
       </rect>
@@ -689,19 +690,13 @@ background-position:right center;</string>
       </font>
      </property>
      <property name="styleSheet">
-      <string notr="true">#frameDhuhr{
-	color:black;
-	border-style: outset;
-	border-bottom:1px solid whitesmoke;
-	border-radius:0;
-
-}</string>
+      <string notr="true"/>
      </property>
      <property name="frameShape">
-      <enum>QFrame::StyledPanel</enum>
+      <enum>QFrame::NoFrame</enum>
      </property>
      <property name="frameShadow">
-      <enum>QFrame::Raised</enum>
+      <enum>QFrame::Plain</enum>
      </property>
      <widget class="QLabel" name="label_12">
       <property name="geometry">
@@ -721,7 +716,7 @@ background-position:right center;</string>
       <property name="font">
        <font>
         <family>Ubuntu</family>
-        <pointsize>10</pointsize>
+        <pointsize>11</pointsize>
         <bold>false</bold>
        </font>
       </property>
@@ -774,7 +769,7 @@ background-position:right center;</string>
       <property name="font">
        <font>
         <family>Ubuntu</family>
-        <pointsize>10</pointsize>
+        <pointsize>11</pointsize>
        </font>
       </property>
       <property name="layoutDirection">
@@ -791,11 +786,11 @@ background-position:right center;</string>
       </property>
      </widget>
     </widget>
-    <widget class="QFrame" name="frame_7">
+    <widget class="QFrame" name="frameAsr">
      <property name="geometry">
       <rect>
        <x>10</x>
-       <y>118</y>
+       <y>122</y>
        <width>271</width>
        <height>31</height>
       </rect>
@@ -807,19 +802,13 @@ background-position:right center;</string>
       </font>
      </property>
      <property name="styleSheet">
-      <string notr="true">#frame_7{
-	color:black;
-	border-style: outset;
-	border-bottom:1px solid whitesmoke;
-	border-radius:0;
-
-}</string>
+      <string notr="true"/>
      </property>
      <property name="frameShape">
-      <enum>QFrame::StyledPanel</enum>
+      <enum>QFrame::NoFrame</enum>
      </property>
      <property name="frameShadow">
-      <enum>QFrame::Raised</enum>
+      <enum>QFrame::Plain</enum>
      </property>
      <widget class="QLabel" name="label_15">
       <property name="geometry">
@@ -839,7 +828,7 @@ background-position:right center;</string>
       <property name="font">
        <font>
         <family>Ubuntu</family>
-        <pointsize>10</pointsize>
+        <pointsize>11</pointsize>
         <bold>false</bold>
        </font>
       </property>
@@ -892,7 +881,7 @@ background-position:right center;</string>
       <property name="font">
        <font>
         <family>Ubuntu</family>
-        <pointsize>10</pointsize>
+        <pointsize>11</pointsize>
        </font>
       </property>
       <property name="layoutDirection">
@@ -909,11 +898,11 @@ background-position:right center;</string>
       </property>
      </widget>
     </widget>
-    <widget class="QFrame" name="frame_8">
+    <widget class="QFrame" name="frameMaghrib">
      <property name="geometry">
       <rect>
        <x>10</x>
-       <y>152</y>
+       <y>156</y>
        <width>271</width>
        <height>31</height>
       </rect>
@@ -925,19 +914,13 @@ background-position:right center;</string>
       </font>
      </property>
      <property name="styleSheet">
-      <string notr="true">#frame_8{
-	color:black;
-	border-style: outset;
-	border-bottom:1px solid whitesmoke;
-	border-radius:0;
-
-}</string>
+      <string notr="true"/>
      </property>
      <property name="frameShape">
-      <enum>QFrame::StyledPanel</enum>
+      <enum>QFrame::NoFrame</enum>
      </property>
      <property name="frameShadow">
-      <enum>QFrame::Raised</enum>
+      <enum>QFrame::Plain</enum>
      </property>
      <widget class="QLabel" name="label_18">
       <property name="geometry">
@@ -957,7 +940,7 @@ background-position:right center;</string>
       <property name="font">
        <font>
         <family>Ubuntu</family>
-        <pointsize>10</pointsize>
+        <pointsize>11</pointsize>
         <bold>false</bold>
        </font>
       </property>
@@ -1010,7 +993,7 @@ background-position:right center;</string>
       <property name="font">
        <font>
         <family>Ubuntu</family>
-        <pointsize>10</pointsize>
+        <pointsize>11</pointsize>
        </font>
       </property>
       <property name="layoutDirection">
@@ -1027,11 +1010,11 @@ background-position:right center;</string>
       </property>
      </widget>
     </widget>
-    <widget class="QFrame" name="frame_9">
+    <widget class="QFrame" name="frameIsya">
      <property name="geometry">
       <rect>
        <x>10</x>
-       <y>186</y>
+       <y>190</y>
        <width>271</width>
        <height>31</height>
       </rect>
@@ -1043,19 +1026,13 @@ background-position:right center;</string>
       </font>
      </property>
      <property name="styleSheet">
-      <string notr="true">#frame_9{
-	color:black;
-	border-style: outset;
-	border-bottom:1px solid whitesmoke;
-	border-radius:0;
-
-}</string>
+      <string notr="true"/>
      </property>
      <property name="frameShape">
-      <enum>QFrame::StyledPanel</enum>
+      <enum>QFrame::NoFrame</enum>
      </property>
      <property name="frameShadow">
-      <enum>QFrame::Raised</enum>
+      <enum>QFrame::Plain</enum>
      </property>
      <widget class="QLabel" name="label_21">
       <property name="geometry">
@@ -1075,7 +1052,7 @@ background-position:right center;</string>
       <property name="font">
        <font>
         <family>Ubuntu</family>
-        <pointsize>10</pointsize>
+        <pointsize>11</pointsize>
         <bold>false</bold>
        </font>
       </property>
@@ -1128,7 +1105,7 @@ background-position:right center;</string>
       <property name="font">
        <font>
         <family>Ubuntu</family>
-        <pointsize>10</pointsize>
+        <pointsize>11</pointsize>
        </font>
       </property>
       <property name="layoutDirection">
@@ -2072,9 +2049,9 @@ background-image:url('icon/expand_more-24px.svg')
     <zorder>label_22</zorder>
     <zorder>lblIconSetting</zorder>
    </widget>
+   <zorder>frameSetting</zorder>
    <zorder>frameDashboardUpper</zorder>
    <zorder>frame_time_table</zorder>
-   <zorder>frameSetting</zorder>
    <zorder>frameButtonBar</zorder>
   </widget>
  </widget>

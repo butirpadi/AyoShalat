@@ -185,9 +185,14 @@ class Ui_MainWindow(object):
         self.frame_time_table.setGeometry(QRect(15, 204, 291, 241))
         self.frame_time_table.setStyleSheet(u"#frame_time_table{\n"
 "	background-color: rgb(255, 255, 255);\n"
-"        border-radius:10;\n"
-"border-style:outer;\n"
-"border:1px solid #cbcbcb;\n"
+"    border-radius:10;\n"
+"	border-style:outer;\n"
+"	border:1px solid #cbcbcb;\n"
+"}\n"
+"\n"
+".QFrame{\n"
+"	border-bottom:1px solid whitesmoke;\n"
+"	border-radius:0;\n"
 "}")
         self.frame_time_table.setFrameShape(QFrame.StyledPanel)
         self.frame_time_table.setFrameShadow(QFrame.Raised)
@@ -230,12 +235,8 @@ class Ui_MainWindow(object):
         self.frame_4.setFrameShadow(QFrame.Raised)
         self.frameFajr = QFrame(self.frame_time_table)
         self.frameFajr.setObjectName(u"frameFajr")
-        self.frameFajr.setGeometry(QRect(10, 50, 271, 31))
-        self.frameFajr.setStyleSheet(u"#frameFajr{\n"
-"    border-style: outset;\n"
-"	border-bottom:1px solid whitesmoke;\n"
-"	border-radius:0;\n"
-"}")
+        self.frameFajr.setGeometry(QRect(10, 54, 271, 31))
+        self.frameFajr.setStyleSheet(u"")
         self.frameFajr.setFrameShape(QFrame.NoFrame)
         self.frameFajr.setFrameShadow(QFrame.Plain)
         self.label_9 = QLabel(self.frameFajr)
@@ -247,7 +248,10 @@ class Ui_MainWindow(object):
         sizePolicy1.setHeightForWidth(self.label_9.sizePolicy().hasHeightForWidth())
         self.label_9.setSizePolicy(sizePolicy1)
         self.label_9.setMinimumSize(QSize(0, 25))
-        self.label_9.setFont(font2)
+        font7 = QFont()
+        font7.setFamily(u"Ubuntu")
+        font7.setPointSize(11)
+        self.label_9.setFont(font7)
         self.label_9.setStyleSheet(u"color:black;")
         self.label_11 = QLabel(self.frameFajr)
         self.label_11.setObjectName(u"label_11")
@@ -260,32 +264,26 @@ class Ui_MainWindow(object):
         self.txFajr.setObjectName(u"txFajr")
         self.txFajr.setGeometry(QRect(120, 3, 111, 25))
         self.txFajr.setMinimumSize(QSize(0, 25))
-        self.txFajr.setFont(font2)
+        self.txFajr.setFont(font7)
         self.txFajr.setLayoutDirection(Qt.LeftToRight)
         self.txFajr.setStyleSheet(u"color:black;")
         self.txFajr.setAlignment(Qt.AlignRight|Qt.AlignTrailing|Qt.AlignVCenter)
         self.frameDhuhr = QFrame(self.frame_time_table)
         self.frameDhuhr.setObjectName(u"frameDhuhr")
-        self.frameDhuhr.setGeometry(QRect(10, 84, 271, 31))
+        self.frameDhuhr.setGeometry(QRect(10, 88, 271, 31))
         self.frameDhuhr.setFont(font2)
-        self.frameDhuhr.setStyleSheet(u"#frameDhuhr{\n"
-"	color:black;\n"
-"	border-style: outset;\n"
-"	border-bottom:1px solid whitesmoke;\n"
-"	border-radius:0;\n"
-"\n"
-"}")
-        self.frameDhuhr.setFrameShape(QFrame.StyledPanel)
-        self.frameDhuhr.setFrameShadow(QFrame.Raised)
+        self.frameDhuhr.setStyleSheet(u"")
+        self.frameDhuhr.setFrameShape(QFrame.NoFrame)
+        self.frameDhuhr.setFrameShadow(QFrame.Plain)
         self.label_12 = QLabel(self.frameDhuhr)
         self.label_12.setObjectName(u"label_12")
         self.label_12.setGeometry(QRect(10, 3, 71, 25))
         self.label_12.setMinimumSize(QSize(0, 25))
-        font7 = QFont()
-        font7.setFamily(u"Ubuntu")
-        font7.setPointSize(10)
-        font7.setBold(False)
-        self.label_12.setFont(font7)
+        font8 = QFont()
+        font8.setFamily(u"Ubuntu")
+        font8.setPointSize(11)
+        font8.setBold(False)
+        self.label_12.setFont(font8)
         self.label_12.setStyleSheet(u"color:black;")
         self.label_14 = QLabel(self.frameDhuhr)
         self.label_14.setObjectName(u"label_14")
@@ -298,109 +296,91 @@ class Ui_MainWindow(object):
         self.txDhuhr.setObjectName(u"txDhuhr")
         self.txDhuhr.setGeometry(QRect(120, 3, 111, 25))
         self.txDhuhr.setMinimumSize(QSize(0, 25))
-        self.txDhuhr.setFont(font2)
+        self.txDhuhr.setFont(font7)
         self.txDhuhr.setLayoutDirection(Qt.LeftToRight)
         self.txDhuhr.setStyleSheet(u"color:black;")
         self.txDhuhr.setAlignment(Qt.AlignRight|Qt.AlignTrailing|Qt.AlignVCenter)
-        self.frame_7 = QFrame(self.frame_time_table)
-        self.frame_7.setObjectName(u"frame_7")
-        self.frame_7.setGeometry(QRect(10, 118, 271, 31))
-        self.frame_7.setFont(font2)
-        self.frame_7.setStyleSheet(u"#frame_7{\n"
-"	color:black;\n"
-"	border-style: outset;\n"
-"	border-bottom:1px solid whitesmoke;\n"
-"	border-radius:0;\n"
-"\n"
-"}")
-        self.frame_7.setFrameShape(QFrame.StyledPanel)
-        self.frame_7.setFrameShadow(QFrame.Raised)
-        self.label_15 = QLabel(self.frame_7)
+        self.frameAsr = QFrame(self.frame_time_table)
+        self.frameAsr.setObjectName(u"frameAsr")
+        self.frameAsr.setGeometry(QRect(10, 122, 271, 31))
+        self.frameAsr.setFont(font2)
+        self.frameAsr.setStyleSheet(u"")
+        self.frameAsr.setFrameShape(QFrame.NoFrame)
+        self.frameAsr.setFrameShadow(QFrame.Plain)
+        self.label_15 = QLabel(self.frameAsr)
         self.label_15.setObjectName(u"label_15")
         self.label_15.setGeometry(QRect(10, 3, 71, 25))
         self.label_15.setMinimumSize(QSize(0, 25))
-        self.label_15.setFont(font7)
+        self.label_15.setFont(font8)
         self.label_15.setStyleSheet(u"")
-        self.label_17 = QLabel(self.frame_7)
+        self.label_17 = QLabel(self.frameAsr)
         self.label_17.setObjectName(u"label_17")
         self.label_17.setGeometry(QRect(240, 3, 21, 25))
         self.label_17.setMinimumSize(QSize(0, 25))
         self.label_17.setStyleSheet(u"background-image:url('icon/chevron_left-24px.svg');\n"
 "background-repeat:no-repeat;\n"
 "background-position:right center;")
-        self.txAshr = QLabel(self.frame_7)
+        self.txAshr = QLabel(self.frameAsr)
         self.txAshr.setObjectName(u"txAshr")
         self.txAshr.setGeometry(QRect(120, 3, 111, 25))
         self.txAshr.setMinimumSize(QSize(0, 25))
-        self.txAshr.setFont(font2)
+        self.txAshr.setFont(font7)
         self.txAshr.setLayoutDirection(Qt.LeftToRight)
         self.txAshr.setStyleSheet(u"color:black;")
         self.txAshr.setAlignment(Qt.AlignRight|Qt.AlignTrailing|Qt.AlignVCenter)
-        self.frame_8 = QFrame(self.frame_time_table)
-        self.frame_8.setObjectName(u"frame_8")
-        self.frame_8.setGeometry(QRect(10, 152, 271, 31))
-        self.frame_8.setFont(font2)
-        self.frame_8.setStyleSheet(u"#frame_8{\n"
-"	color:black;\n"
-"	border-style: outset;\n"
-"	border-bottom:1px solid whitesmoke;\n"
-"	border-radius:0;\n"
-"\n"
-"}")
-        self.frame_8.setFrameShape(QFrame.StyledPanel)
-        self.frame_8.setFrameShadow(QFrame.Raised)
-        self.label_18 = QLabel(self.frame_8)
+        self.frameMaghrib = QFrame(self.frame_time_table)
+        self.frameMaghrib.setObjectName(u"frameMaghrib")
+        self.frameMaghrib.setGeometry(QRect(10, 156, 271, 31))
+        self.frameMaghrib.setFont(font2)
+        self.frameMaghrib.setStyleSheet(u"")
+        self.frameMaghrib.setFrameShape(QFrame.NoFrame)
+        self.frameMaghrib.setFrameShadow(QFrame.Plain)
+        self.label_18 = QLabel(self.frameMaghrib)
         self.label_18.setObjectName(u"label_18")
         self.label_18.setGeometry(QRect(10, 3, 71, 25))
         self.label_18.setMinimumSize(QSize(0, 25))
-        self.label_18.setFont(font7)
+        self.label_18.setFont(font8)
         self.label_18.setStyleSheet(u"")
-        self.label_20 = QLabel(self.frame_8)
+        self.label_20 = QLabel(self.frameMaghrib)
         self.label_20.setObjectName(u"label_20")
         self.label_20.setGeometry(QRect(240, 3, 21, 25))
         self.label_20.setMinimumSize(QSize(0, 25))
         self.label_20.setStyleSheet(u"background-image:url('icon/chevron_left-24px.svg');\n"
 "background-repeat:no-repeat;\n"
 "background-position:right center;")
-        self.txMaghrib = QLabel(self.frame_8)
+        self.txMaghrib = QLabel(self.frameMaghrib)
         self.txMaghrib.setObjectName(u"txMaghrib")
         self.txMaghrib.setGeometry(QRect(120, 3, 110, 25))
         self.txMaghrib.setMinimumSize(QSize(0, 25))
-        self.txMaghrib.setFont(font2)
+        self.txMaghrib.setFont(font7)
         self.txMaghrib.setLayoutDirection(Qt.LeftToRight)
         self.txMaghrib.setStyleSheet(u"color:black;")
         self.txMaghrib.setAlignment(Qt.AlignRight|Qt.AlignTrailing|Qt.AlignVCenter)
-        self.frame_9 = QFrame(self.frame_time_table)
-        self.frame_9.setObjectName(u"frame_9")
-        self.frame_9.setGeometry(QRect(10, 186, 271, 31))
-        self.frame_9.setFont(font2)
-        self.frame_9.setStyleSheet(u"#frame_9{\n"
-"	color:black;\n"
-"	border-style: outset;\n"
-"	border-bottom:1px solid whitesmoke;\n"
-"	border-radius:0;\n"
-"\n"
-"}")
-        self.frame_9.setFrameShape(QFrame.StyledPanel)
-        self.frame_9.setFrameShadow(QFrame.Raised)
-        self.label_21 = QLabel(self.frame_9)
+        self.frameIsya = QFrame(self.frame_time_table)
+        self.frameIsya.setObjectName(u"frameIsya")
+        self.frameIsya.setGeometry(QRect(10, 190, 271, 31))
+        self.frameIsya.setFont(font2)
+        self.frameIsya.setStyleSheet(u"")
+        self.frameIsya.setFrameShape(QFrame.NoFrame)
+        self.frameIsya.setFrameShadow(QFrame.Plain)
+        self.label_21 = QLabel(self.frameIsya)
         self.label_21.setObjectName(u"label_21")
         self.label_21.setGeometry(QRect(10, 3, 71, 25))
         self.label_21.setMinimumSize(QSize(0, 25))
-        self.label_21.setFont(font7)
+        self.label_21.setFont(font8)
         self.label_21.setStyleSheet(u"")
-        self.label_23 = QLabel(self.frame_9)
+        self.label_23 = QLabel(self.frameIsya)
         self.label_23.setObjectName(u"label_23")
         self.label_23.setGeometry(QRect(240, 3, 21, 25))
         self.label_23.setMinimumSize(QSize(0, 25))
         self.label_23.setStyleSheet(u"background-image:url('icon/chevron_left-24px.svg');\n"
 "background-repeat:no-repeat;\n"
 "background-position:right center;")
-        self.txIsya = QLabel(self.frame_9)
+        self.txIsya = QLabel(self.frameIsya)
         self.txIsya.setObjectName(u"txIsya")
         self.txIsya.setGeometry(QRect(120, 3, 110, 25))
         self.txIsya.setMinimumSize(QSize(0, 25))
-        self.txIsya.setFont(font2)
+        self.txIsya.setFont(font7)
         self.txIsya.setLayoutDirection(Qt.LeftToRight)
         self.txIsya.setStyleSheet(u"color: black;")
         self.txIsya.setAlignment(Qt.AlignRight|Qt.AlignTrailing|Qt.AlignVCenter)
@@ -673,17 +653,17 @@ class Ui_MainWindow(object):
         self.label_22.setGeometry(QRect(50, 10, 81, 40))
         self.label_22.setMinimumSize(QSize(20, 20))
         self.label_22.setMaximumSize(QSize(9999, 9999))
-        font8 = QFont()
-        font8.setFamily(u"Ubuntu")
-        font8.setPointSize(14)
-        self.label_22.setFont(font8)
+        font9 = QFont()
+        font9.setFamily(u"Ubuntu")
+        font9.setPointSize(14)
+        self.label_22.setFont(font9)
         self.label_22.setStyleSheet(u"")
         self.lblIconSetting = QLabel(self.frameSetting)
         self.lblIconSetting.setObjectName(u"lblIconSetting")
         self.lblIconSetting.setGeometry(QRect(20, 10, 31, 40))
         self.lblIconSetting.setMinimumSize(QSize(30, 30))
         self.lblIconSetting.setMaximumSize(QSize(9999, 9999))
-        self.lblIconSetting.setFont(font8)
+        self.lblIconSetting.setFont(font9)
         self.lblIconSetting.setStyleSheet(u"")
         self.frameSettingBottom = QFrame(self.frameSetting)
         self.frameSettingBottom.setObjectName(u"frameSettingBottom")
@@ -698,9 +678,9 @@ class Ui_MainWindow(object):
         self.label_22.raise_()
         self.lblIconSetting.raise_()
         MainWindow.setCentralWidget(self.centralwidget)
+        self.frameSetting.raise_()
         self.frameDashboardUpper.raise_()
         self.frame_time_table.raise_()
-        self.frameSetting.raise_()
         self.frameButtonBar.raise_()
 
         self.retranslateUi(MainWindow)
