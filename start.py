@@ -37,6 +37,8 @@ if __name__ == "__main__":
                 'mathhab': '',
                 'enable_notification_before' : "False",
                 'before_pray_time': 0,
+                'enable_jumah_notification': "False",
+                'before_jumah_time': 0,
             }
         db.insert(item)
     setting_lines  = db.search(TinyData.code == 'setting')[0]

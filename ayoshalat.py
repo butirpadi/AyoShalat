@@ -169,6 +169,8 @@ class AyoShalat(QMainWindow):
             'mathhab_index': str(self.ui.cbMathhab.currentIndex()),
             'before_pray_time': self.ui.txBeforeTime.text().strip(),
             'enable_notification_before': str(self.ui.ckNotification.isChecked()),
+            'before_jumah_time': self.ui.txBeforeJumah.text().strip(),
+            'enable_jumah_notification': str(self.ui.ckJumah.isChecked()),
         }
         pprint(vals)
         # setting_lines  = self.db.search(self.TinyData.code == 'setting')
@@ -338,9 +340,20 @@ class AyoShalat(QMainWindow):
 
             # -----------------------------------------------------------------------
 
+            # checking for jumah notification
+            if self.enable_jumah_notification:
+                # dhuhr
+                dhuhr_date_str = str(current_time.year) + '/' + str(current_time.strftime(
+                    '%m')) + '/' + str(current_time.strftime('%d')) + ' ' + self.time_array['dhuhr'].strip() + ':00'
+                dhuhr_date = datetime.datetime.strptime(
+                    dhuhr_date_str, '%Y/%m/%d %H:%M:%S')
+                
+                if self.get_remaining_time(current_time, dhuhr_date) == int(self.before_jumah_time):
+                    self.playNotif()
+                    time.sleep(75)
+
             # checking notification before pray time
             if self.enable_notification_before:
-                current_time = datetime.datetime.now()
 
                 # subh
                 subh_date_str = str(current_time.year) + '/' + str(current_time.strftime(
@@ -464,43 +477,32 @@ class AyoShalat(QMainWindow):
         image_path = image_dir + '/' + filename
         im = Image.open(image_path)
         im_width, im_height = im.size
-        im_width -= 150
-        im_height -= 150
-        
-        # self.azanDialog.setStyleSheet("background-image:url('" + image_path + "');background-position: center;background-repeat: no-repeat;")
+        im_width -= 75
+        im_height -= 75
         self.azanDialog.resize(im_width, im_height)
-        # self.azanDialog.setStyleSheet("background-image:url('" + image_path + "');background-position: center;background-repeat: no-repeat;")
         self.azanDialog.setStyleSheet("border-image: url('" + image_path + "') 0 0 0 0 stretch stretch;")
-        # azanuiFrame = QFrame(azanui)
-        # azanuiFrame.setGeometry(0, 0, im_width, im_height)
 
         btnDialog = QPushButton("", self.azanDialog)
         btnDialog.setGeometry(0, 0, im_width, im_height)
         btnDialog.setStyleSheet("{border:none;border-style:outline;}")
         btnDialog.setFlat(True)
         btnDialog.clicked.connect(self.hideImageDialog)
-        self.azanDialog.exec_()
+        self.azanDialog.show()
     
     def hideImageDialog(self):
         self.azanDialog.hide()
 
 
     def stopAzan(self):
-        # self.azanThread.terminate()
         try:
             self.azanpy.stop()
         except AttributeError as ae:
             print(ae)
-        # del self.azanpy
 
     def stopNotif(self):
-        # self.azanThread.terminate()
         self.notifplay.stop()
-        # del self.azanpy
 
     def playAzan(self):
-        # if threading.current_thread().isAlive():
-        # if self.threadAzan.isAlive():
         self.threadAzan = threading.Thread(
                 target=self._playAzan, name="Play Azan")
 
@@ -508,12 +510,10 @@ class AyoShalat(QMainWindow):
         self.showImageAzan()
 
     def playNotif(self):
-        # if threading.current_thread().isAlive():
         self.threadNotif = threading.Thread(
                 target=self._playNotif, name="Play Notif")
 
         self.threadNotif.start()
-        # self.showImageAzan()
 
     def _playAzan(self):
         if os.name == 'nt':
@@ -581,46 +581,37 @@ class AyoShalat(QMainWindow):
 
             # open in tray
             self.open_in_tray = setting_lines['open_in_tray'] or 'False'
-            # self.open_in_tray = setting_lines[0].split(
-            #     ':')[1].strip() or 'False'
 
             # latitude
-            # self.latitude = setting_lines[1].split(
-            #     ':')[1].strip() or -7.502814765426055
             self.latitude = setting_lines['latitude'] or -7.502814765426055
 
             # longitude
-            # self.longitude = setting_lines[2].split(
-            #     ':')[1].strip() or 112.71057820736571
             self.longitude = setting_lines['longitude'] or 112.71057820736571
 
             # utc
             self.utc_offset = setting_lines['utc_offset'] or 7
-            # self.utc_offset = setting_lines[3].split(':')[1].strip() or 7
 
             # calculation method
             self.calculation_method_index = int(
                 setting_lines['calculation_method_index']) or 0
-            # self.calculation_method_index = int(setting_lines[4].split(':')[
-            #     1].strip()) or 0
+
             self.calculation_method = self.calculation_method_array[int(
                 self.calculation_method_index)]
-            # self.calculation_method = self.calculation_method_array[int(
-            #     self.calculation_method_index)]
 
             # time format
-            # self.time_format = setting_lines[5].split(':')[1].strip() or '24h'
             self.time_format = setting_lines['time_format'] or '24h'
 
             # mathhab
             self.mathhab_index = int(setting_lines['mathhab_index']) or 0
-            # self.mathhab_index = int(setting_lines[6].split(':')[1].strip()) or 0
 
             self.mathhab = self.mathhab_array[int(self.mathhab_index)]
 
             self.before_pray_time = setting_lines['before_pray_time']
             self.enable_notification_before = strtobool(
                 setting_lines['enable_notification_before'])
+            self.enable_jumah_notification = strtobool(
+                setting_lines['enable_jumah_notification'])
+            self.before_jumah_time = setting_lines['before_jumah_time']
 
             if self.open_in_tray == 'True':
                 # self.hide()
@@ -634,6 +625,8 @@ class AyoShalat(QMainWindow):
             self.ui.cbMethod.setCurrentIndex(self.calculation_method_index)
             self.ui.cbMathhab.setCurrentIndex(self.mathhab_index)
             self.ui.ckNotification.setChecked(self.enable_notification_before)
+            self.ui.txBeforeJumah.setText(str(self.before_jumah_time))
+            self.ui.ckJumah.setChecked(self.enable_jumah_notification)
 
         except KeyError:
             self.init_db()
@@ -655,6 +648,8 @@ class AyoShalat(QMainWindow):
                     'mathhab': '',
                     'enable_notification_before': "False",
                     'before_pray_time': 0,
+                    'enable_jumah_notification': "False",
+                    'before_jumah_time': 0,
         }
         self.db.insert(item)
 
@@ -664,6 +659,8 @@ class AyoShalat(QMainWindow):
     def reformat_ui(self):
         self.ui.txBeforeTime.hide()
         self.ui.label_7.hide()
+        self.ui.txBeforeJumah.hide()
+        self.ui.label_8.hide()
 
         icon = QIcon()
         icon.addFile(self.current_directory + u"/icon/masjid.xpm",
