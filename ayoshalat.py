@@ -117,6 +117,7 @@ class AyoShalat(QMainWindow):
 
     def show_frame_setting(self):
         self.ui.frameSetting.setVisible(True)
+        self.ui.frameSetting.raise_()
 
     def show_time_table(self):
         self.ui.frameSetting.setVisible(False)
