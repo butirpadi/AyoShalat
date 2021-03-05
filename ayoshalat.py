@@ -81,6 +81,11 @@ class AyoShalat(QMainWindow):
         self.default_azan = self.current_directory + '/audio/azan.mp3'
         self.default_notif = self.current_directory + '/audio/hayyalashala.mp3'
 
+        # image dialog
+        azandialog = QDialog(self,Qt.FramelessWindowHint)
+        azandialog.setWindowTitle("It's time to Shalat")
+        self.azanDialog = azandialog
+
         # OPEN SETTING ON START
         self.open_setting()
 
@@ -459,24 +464,26 @@ class AyoShalat(QMainWindow):
         image_path = image_dir + '/' + filename
         im = Image.open(image_path)
         im_width, im_height = im.size
-        # azanui = QDialog(f=Qt.FramelessWindowHint)
-        azanui = QDialog()
-        azanui.setWindowTitle("It's time to Shalat")
-        azanui.setStyleSheet(
-            "background-image:url('" + image_path + "');background-position: center;background-repeat: no-repeat;")
-        azanui.resize(im_width, im_height)
-        azanui.setWindowFlags(Qt.FramelessWindowHint)
+        im_width -= 150
+        im_height -= 150
+        
+        # self.azanDialog.setStyleSheet("background-image:url('" + image_path + "');background-position: center;background-repeat: no-repeat;")
+        self.azanDialog.resize(im_width, im_height)
+        # self.azanDialog.setStyleSheet("background-image:url('" + image_path + "');background-position: center;background-repeat: no-repeat;")
+        self.azanDialog.setStyleSheet("border-image: url('" + image_path + "') 0 0 0 0 stretch stretch;")
+        # azanuiFrame = QFrame(azanui)
+        # azanuiFrame.setGeometry(0, 0, im_width, im_height)
 
-        azanuiFrame = QFrame(azanui)
-        azanuiFrame.setGeometry(0, 0, im_width, im_height)
-
-        btnDialog = QPushButton("", azanuiFrame)
+        btnDialog = QPushButton("", self.azanDialog)
         btnDialog.setGeometry(0, 0, im_width, im_height)
         btnDialog.setStyleSheet("{border:none;border-style:outline;}")
         btnDialog.setFlat(True)
-        btnDialog.clicked.connect(azanui.hide)
+        btnDialog.clicked.connect(self.hideImageDialog)
+        self.azanDialog.exec_()
+    
+    def hideImageDialog(self):
+        self.azanDialog.hide()
 
-        azanui.exec_()
 
     def stopAzan(self):
         # self.azanThread.terminate()
