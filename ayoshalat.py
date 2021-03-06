@@ -85,6 +85,9 @@ class AyoShalat(QMainWindow):
         azandialog = QDialog(self,Qt.FramelessWindowHint)
         azandialog.setWindowTitle("It's time to Shalat")
         self.azanDialog = azandialog
+        btnDialog = QPushButton("", self.azanDialog)
+        btnDialog.setFlat(True)
+        btnDialog.clicked.connect(self.azanDialog.hide)
 
         # OPEN SETTING ON START
         self.open_setting()
@@ -481,19 +484,20 @@ class AyoShalat(QMainWindow):
         im_width -= 75
         im_height -= 75
         self.azanDialog.resize(im_width, im_height)
-        self.azanDialog.setStyleSheet("border-image: url('" + image_path + "') 0 0 0 0 stretch stretch;")
+        # self.azanDialog.setStyleSheet("border-image: url('" + image_path + "') 0 0 0 0 stretch stretch;")
+        # self.azanDialog.setStyleSheet("{border:white 5px solid;border-style:outline;}")
 
-        btnDialog = QPushButton("", self.azanDialog)
-        btnDialog.setGeometry(0, 0, im_width, im_height)
-        btnDialog.setStyleSheet("{border:none;border-style:outline;}")
-        btnDialog.setFlat(True)
-        btnDialog.clicked.connect(self.hideImageDialog)
+        im_width -=10
+        im_height -= 10
+
+        print('showing azan dialog')
+        btnDialog = self.azanDialog.children()[0]
+        btnDialog.setGeometry(5, 5, im_width, im_height)
+        styleBg = "border-image: url('" + image_path + "') 0 0 0 0 stretch stretch;"
+        btnDialog.setStyleSheet(styleBg)
+        # btnDialog.setStyleSheet("{border:none;border-style:outline;}")
         self.azanDialog.show()
     
-    def hideImageDialog(self):
-        self.azanDialog.hide()
-
-
     def stopAzan(self):
         try:
             self.azanpy.stop()
