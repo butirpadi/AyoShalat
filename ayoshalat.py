@@ -307,7 +307,8 @@ class AyoShalat(QMainWindow):
             self.ui.lblRemaining.setText(remaining_str)
             self.set_color_prayer_time_frame(4)
         
-        if current_time >= isya_date and current_time <= subh_date:
+        # if current_time >= isya_date and current_time <= subh_date:
+        if current_time >= isya_date :
             self.ui.lblUpcomingWaktu.setText("Subh")
             self.ui.lblUpcomingJam.setText(self.time_array['fajr'])
             self.ui.lblCurrentWaktu.setText('Isya')
