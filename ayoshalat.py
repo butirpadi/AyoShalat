@@ -345,16 +345,18 @@ class AyoShalat(QMainWindow):
             # -----------------------------------------------------------------------
 
             # checking for jumah notification
-            if self.enable_jumah_notification:
-                # dhuhr
-                dhuhr_date_str = str(current_time.year) + '/' + str(current_time.strftime(
-                    '%m')) + '/' + str(current_time.strftime('%d')) + ' ' + self.time_array['dhuhr'].strip() + ':00'
-                dhuhr_date = datetime.datetime.strptime(
-                    dhuhr_date_str, '%Y/%m/%d %H:%M:%S')
-                
-                if self.get_remaining_time(current_time, dhuhr_date) == int(self.before_jumah_time):
-                    self.playNotif()
-                    time.sleep(75)
+            # friday is 5
+            if current_time.day == 5:
+                if self.enable_jumah_notification:
+                    # dhuhr
+                    dhuhr_date_str = str(current_time.year) + '/' + str(current_time.strftime(
+                        '%m')) + '/' + str(current_time.strftime('%d')) + ' ' + self.time_array['dhuhr'].strip() + ':00'
+                    dhuhr_date = datetime.datetime.strptime(
+                        dhuhr_date_str, '%Y/%m/%d %H:%M:%S')
+                    
+                    if self.get_remaining_time(current_time, dhuhr_date) == int(self.before_jumah_time):
+                        self.playNotif()
+                        time.sleep(75)
 
             # checking notification before pray time
             if self.enable_notification_before:
