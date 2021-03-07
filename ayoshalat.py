@@ -82,7 +82,7 @@ class AyoShalat(QMainWindow):
         self.default_notif = self.current_directory + '/audio/hayyalashala.mp3'
 
         # image dialog
-        azandialog = QDialog(self,Qt.FramelessWindowHint)
+        azandialog = QDialog(self, Qt.FramelessWindowHint)
         azandialog.setWindowTitle("It's time to Shalat")
         self.azanDialog = azandialog
         btnDialog = QPushButton("", self.azanDialog)
@@ -109,9 +109,9 @@ class AyoShalat(QMainWindow):
         self.show_tray()
 
         # ---------------------------------------------------------------------------------------------------------------------
-    
+
     def do_close(self):
-        if QMessageBox().question(self,'Close','Are you sure ?',QMessageBox.StandardButton.Yes,QMessageBox.StandardButton.No) == QMessageBox.StandardButton.Yes:
+        if QMessageBox().question(self, 'Close', 'Are you sure ?', QMessageBox.StandardButton.Yes, QMessageBox.StandardButton.No) == QMessageBox.StandardButton.Yes:
             os._exit(0)
 
     def toggle_check_notification(self):
@@ -192,16 +192,16 @@ class AyoShalat(QMainWindow):
         self.open_setting()
         self.init_times_new()
         self.showTimes()
-    
+
     # active_time fajr = 1
-    def set_color_prayer_time_frame(self,active_time):
+    def set_color_prayer_time_frame(self, active_time):
         normal_style = "border-style:solid;border-radius:0px;border-bottom:1px solid whitesmoke;"
         active_style = normal_style + "background-color:rgb(252, 210, 93);"
 
         normal_style = ".QFrame{" + normal_style + "}"
         active_style = ".QFrame{" + active_style + "}"
 
-        # clear        
+        # clear
         self.ui.frameFajr.setStyleSheet(normal_style)
         self.ui.frameDhuhr.setStyleSheet(normal_style)
         self.ui.frameAsr.setStyleSheet(normal_style)
@@ -218,7 +218,7 @@ class AyoShalat(QMainWindow):
             self.ui.frameMaghrib.setStyleSheet(active_style)
         if active_time == 5:
             self.ui.frameIsya.setStyleSheet(active_style)
-    
+
     def show_prayer_time_info(self):
         # show current prayer time info
         # get current time
@@ -284,37 +284,36 @@ class AyoShalat(QMainWindow):
             self.ui.lblCurrentWaktu.setText('Subh')
             self.show_remaining_time()
             self.set_color_prayer_time_frame(1)
-        
+
         if current_time >= dhuhr_date and current_time <= asr_date:
             self.ui.lblUpcomingWaktu.setText("Asr")
             self.ui.lblUpcomingJam.setText(self.time_array['asr'])
             self.ui.lblCurrentWaktu.setText('Duhr')
             self.show_remaining_time()
             self.set_color_prayer_time_frame(2)
-        
+
         if current_time >= asr_date and current_time <= maghrib_date:
             self.ui.lblUpcomingWaktu.setText("Maghrib")
             self.ui.lblUpcomingJam.setText(self.time_array['maghrib'])
             self.ui.lblCurrentWaktu.setText('Asr')
             self.show_remaining_time()
             self.set_color_prayer_time_frame(3)
-        
+
         if current_time >= maghrib_date and current_time <= isya_date:
             self.ui.lblUpcomingWaktu.setText("Isya")
             self.ui.lblUpcomingJam.setText(self.time_array['isha'])
             self.ui.lblCurrentWaktu.setText('Maghrib')
             self.show_remaining_time()
             self.set_color_prayer_time_frame(4)
-        
+
         # if current_time >= isya_date and current_time <= subh_date:
-        if current_time >= isya_date :
+        if current_time >= isya_date:
             self.ui.lblUpcomingWaktu.setText("Subh")
             self.ui.lblUpcomingJam.setText(self.time_array['fajr'])
             self.ui.lblCurrentWaktu.setText('Isya')
             self.show_remaining_time()
             self.set_color_prayer_time_frame(5)
 
-    
     def show_remaining_time(self):
         current_time = datetime.datetime.now()
         subh = self.time_array['fajr'].strip()
@@ -353,25 +352,28 @@ class AyoShalat(QMainWindow):
             isya_date_str, '%Y/%m/%d %H:%M:%S')
         # show upcoming
         if current_time >= subh_date and current_time <= dhuhr_date:
-            remaining_str = str(int(self.get_remaining_second(current_time,dhuhr_date)//3600)) + ' hours and ' + str(int((self.get_remaining_second(current_time,dhuhr_date)//60)%60)) + ' minutes to go'
-        
-        if current_time >= dhuhr_date and current_time <= asr_date:
-            remaining_str = str(int(self.get_remaining_second(current_time,asr_date)//3600)) + ' hours and ' + str(int((self.get_remaining_second(current_time,asr_date)//60)%60)) + ' minutes to go'
-        
-        if current_time >= asr_date and current_time <= maghrib_date:
-            remaining_str = str(int(self.get_remaining_second(current_time,maghrib_date)//3600)) + ' hours and ' + str(int((self.get_remaining_second(current_time,maghrib_date)//60)%60)) + ' minutes to go'
-        
-        if current_time >= maghrib_date and current_time <= isya_date:
-            remaining_str = str(int(self.get_remaining_second(current_time,isya_date)//3600)) + ' hours and ' + str(int((self.get_remaining_second(current_time,isya_date)//60)%60)) + ' minutes to go'
-        
-        # if current_time >= isya_date and current_time <= subh_date:
-        if current_time >= isya_date or current_time <= subh_date :
-            subh_date = subh_date + datetime.timedelta(days=1)
-            remaining_str = str(int(self.get_remaining_second(current_time,subh_date)//3600)) + ' hours and ' + str(int((self.get_remaining_second(current_time,subh_date)//60)%60)) + ' minutes to go'
-        
-        
-        self.ui.lblRemaining.setText(remaining_str)
+            remaining_str = str(int(self.get_remaining_second(current_time, dhuhr_date)//3600)) + ' hours and ' + str(
+                int((self.get_remaining_second(current_time, dhuhr_date)//60) % 60)) + ' minutes to go'
 
+        if current_time >= dhuhr_date and current_time <= asr_date:
+            remaining_str = str(int(self.get_remaining_second(current_time, asr_date)//3600)) + ' hours and ' + str(
+                int((self.get_remaining_second(current_time, asr_date)//60) % 60)) + ' minutes to go'
+
+        if current_time >= asr_date and current_time <= maghrib_date:
+            remaining_str = str(int(self.get_remaining_second(current_time, maghrib_date)//3600)) + ' hours and ' + str(
+                int((self.get_remaining_second(current_time, maghrib_date)//60) % 60)) + ' minutes to go'
+
+        if current_time >= maghrib_date and current_time <= isya_date:
+            remaining_str = str(int(self.get_remaining_second(current_time, isya_date)//3600)) + ' hours and ' + str(
+                int((self.get_remaining_second(current_time, isya_date)//60) % 60)) + ' minutes to go'
+
+        # if current_time >= isya_date and current_time <= subh_date:
+        if current_time >= isya_date or current_time <= subh_date:
+            subh_date = subh_date + datetime.timedelta(days=1)
+            remaining_str = str(int(self.get_remaining_second(current_time, subh_date)//3600)) + ' hours and ' + str(
+                int((self.get_remaining_second(current_time, subh_date)//60) % 60)) + ' minutes to go'
+
+        self.ui.lblRemaining.setText(remaining_str)
 
     def do_calculate(self):
         while True:
@@ -403,7 +405,7 @@ class AyoShalat(QMainWindow):
                         '%m')) + '/' + str(current_time.strftime('%d')) + ' ' + self.time_array['dhuhr'].strip() + ':00'
                     dhuhr_date = datetime.datetime.strptime(
                         dhuhr_date_str, '%Y/%m/%d %H:%M:%S')
-                    
+
                     if self.get_remaining_time(current_time, dhuhr_date) == int(self.before_jumah_time):
                         self.playNotif()
                         time.sleep(75)
@@ -460,15 +462,14 @@ class AyoShalat(QMainWindow):
                 if self.get_remaining_time(current_time, isya_date) == int(self.before_pray_time):
                     self.playNotif()
                     time.sleep(75)
-            
 
-    def get_remaining_second(self,time_1,time_2):
+    def get_remaining_second(self, time_1, time_2):
         time_delta = (time_2 - time_1)
-        return time_delta.total_seconds() # in seconds
-        
+        return time_delta.total_seconds()  # in seconds
 
-    def get_remaining_time(self, time_1, time_2):        
-        return round(self.get_remaining_second(time_1,time_2)/60) # in minutes
+    def get_remaining_time(self, time_1, time_2):
+        # in minutes
+        return round(self.get_remaining_second(time_1, time_2)/60)
 
     def runningme(self):
         # do some stuff
@@ -486,16 +487,17 @@ class AyoShalat(QMainWindow):
         im_height -= 75
         self.azanDialog.resize(im_width, im_height)
 
-        im_width -=10
+        im_width -= 10
         im_height -= 10
 
         print('showing azan dialog')
         btnDialog = self.azanDialog.children()[0]
         btnDialog.setGeometry(5, 5, im_width, im_height)
-        styleBg = "border-image: url('" + image_path + "') 0 0 0 0 stretch stretch;"
+        styleBg = "border-image: url('" + image_path + \
+            "') 0 0 0 0 stretch stretch;"
         btnDialog.setStyleSheet(styleBg)
         self.azanDialog.show()
-    
+
     def stopAzan(self):
         try:
             self.azanpy.stop()
@@ -507,14 +509,14 @@ class AyoShalat(QMainWindow):
 
     def playAzan(self):
         self.threadAzan = threading.Thread(
-                target=self._playAzan, name="Play Azan")
+            target=self._playAzan, name="Play Azan")
 
         self.threadAzan.start()
         self.showImageAzan()
 
     def playNotif(self):
         self.threadNotif = threading.Thread(
-                target=self._playNotif, name="Play Notif")
+            target=self._playNotif, name="Play Notif")
 
         self.threadNotif.start()
 
@@ -548,16 +550,16 @@ class AyoShalat(QMainWindow):
         self.ui.lblTodayName.setText(
             'Today / ' + datetime.datetime.now().strftime('%A'))
         self.ui.lblTodayDate.setText(
-            datetime.datetime.now().strftime('%d %B %Y / %H:%M') )
+            datetime.datetime.now().strftime('%d %B %Y / %H:%M'))
         self.ui.lblSunset.setText(self.time_array['sunset'])
         self.ui.lblSunrise.setText(self.time_array['sunrise'])
 
         # using new calculation module
-        self.ui.txFajr.setText(self.time_array['fajr'].strip() + ':00')
-        self.ui.txDhuhr.setText(self.time_array['dhuhr'].strip() + ':00')
-        self.ui.txAshr.setText(self.time_array['asr'].strip() + ':00')
-        self.ui.txMaghrib.setText(self.time_array['maghrib'].strip() + ':00')
-        self.ui.txIsya.setText(self.time_array['isha'].strip() + ':00')
+        self.ui.txFajr.setText(self.time_array['fajr'].strip())
+        self.ui.txDhuhr.setText(self.time_array['dhuhr'].strip())
+        self.ui.txAshr.setText(self.time_array['asr'].strip())
+        self.ui.txMaghrib.setText(self.time_array['maghrib'].strip())
+        self.ui.txIsya.setText(self.time_array['isha'].strip())
 
     def init_times_new(self):
         today = datetime.date.today()
@@ -765,42 +767,43 @@ class AyoShalat(QMainWindow):
         self.ui.btnExit.setCursor(QCursor(Qt.PointingHandCursor))
 
         self.ui.containerSetting.setStyleSheet(u".QLineEdit{\n"
-            "	border:none;\n"
-            "	border-radius:2px;\n"
-            "	background-color:rgb(223, 223, 223);\n"
-            "}\n"
-            "#containerSetting{\n"
-            "	background-color: rgb(255, 255, 255);\n"
-            "	border-radius:10;\n"
-            "	border-style:outer;\n"
-            "	border:1px solid #cbcbcb;\n"
-            "}\n"
-            ".QLabel{\n"
-            "	color:black;\n"
-            "}\n"
-            ".QPushButton{\n"
-            "	border-radius:2px;\n"
-            "	background-color:rgb(0, 85, 127);\n"
-            "	color:#fff;\n"
-            "}\n"
-            ".QPushButton:hover{\n"
-            "	background-color:rgb(0, 135, 201);\n"
-            "}\n"
-            ".QCheckBox{\n"
-            "	color:black;\n"
-            "}\n"
-            "\n"
-            ".QComboBox{\n"
-            "border:none;\n"
-            "	border:none;\n"
-            "	border-radius:2px;\n"
-            "	background-color:rgb(223, 223, 223);\n"
-            "	selection-color: black;\n"
-            "      selection-background-color: rgb(255, 186, 97);\n"
-            "}\n"
-            "\n"
-            ".QComboBox::drop-down:button{\n"
-            "	background-color: rgb(234,234,234);\n"
-            "	width:25px;\n"
-            "background-image:url('" + self.current_directory + "/icon/expand_more-24px.svg')\n"
-            "}")
+                                               "	border:none;\n"
+                                               "	border-radius:2px;\n"
+                                               "	background-color:rgb(223, 223, 223);\n"
+                                               "}\n"
+                                               "#containerSetting{\n"
+                                               "	background-color: rgb(255, 255, 255);\n"
+                                               "	border-radius:10;\n"
+                                               "	border-style:outer;\n"
+                                               "	border:1px solid #cbcbcb;\n"
+                                               "}\n"
+                                               ".QLabel{\n"
+                                               "	color:black;\n"
+                                               "}\n"
+                                               ".QPushButton{\n"
+                                               "	border-radius:2px;\n"
+                                               "	background-color:rgb(0, 85, 127);\n"
+                                               "	color:#fff;\n"
+                                               "}\n"
+                                               ".QPushButton:hover{\n"
+                                               "	background-color:rgb(0, 135, 201);\n"
+                                               "}\n"
+                                               ".QCheckBox{\n"
+                                               "	color:black;\n"
+                                               "}\n"
+                                               "\n"
+                                               ".QComboBox{\n"
+                                               "border:none;\n"
+                                               "	border:none;\n"
+                                               "	border-radius:2px;\n"
+                                               "	background-color:rgb(223, 223, 223);\n"
+                                               "	selection-color: black;\n"
+                                               "      selection-background-color: rgb(255, 186, 97);\n"
+                                               "}\n"
+                                               "\n"
+                                               ".QComboBox::drop-down:button{\n"
+                                               "	background-color: rgb(234,234,234);\n"
+                                               "	width:25px;\n"
+                                               "background-image:url('" + self.current_directory +
+                                               "/icon/expand_more-24px.svg')\n"
+                                               "}")
