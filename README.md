@@ -4,18 +4,12 @@ Aplikasi Pengingat Waktu Shalat yang di bangun menggunakan Python. Aplikasi Sede
 ![ayo-shalat](https://user-images.githubusercontent.com/3039273/110239515-d4a0a400-7f79-11eb-8709-161a03af465f.png)
 
 
-## Instalasi
+## Requirements & Instalasi
 
-Sebelum menggunakan aplikasi ini, perlu di install beberapa module. Lakukan langkah-langkah berikut, lewati jika ada module yang telah terinstall.
-
-```
-sudo apt install python3 python3-pip
-```
-
-setelah module python telah terinstall jalankan perintah berikut ini:
+Aplikasi ini membutuhkan python minimal versi 3.7, dan membutuhkan beberapa requirements module python. jalankan perintah ini pada terminal atau command line untuk meng-install nya.
 
 ```
-pip3 install pyside6 pathlib
+pip install -r requirements.txt
 ```
 
 ## Running
