@@ -1367,8 +1367,9 @@ background-position:right center;</string>
      <property name="styleSheet">
       <string notr="true">.QLineEdit{
 	border:none;
-	border-radius:2px;
-	background-color:rgb(223, 223, 223);
+	border-radius:0px;
+	background-color:whitesmoke;
+	border-bottom:1px solid gray;
 }
 #containerSetting{
 	background-color: rgb(255, 255, 255);
@@ -1394,10 +1395,11 @@ background-position:right center;</string>
 .QComboBox{
 border:none;
 	border:none;
-	border-radius:2px;
-	background-color:rgb(223, 223, 223);
+	border-radius:0px;
+	background-color:whitesmoke;
 	selection-color: black;
       selection-background-color: rgb(255, 186, 97);
+	border-bottom:1px solid gray;
 }
 
 .QComboBox::drop-down:button{
@@ -1477,7 +1479,7 @@ background-image:url('icon/expand_more-24px.svg')
           <string notr="true"/>
          </property>
          <property name="text">
-          <string>Play</string>
+          <string>Test Play</string>
          </property>
         </widget>
        </item>
@@ -2092,22 +2094,6 @@ background-image:url('icon/expand_more-24px.svg')
   <connection>
    <sender>ckJumah</sender>
    <signal>toggled(bool)</signal>
-   <receiver>txBeforeJumah</receiver>
-   <slot>setVisible(bool)</slot>
-   <hints>
-    <hint type="sourcelabel">
-     <x>130</x>
-     <y>345</y>
-    </hint>
-    <hint type="destinationlabel">
-     <x>65</x>
-     <y>369</y>
-    </hint>
-   </hints>
-  </connection>
-  <connection>
-   <sender>ckJumah</sender>
-   <signal>toggled(bool)</signal>
    <receiver>label_8</receiver>
    <slot>setVisible(bool)</slot>
    <hints>
@@ -2118,6 +2104,22 @@ background-image:url('icon/expand_more-24px.svg')
     <hint type="destinationlabel">
      <x>131</x>
      <y>370</y>
+    </hint>
+   </hints>
+  </connection>
+  <connection>
+   <sender>ckJumah</sender>
+   <signal>toggled(bool)</signal>
+   <receiver>txBeforeJumah</receiver>
+   <slot>setVisible(bool)</slot>
+   <hints>
+    <hint type="sourcelabel">
+     <x>130</x>
+     <y>345</y>
+    </hint>
+    <hint type="destinationlabel">
+     <x>65</x>
+     <y>369</y>
     </hint>
    </hints>
   </connection>

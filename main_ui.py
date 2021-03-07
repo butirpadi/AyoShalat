@@ -475,8 +475,9 @@ class Ui_MainWindow(object):
         self.containerSetting.setGeometry(QRect(15, 54, 291, 391))
         self.containerSetting.setStyleSheet(u".QLineEdit{\n"
 "	border:none;\n"
-"	border-radius:2px;\n"
-"	background-color:rgb(223, 223, 223);\n"
+"	border-radius:0px;\n"
+"	background-color:whitesmoke;\n"
+"	border-bottom:1px solid gray;\n"
 "}\n"
 "#containerSetting{\n"
 "	background-color: rgb(255, 255, 255);\n"
@@ -502,10 +503,11 @@ class Ui_MainWindow(object):
 ".QComboBox{\n"
 "border:none;\n"
 "	border:none;\n"
-"	border-radius:2px;\n"
-"	background-color:rgb(223, 223, 223);\n"
+"	border-radius:0px;\n"
+"	background-color:whitesmoke;\n"
 "	selection-color: black;\n"
 "      selection-background-color: rgb(255, 186, 97);\n"
+"	border-bottom:1px solid gray;\n"
 "}\n"
 "\n"
 ".QComboBox::drop-down:button{\n"
@@ -689,8 +691,8 @@ class Ui_MainWindow(object):
         MainWindow.setCentralWidget(self.centralwidget)
 
         self.retranslateUi(MainWindow)
-        self.ckJumah.toggled.connect(self.txBeforeJumah.setVisible)
         self.ckJumah.toggled.connect(self.label_8.setVisible)
+        self.ckJumah.toggled.connect(self.txBeforeJumah.setVisible)
 
         QMetaObject.connectSlotsByName(MainWindow)
     # setupUi
@@ -747,7 +749,7 @@ class Ui_MainWindow(object):
 #endif // QT_CONFIG(tooltip)
         self.btnExit.setText(QCoreApplication.translate("MainWindow", u"Exit", None))
         self.label_3.setText(QCoreApplication.translate("MainWindow", u"UTC", None))
-        self.btnPlay.setText(QCoreApplication.translate("MainWindow", u"Play", None))
+        self.btnPlay.setText(QCoreApplication.translate("MainWindow", u"Test Play", None))
         self.btnStop.setText(QCoreApplication.translate("MainWindow", u"Stop", None))
         self.btnSave.setText(QCoreApplication.translate("MainWindow", u"Save", None))
         self.ckStartTray.setText(QCoreApplication.translate("MainWindow", u"Start in Tray", None))
