@@ -2089,6 +2089,25 @@ background-image:url('icon/expand_more-24px.svg')
    </widget>
   </widget>
  </widget>
+ <tabstops>
+  <tabstop>txLat</tabstop>
+  <tabstop>txLong</tabstop>
+  <tabstop>txUtc</tabstop>
+  <tabstop>cbMathhab</tabstop>
+  <tabstop>cbMethod</tabstop>
+  <tabstop>ckStartTray</tabstop>
+  <tabstop>ckNotification</tabstop>
+  <tabstop>txBeforeTime</tabstop>
+  <tabstop>ckJumah</tabstop>
+  <tabstop>txBeforeJumah</tabstop>
+  <tabstop>btnPlay</tabstop>
+  <tabstop>btnStop</tabstop>
+  <tabstop>btnSave</tabstop>
+  <tabstop>btnTimeTable</tabstop>
+  <tabstop>btnSetting</tabstop>
+  <tabstop>btnHide</tabstop>
+  <tabstop>btnExit</tabstop>
+ </tabstops>
  <resources/>
  <connections>
   <connection>
