@@ -282,32 +282,28 @@ class AyoShalat(QMainWindow):
             self.ui.lblUpcomingWaktu.setText("Dhuhr")
             self.ui.lblUpcomingJam.setText(self.time_array['dhuhr'])
             self.ui.lblCurrentWaktu.setText('Subh')
-            remaining_str = str(int(self.get_remaining_second(current_time,dhuhr_date)//3600)) + ' hours and ' + str(int((self.get_remaining_second(current_time,dhuhr_date)//60)%60)) + ' minutes to go'
-            self.ui.lblRemaining.setText(remaining_str)
+            self.show_remaining_time()
             self.set_color_prayer_time_frame(1)
         
         if current_time >= dhuhr_date and current_time <= asr_date:
             self.ui.lblUpcomingWaktu.setText("Asr")
             self.ui.lblUpcomingJam.setText(self.time_array['asr'])
             self.ui.lblCurrentWaktu.setText('Duhr')
-            remaining_str = str(int(self.get_remaining_second(current_time,asr_date)//3600)) + ' hours and ' + str(int((self.get_remaining_second(current_time,asr_date)//60)%60)) + ' minutes to go'
-            self.ui.lblRemaining.setText(remaining_str)
+            self.show_remaining_time()
             self.set_color_prayer_time_frame(2)
         
         if current_time >= asr_date and current_time <= maghrib_date:
             self.ui.lblUpcomingWaktu.setText("Maghrib")
             self.ui.lblUpcomingJam.setText(self.time_array['maghrib'])
             self.ui.lblCurrentWaktu.setText('Asr')
-            remaining_str = str(int(self.get_remaining_second(current_time,maghrib_date)//3600)) + ' hours and ' + str(int((self.get_remaining_second(current_time,maghrib_date)//60)%60)) + ' minutes to go'
-            self.ui.lblRemaining.setText(remaining_str)
+            self.show_remaining_time()
             self.set_color_prayer_time_frame(3)
         
         if current_time >= maghrib_date and current_time <= isya_date:
             self.ui.lblUpcomingWaktu.setText("Isya")
             self.ui.lblUpcomingJam.setText(self.time_array['isha'])
             self.ui.lblCurrentWaktu.setText('Maghrib')
-            remaining_str = str(int(self.get_remaining_second(current_time,isya_date)//3600)) + ' hours and ' + str(int((self.get_remaining_second(current_time,isya_date)//60)%60)) + ' minutes to go'
-            self.ui.lblRemaining.setText(remaining_str)
+            self.show_remaining_time()
             self.set_color_prayer_time_frame(4)
         
         # if current_time >= isya_date and current_time <= subh_date:
@@ -315,10 +311,64 @@ class AyoShalat(QMainWindow):
             self.ui.lblUpcomingWaktu.setText("Subh")
             self.ui.lblUpcomingJam.setText(self.time_array['fajr'])
             self.ui.lblCurrentWaktu.setText('Isya')
-            remaining_str = str(int(self.get_remaining_second(current_time,subh_date)//3600)) + ' hours and ' + str(int((self.get_remaining_second(current_time,subh_date)//60)%60)) + ' minutes to go'
-            self.ui.lblRemaining.setText(remaining_str)
+            self.show_remaining_time()
             self.set_color_prayer_time_frame(5)
+
+    
+    def show_remaining_time(self):
+        current_time = datetime.datetime.now()
+        subh = self.time_array['fajr'].strip()
+        dhuhr = self.time_array['dhuhr'].strip()
+        asr = self.time_array['asr'].strip()
+        maghrib = self.time_array['maghrib'].strip()
+        isya = self.time_array['isha'].strip()
+
+        subh_date_str = str(current_time.year) + '/' + str(current_time.strftime(
+            '%m')) + '/' + str(current_time.strftime('%d')) + ' ' + subh + ':00'
+        subh_date = datetime.datetime.strptime(
+            subh_date_str, '%Y/%m/%d %H:%M:%S')
+
+        # dhuhr
+        dhuhr_date_str = str(current_time.year) + '/' + str(current_time.strftime(
+            '%m')) + '/' + str(current_time.strftime('%d')) + ' ' + dhuhr + ':00'
+        dhuhr_date = datetime.datetime.strptime(
+            dhuhr_date_str, '%Y/%m/%d %H:%M:%S')
+
+        # asr
+        asr_date_str = str(current_time.year) + '/' + str(current_time.strftime(
+            '%m')) + '/' + str(current_time.strftime('%d')) + ' ' + asr + ':00'
+        asr_date = datetime.datetime.strptime(
+            asr_date_str, '%Y/%m/%d %H:%M:%S')
+
+        # asr
+        maghrib_date_str = str(current_time.year) + '/' + str(current_time.strftime(
+            '%m')) + '/' + str(current_time.strftime('%d')) + ' ' + maghrib + ':00'
+        maghrib_date = datetime.datetime.strptime(
+            maghrib_date_str, '%Y/%m/%d %H:%M:%S')
+
+        # isya
+        isya_date_str = str(current_time.year) + '/' + str(current_time.strftime(
+            '%m')) + '/' + str(current_time.strftime('%d')) + ' ' + isya + ':00'
+        isya_date = datetime.datetime.strptime(
+            isya_date_str, '%Y/%m/%d %H:%M:%S')
+        # show upcoming
+        if current_time >= subh_date and current_time <= dhuhr_date:
+            remaining_str = str(int(self.get_remaining_second(current_time,dhuhr_date)//3600)) + ' hours and ' + str(int((self.get_remaining_second(current_time,dhuhr_date)//60)%60)) + ' minutes to go'
         
+        if current_time >= dhuhr_date and current_time <= asr_date:
+            remaining_str = str(int(self.get_remaining_second(current_time,asr_date)//3600)) + ' hours and ' + str(int((self.get_remaining_second(current_time,asr_date)//60)%60)) + ' minutes to go'
+        
+        if current_time >= asr_date and current_time <= maghrib_date:
+            remaining_str = str(int(self.get_remaining_second(current_time,maghrib_date)//3600)) + ' hours and ' + str(int((self.get_remaining_second(current_time,maghrib_date)//60)%60)) + ' minutes to go'
+        
+        if current_time >= maghrib_date and current_time <= isya_date:
+            remaining_str = str(int(self.get_remaining_second(current_time,isya_date)//3600)) + ' hours and ' + str(int((self.get_remaining_second(current_time,isya_date)//60)%60)) + ' minutes to go'
+        
+        # if current_time >= isya_date and current_time <= subh_date:
+        if current_time >= isya_date :
+            remaining_str = str(int(self.get_remaining_second(current_time,subh_date)//3600)) + ' hours and ' + str(int((self.get_remaining_second(current_time,subh_date)//60)%60)) + ' minutes to go'
+        
+        self.ui.lblRemaining.setText(remaining_str)
 
 
     def do_calculate(self):
@@ -333,6 +383,8 @@ class AyoShalat(QMainWindow):
             # get current time
             current_time = datetime.datetime.now()
             now = current_time.strftime("%H:%M")
+
+            self.show_remaining_time()
 
             if now == self.time_array['fajr'].strip() or now == self.time_array['dhuhr'].strip() or now == self.time_array['asr'].strip() or now == self.time_array['maghrib'].strip() or now == self.time_array['isha'].strip():
                 self.playAzan()
@@ -411,57 +463,6 @@ class AyoShalat(QMainWindow):
                     self.playNotif()
                     time.sleep(75)
             
-            # self.show_current_prayer_time()
-                
-
-                # # show upcoming
-                # if current_time >= subh_date and current_time <= dhuhr_date:
-                #     self.ui.lblUpcomingWaktu.setText("Dhuhr")
-                #     self.ui.lblUpcomingJam.setText(self.time_array['dhuhr'])
-                #     # self.ui.lblCurrentWaktu.setText('Subh')
-                #     remaining_str = str(int(self.get_remaining_second(current_time,dhuhr_date)//3600)) + ' hours and ' + str(int((self.get_remaining_second(current_time,dhuhr_date)//60)%60)) + ' minutes to go'
-                #     self.ui.lblRemaining.setText(remaining_str)
-                
-                # if current_time >= dhuhr_date and current_time <= asr_date:
-                #     self.ui.lblUpcomingWaktu.setText("Asr")
-                #     self.ui.lblUpcomingJam.setText(self.time_array['asr'])
-                #     # self.ui.lblCurrentWaktu.setText('Duhr')
-                #     remaining_str = str(int(self.get_remaining_second(current_time,asr_date)//3600)) + ' hours and ' + str(int((self.get_remaining_second(current_time,asr_date)//60)%60)) + ' minutes to go'
-                #     self.ui.lblRemaining.setText(remaining_str)
-                
-                # if current_time >= asr_date and current_time <= maghrib_date:
-                #     self.ui.lblUpcomingWaktu.setText("Maghrib")
-                #     self.ui.lblUpcomingJam.setText(self.time_array['maghrib'])
-                #     # self.ui.lblCurrentWaktu.setText('Asr')
-                #     remaining_str = str(int(self.get_remaining_second(current_time,maghrib_date)//3600)) + ' hours and ' + str(int((self.get_remaining_second(current_time,maghrib_date)//60)%60)) + ' minutes to go'
-                #     self.ui.lblRemaining.setText(remaining_str)
-                
-                # if current_time >= maghrib_date and current_time <= isya_date:
-                #     self.ui.lblUpcomingWaktu.setText("Isya")
-                #     self.ui.lblUpcomingJam.setText(self.time_array['isha'])
-                #     # self.ui.lblCurrentWaktu.setText('Maghrib')
-                #     remaining_str = str(int(self.get_remaining_second(current_time,isya_date)//3600)) + ' hours and ' + str(int((self.get_remaining_second(current_time,isya_date)//60)%60)) + ' minutes to go'
-                #     self.ui.lblRemaining.setText(remaining_str)
-                
-                # if current_time >= isya_date and current_time <= subh_date:
-                #     self.ui.lblUpcomingWaktu.setText("Subh")
-                #     self.ui.lblUpcomingJam.setText(self.time_array['fajr'])
-                #     # self.ui.lblCurrentWaktu.setText('Isya')
-                #     remaining_str = str(int(self.get_remaining_second(current_time,subh_date)//3600)) + ' hours and ' + str(int((self.get_remaining_second(current_time,subh_date)//60)%60)) + ' minutes to go'
-                #     self.ui.lblRemaining.setText(remaining_str)
-    
-    # def show_upcoming(self):
-    #     subh = self.time_array['fajr'].strip()
-    #     dhuhr = self.time_array['dhuhr'].strip()
-    #     asr = self.time_array['asr'].strip()
-    #     maghrib = self.time_array['maghrib'].strip()
-    #     isya = self.time_array['isha'].strip()
-
-    #     print(subh)
-    #     print(dhuhr)
-    #     print(asr)
-    #     print(maghrib)
-    #     print(isya)
 
     def get_remaining_second(self,time_1,time_2):
         time_delta = (time_2 - time_1)
@@ -486,8 +487,6 @@ class AyoShalat(QMainWindow):
         im_width -= 75
         im_height -= 75
         self.azanDialog.resize(im_width, im_height)
-        # self.azanDialog.setStyleSheet("border-image: url('" + image_path + "') 0 0 0 0 stretch stretch;")
-        # self.azanDialog.setStyleSheet("{border:white 5px solid;border-style:outline;}")
 
         im_width -=10
         im_height -= 10
@@ -497,7 +496,6 @@ class AyoShalat(QMainWindow):
         btnDialog.setGeometry(5, 5, im_width, im_height)
         styleBg = "border-image: url('" + image_path + "') 0 0 0 0 stretch stretch;"
         btnDialog.setStyleSheet(styleBg)
-        # btnDialog.setStyleSheet("{border:none;border-style:outline;}")
         self.azanDialog.show()
     
     def stopAzan(self):
