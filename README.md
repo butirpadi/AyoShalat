@@ -6,7 +6,7 @@ Aplikasi Pengingat Waktu Shalat yang di bangun menggunakan Python. Aplikasi Sede
 
 ## Instalasi
 
-Untuk saat ini, pengembangan masih hanya di khususkan untuk pengguna Linux (khususnya ubuntu). Sebelum menggunakan aplikasi ini, perlu di install beberapa module. Lakukan langkah-langkah berikut, lewati jika ada module yang telah terinstall.
+Sebelum menggunakan aplikasi ini, perlu di install beberapa module. Lakukan langkah-langkah berikut, lewati jika ada module yang telah terinstall.
 
 ```
 sudo apt install python3 python3-pip
@@ -19,7 +19,7 @@ pip3 install pyside6 pathlib
 ```
 
 ## Running
-Untuk menjalankan aplikasi ini cukup dengan men-double click pada file start.py, atau melalui terminal pada directory aplikasi ini dengan perintah:
+Untuk menjalankan aplikasi ini pada sistem operasi Linux cukup dengan men-double click pada file start.py sedangkan untuk Windows bisa dengan men-double click file start.bat, atau melalui terminal pada directory aplikasi ini dengan perintah:
 
 ```
 python start.py
