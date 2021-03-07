@@ -1,12 +1,12 @@
 # AyoShalat
 Aplikasi Pengingat Waktu Shalat yang di bangun menggunakan Python. Aplikasi Sederhana ini, masih dalam pengembangan, Sudah dapat digunakan, dengan beberapa toleransi ketepatan waktu.
 
-![ayoshalat-dual-screen](https://user-images.githubusercontent.com/3039273/107918320-071f3880-6f9c-11eb-8ba4-8fb48bc175b0.png)
+![ayo-shalat](https://user-images.githubusercontent.com/3039273/110239515-d4a0a400-7f79-11eb-8709-161a03af465f.png)
 
 
 ## Instalasi
 
-Untuk saat ini, pengembangan masih hanya di khususkan untuk pengguna Linux (khususnya ubuntu). Sebelum menggunakan aplikasi ini, perlu di install beberapa module. Lakukan langkah-langkah berikut, lewati jika ada module yang telah terinstall.
+Sebelum menggunakan aplikasi ini, perlu di install beberapa module. Lakukan langkah-langkah berikut, lewati jika ada module yang telah terinstall.
 
 ```
 sudo apt install python3 python3-pip
@@ -19,7 +19,7 @@ pip3 install pyside6 pathlib
 ```
 
 ## Running
-Untuk menjalankan aplikasi ini cukup dengan men-double click pada file start.py, atau melalui terminal pada directory aplikasi ini dengan perintah:
+Untuk menjalankan aplikasi ini pada sistem operasi Linux cukup dengan men-double click pada file start.py sedangkan untuk Windows bisa dengan men-double click file start.bat, atau melalui terminal pada directory aplikasi ini dengan perintah:
 
 ```
 python start.py
