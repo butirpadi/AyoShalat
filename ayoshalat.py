@@ -365,8 +365,10 @@ class AyoShalat(QMainWindow):
             remaining_str = str(int(self.get_remaining_second(current_time,isya_date)//3600)) + ' hours and ' + str(int((self.get_remaining_second(current_time,isya_date)//60)%60)) + ' minutes to go'
         
         # if current_time >= isya_date and current_time <= subh_date:
-        if current_time >= isya_date :
+        if current_time >= isya_date or current_time <= subh_date :
+            subh_date = subh_date + datetime.timedelta(days=1)
             remaining_str = str(int(self.get_remaining_second(current_time,subh_date)//3600)) + ' hours and ' + str(int((self.get_remaining_second(current_time,subh_date)//60)%60)) + ' minutes to go'
+        
         
         self.ui.lblRemaining.setText(remaining_str)
 
@@ -380,20 +382,16 @@ class AyoShalat(QMainWindow):
             # update time every time
             self.init_times_new()
 
-            # get current time
-            current_time = datetime.datetime.now()
-            now = current_time.strftime("%H:%M")
-
             self.show_remaining_time()
 
+            # Check Azan Time
+            current_time = datetime.datetime.now()
+            now = current_time.strftime("%H:%M")
             if now == self.time_array['fajr'].strip() or now == self.time_array['dhuhr'].strip() or now == self.time_array['asr'].strip() or now == self.time_array['maghrib'].strip() or now == self.time_array['isha'].strip():
                 self.playAzan()
-
                 # self.show_current_prayer_time()
                 self.show_prayer_time_info()
-
                 time.sleep(60)
-
             # -----------------------------------------------------------------------
 
             # checking for jumah notification
