@@ -1,0 +1,4 @@
+pyglet==1.5.15
+Pillow==8.1.2
+PySide6==6.0.1
+tinydb==4.4.0
