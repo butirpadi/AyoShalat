@@ -18,6 +18,7 @@ from prayertimes import PrayTimes
 from multiprocessing import Process
 from tinydb import TinyDB, Query as TinyQuery
 from distutils.util import strtobool
+from plyer import notification
 
 
 class AyoShalat(QMainWindow):
@@ -407,7 +408,7 @@ class AyoShalat(QMainWindow):
                         dhuhr_date_str, '%Y/%m/%d %H:%M:%S')
 
                     if self.get_remaining_time(current_time, dhuhr_date) == int(self.before_jumah_time):
-                        self.playNotif()
+                        self.playNotif('Jum`ah')
                         time.sleep(75)
 
             # checking notification before pray time
@@ -444,23 +445,23 @@ class AyoShalat(QMainWindow):
                     isya_date_str, '%Y/%m/%d %H:%M:%S')
 
                 if self.get_remaining_time(current_time, subh_date) == int(self.before_pray_time):
-                    self.playNotif()
+                    self.playNotif('Fajr')
                     time.sleep(75)
 
                 if self.get_remaining_time(current_time, dhuhr_date) == int(self.before_pray_time):
-                    self.playNotif()
+                    self.playNotif('Dhuhr')
                     time.sleep(75)
 
                 if self.get_remaining_time(current_time, asr_date) == int(self.before_pray_time):
-                    self.playNotif()
+                    self.playNotif('Asr')
                     time.sleep(75)
 
                 if self.get_remaining_time(current_time, maghrib_date) == int(self.before_pray_time):
-                    self.playNotif()
+                    self.playNotif('Maghrib')
                     time.sleep(75)
 
                 if self.get_remaining_time(current_time, isya_date) == int(self.before_pray_time):
-                    self.playNotif()
+                    self.playNotif('Isya')
                     time.sleep(75)
 
     def get_remaining_second(self, time_1, time_2):
@@ -514,7 +515,8 @@ class AyoShalat(QMainWindow):
         self.threadAzan.start()
         self.showImageAzan()
 
-    def playNotif(self):
+    def playNotif(self,time_string):
+        notification.notify(title="It's time to Shalat.", message= str(self.before_jumah_time) +" minutes before " + time_string + ' prayer time.', timeout=10)
         self.threadNotif = threading.Thread(
             target=self._playNotif, name="Play Notif")
 
