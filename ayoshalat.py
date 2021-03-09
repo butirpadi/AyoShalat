@@ -516,7 +516,7 @@ class AyoShalat(QMainWindow):
         self.showImageAzan()
 
     def playNotif(self,time_string):
-        notification.notify(title="It's time to Shalat.", message= str(self.before_jumah_time) +" minutes before " + time_string + ' prayer time.', timeout=10)
+        notification.notify(title="It's time to Shalat.", message= str(self.before_pray_time) +" minutes before " + time_string + ' prayer time.', timeout=10)
         self.threadNotif = threading.Thread(
             target=self._playNotif, name="Play Notif")
 
