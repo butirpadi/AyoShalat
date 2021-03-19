@@ -115,6 +115,9 @@ class AyoShalat(QMainWindow):
 
     def do_close(self):
         if QMessageBox().question(self, 'Close', 'Are you sure ?', QMessageBox.StandardButton.Yes, QMessageBox.StandardButton.No) == QMessageBox.StandardButton.Yes:
+            self.qtray.hide()
+            self.qtray.deleteLater()
+            self.deleteLater()
             os._exit(0)
 
     def toggle_check_notification(self):
@@ -152,12 +155,12 @@ class AyoShalat(QMainWindow):
             exit_menu.triggered.connect(self.do_close)
 
             # create tray icon
-            qtray = QSystemTrayIcon(self)
+            self.qtray = QSystemTrayIcon(self)
 
-            qtray.setIcon(QIcon(self.icopath))
-            qtray.setVisible(True)
-            qtray.setContextMenu(traymenu)
-            qtray.show()
+            self.qtray.setIcon(QIcon(self.icopath))
+            self.qtray.setVisible(True)
+            self.qtray.setContextMenu(traymenu)
+            self.qtray.show()
 
     def do_save(self):
         # save setting to tinydb
@@ -664,6 +667,11 @@ class AyoShalat(QMainWindow):
 
     def show_current_prayer_time(self):
         current_time = datetime.datetime.now()
+    
+    def closeEvent(self, event):
+        self.qtray.hide()
+        self.qtray.deleteLater()
+        self.deleteLater()
 
     def reformat_ui(self):
         self.ui.txBeforeTime.hide()
