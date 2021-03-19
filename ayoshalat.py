@@ -80,7 +80,9 @@ class AyoShalat(QMainWindow):
         self.icopath = self.current_directory + '/icon/masjid.xpm'
         self.setWindowIcon(QIcon(self.icopath))
         self.default_azan = self.current_directory + '/audio/azan.mp3'
+        self.default_azan_wav = self.current_directory + '/audio/azan.wav'
         self.default_notif = self.current_directory + '/audio/hayyalashala.mp3'
+        self.default_notif_wav = self.current_directory + '/audio/hayyalashala.wav'
 
         # image dialog
         azandialog = QDialog(self, Qt.FramelessWindowHint)
@@ -398,8 +400,8 @@ class AyoShalat(QMainWindow):
             # -----------------------------------------------------------------------
 
             # checking for jumah notification
-            # friday is 5
-            if current_time.day == 5:
+            # friday is 4
+            if current_time.weekday() == 4:
                 if self.enable_jumah_notification:
                     # dhuhr
                     dhuhr_date_str = str(current_time.year) + '/' + str(current_time.strftime(
@@ -524,26 +526,26 @@ class AyoShalat(QMainWindow):
 
     def _playAzan(self):
         if os.name == 'nt':
-            self.azanpy = AzanPlay(self.default_azan)
+            self.azanpy = AzanPlay(self.default_azan_wav)
             self.azanpy.play()
         else:
             # play azan
             try:
                 self.azanpy.play()
             except AttributeError:
-                self.azanpy = AzanPlay(self.default_azan)
+                self.azanpy = AzanPlay(self.default_azan_wav)
                 self.azanpy.play()
 
     def _playNotif(self):
         if os.name == 'nt':
-            self.notifplay = AzanPlay(self.default_notif)
+            self.notifplay = AzanPlay(self.default_notif_wav)
             self.notifplay.play()
         else:
             # play azan
             try:
                 self.notifplay.play()
             except AttributeError:
-                self.notifplay = AzanPlay(self.default_notif)
+                self.notifplay = AzanPlay(self.default_notif_wav)
                 self.notifplay.play()
 
     def showTimes(self):

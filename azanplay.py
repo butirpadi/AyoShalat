@@ -1,28 +1,17 @@
-import pyglet
+import pyglet, multiprocessing
+from playsound import playsound
 
 class AzanPlay(object):
     def __init__(self, filepath):
         self.filepath = filepath
         self.azansnd = pyglet.media.load(filepath)
+        self.player = multiprocessing.Process(target=playsound, args=(filepath,))
 
     def stop(self):
-        self.player.delete()
-        pyglet.app.exit()
+        # using playsound
+        self.player.terminate()
 
     def play(self):
-        print('playing')
-        media = pyglet.media.load(self.filepath)
-
-        try:
-            if self.player :
-                print('stoping current player')
-                self.player.delete()
-                pyglet.app.exit()
-        except AttributeError as e:
-            print(e)
-        
-        self.player = pyglet.media.Player() 
-        self.player.queue(media) 
-        self.player.play()
-        pyglet.app.run() 
+        #using playsound
+        self.player.start()
 
