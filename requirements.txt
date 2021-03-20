@@ -1,4 +1,5 @@
-pyglet==1.5.15
+playsound==1.2.2
+plyer==2.0.0
 Pillow==8.1.2
-PySide6==6.0.1
+PySide6==6.0.2
 tinydb==4.4.0
