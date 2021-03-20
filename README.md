@@ -13,12 +13,7 @@ pip install -r requirements.txt
 ```
 
 ## Running
-Untuk menjalankan aplikasi ini pada sistem operasi Linux cukup dengan men-double click pada file start.py sedangkan untuk Windows bisa dengan men-double click file start.bat, atau melalui terminal pada directory aplikasi ini dengan perintah:
-
-```
-python start.py
-```
-
+Untuk menjalankan aplikasi ini pada sistem operasi Linux cukup dengan men-double click pada file start.py 
 agar aplikasi dapat di running secara global, maka perlu dibuatkan link, ketikkan perintah berikut :
 
 ```
@@ -29,6 +24,16 @@ maka cukup dengan perintah berikut, aplikasi dapat di running secara global.
 
 ```
 ayoshalat
+```
+
+## Running on Windows OS
+Untuk pengguna windows (tested di windows 10), bisa langsung double-click file start.pyw, agar aplikasi dapat otomatis berjalan (autostart) saat windows running. Lakukan langkah-langkah berikut :
+
+```
+1. Copy file start.pyw pada folder aplikasi AyoShalat
+2. Buka folder autostart windows dengan cara, click tombol windows+r pada keyboard.
+3. ketik shell:startup pada dialog, kemudian enter.
+4. Pada folder autostart windows ini , klik kanan pilih "Paste shortcut"
 ```
 
 
