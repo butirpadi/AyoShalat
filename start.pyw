@@ -8,7 +8,3 @@ if __name__ == "__main__":
     app = QApplication([])
     window = AyoShalat()
     init.init_setting(app,window)
-
-    
-
-
