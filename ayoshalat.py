@@ -385,10 +385,10 @@ class AyoShalat(QMainWindow):
         while True:
             time.sleep(1)
 
-            self.showTimes()
-
             # update time every time
             self.init_times_new()
+
+            self.showTimes()
 
             self.show_remaining_time()
 
@@ -520,39 +520,33 @@ class AyoShalat(QMainWindow):
         self.threadAzan.start()
         self.showImageAzan()
 
-    def playNotif(self,time_string):
-        notification.notify(title="It's time to Shalat.", message= str(self.before_pray_time) +" minutes before " + time_string + ' prayer time.', timeout=10)
+    def playNotif(self, time_string):
+        notification.notify(title="It's time to Shalat.", message=str(
+            self.before_pray_time) + " minutes before " + time_string + ' prayer time.', timeout=10)
         self.threadNotif = threading.Thread(
             target=self._playNotif, name="Play Notif")
 
         self.threadNotif.start()
 
     def _playAzan(self):
-        if os.name == 'nt':
+        try:
+            self.azanpy.stop()
             self.azanpy = AzanPlay(self.default_azan_wav)
             self.azanpy.play()
-        else:
-            # play azan
-            try:
-                self.azanpy.play()
-            except AttributeError:
-                self.azanpy = AzanPlay(self.default_azan_wav)
-                self.azanpy.play()
+        except AttributeError:
+            self.azanpy = AzanPlay(self.default_azan_wav)
+            self.azanpy.play()
 
     def _playNotif(self):
-        if os.name == 'nt':
+        try:
+            self.notifplay.stop()
             self.notifplay = AzanPlay(self.default_notif_wav)
             self.notifplay.play()
-        else:
-            # play azan
-            try:
-                self.notifplay.play()
-            except AttributeError:
-                self.notifplay = AzanPlay(self.default_notif_wav)
-                self.notifplay.play()
+        except AttributeError:
+            self.notifplay = AzanPlay(self.default_notif_wav)
+            self.notifplay.play()
 
     def showTimes(self):
-
         # show label current date name
         self.ui.lblTodayName.setText(
             'Today / ' + datetime.datetime.now().strftime('%A'))
@@ -665,9 +659,9 @@ class AyoShalat(QMainWindow):
         }
         self.db.insert(item)
 
-    def show_current_prayer_time(self):
-        current_time = datetime.datetime.now()
-    
+    # def show_current_prayer_time(self):
+    #     current_time = datetime.datetime.now()
+
     def closeEvent(self, event):
         self.qtray.hide()
         self.qtray.deleteLater()
