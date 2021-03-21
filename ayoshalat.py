@@ -506,7 +506,7 @@ class AyoShalat(QMainWindow):
 
     def stopAzan(self):
         try:
-            self.azanpy.stop()
+            self.azanplay.stop()
         except AttributeError as ae:
             print(ae)
 
@@ -530,12 +530,12 @@ class AyoShalat(QMainWindow):
 
     def _playAzan(self):
         try:
-            self.azanpy.stop()
-            self.azanpy = AzanPlay(self.default_azan_wav)
-            self.azanpy.play()
+            self.azanplay.stop()
+            self.azanplay = AzanPlay(self.default_azan_wav)
+            self.azanplay.play()
         except AttributeError:
-            self.azanpy = AzanPlay(self.default_azan_wav)
-            self.azanpy.play()
+            self.azanplay = AzanPlay(self.default_azan_wav)
+            self.azanplay.play()
 
     def _playNotif(self):
         try:
